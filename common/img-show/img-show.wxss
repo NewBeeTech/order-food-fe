@@ -1,0 +1,16 @@
+.imgContent {
+  padding: 35rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+.item-image {
+  height: 300rpx;
+  width: 300rpx;
+  padding: 20rpx;
+}
+.slide-image {
+  border-radius: 10rpx;
+  height: 100%;
+  width: 100%;
+}
+

@@ -1,14 +1,19 @@
-//logs.js
-var util = require('../../utils/util.js')
+var app = getApp();
 Page({
   data: {
-    logs: []
+    movies: [
+      'http://img04.tooopen.com/images/20130712/tooopen_17270713.jpg',
+      'http://img04.tooopen.com/images/20130617/tooopen_21241404.jpg',
+      'http://img04.tooopen.com/images/20130701/tooopen_20083555.jpg',
+      'http://img04.tooopen.com/images/20130701/tooopen_20083555.jpg',
+      'http://img04.tooopen.com/images/20130701/tooopen_20083555.jpg'
+    ]
   },
-  onLoad: function () {
-    this.setData({
-      logs: (wx.getStorageSync('logs') || []).map(function (log) {
-        return util.formatTime(new Date(log))
-      })
-    })
+  clickImage: function(e) {
+    var current = e.target.dataset.src;
+    wx.previewImage({
+        current: current,
+        urls: this.data.movies,
+    })    
   }
 })

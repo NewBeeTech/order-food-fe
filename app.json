@@ -1,8 +1,7 @@
 {
   "pages":[
-    "pages/carousel/carousel",
-    "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/index/index"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -13,7 +12,7 @@
   "tabBar": {
     "list": [
       {
-        "pagePath": "pages/carousel/carousel",
+        "pagePath": "pages/logs/logs",
         "text": "首页"
       },
       {

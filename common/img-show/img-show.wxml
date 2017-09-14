@@ -1,0 +1,17 @@
+<template name="img-show">
+  <view class="imgContent">
+    <block wx:for="{{movies}}" wx:key="index">
+        <view class="item-image">
+            <image 
+              src="{{item}}"
+              class="slide-image" 
+              mode="aspectFill" 
+              bindtap="clickImage"
+              data-src="{{item}}"
+            />    
+        </view>
+    </block> 
+  </view>
+</template>
+
+
