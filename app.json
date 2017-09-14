@@ -1,7 +1,7 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/me/me"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -21,7 +21,7 @@
         "selectedIconPath": "/assets/images/home-selected.png"
       },
       {
-        "pagePath": "pages/logs/logs",
+        "pagePath": "pages/me/me",
         "text": "我的",
         "iconPath": "/assets/images/me.png",
         "selectedIconPath": "/assets/images/me-selected.png"
