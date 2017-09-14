@@ -30,5 +30,10 @@ Page({
     this.setData({
       scrollTop: this.data.scrollTop + 10
     })
+  },
+  showImage: function() {
+    wx.navigateTo({
+      url: "../imgList/imgList"
+    })
   }
 })
