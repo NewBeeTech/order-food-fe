@@ -1,3 +1,15 @@
+<!--index.wxml-->
 <view bindtap="showImage">
   商家图片列表
+</view>
+<import src="../../components/load-more/load-more.wxml"/>
+<view class="container">
+  <view  bindtap="bindViewTap" class="userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+  <template is="loadMore" data="{{ ...__loadmore__ }}"/>
 </view>

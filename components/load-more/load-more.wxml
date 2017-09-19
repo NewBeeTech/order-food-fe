@@ -1,0 +1,10 @@
+<template name="loadMore">
+  <view class="load-more" wx:if="{{ hasMore }}">
+    <view class="loading" wx:if="{{ isLoading }}">
+      <image style="width: 30px; height: 30px" src="/assets/images/loading.gif" />
+      <text>玩命的加载中...</text>
+    </view>
+    <view wx:else><text>上拉加载更多</text></view>
+  </view>
+  <view class="loading" wx:else><text>没有更多内容了</text></view>
+</template>
