@@ -1,6 +1,7 @@
 {
   "pages":[
     "pages/index/index",
+    "pages/logs/logs",
     "pages/me/me"
   ],
   "window":{
@@ -12,7 +13,7 @@
   "tabBar": {
     "borderStyle": "white",
     "color": "#858585",
-    "selectedColor": "#009688",
+    "selectedColor": "#f60",
     "list": [
       {
         "pagePath": "pages/index/index",

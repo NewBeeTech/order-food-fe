@@ -1,6 +1,7 @@
+@import "./components/load-more/load-more.wxss";
 /**app.wxss**/
 .container {
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;

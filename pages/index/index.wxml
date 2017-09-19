@@ -1,4 +1,5 @@
 <!--index.wxml-->
+<import src="../../components/load-more/load-more.wxml"/>
 <view class="container">
   <view  bindtap="bindViewTap" class="userinfo">
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
@@ -7,4 +8,5 @@
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
   </view>
+  <template is="loadMore" data="{{ ...__loadmore__ }}"/>
 </view>
