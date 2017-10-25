@@ -1,0 +1,21 @@
+<template name="city">
+  <view class="city">
+    <view class="city-header">
+      <view class="city-header-view" bindtap="show">北京
+        <text wx:if="{{ !isShow }}" class="fa fa-angle-down color-default" />
+        <text wx:else class="fa fa-angle-up color-default" />
+      </view>
+    </view>
+    <view class="city-list" wx:if="{{ isShow }}">
+      <view class="city-item" wx:for="{{ list }}" wx:key="country" wx:for-item="item">
+        <view class="city-item-country">{{item.country.chineseName}}</view>
+        <view class="city-item-city">
+          <view class="city-item-city-item" wx:for="{{ item.city }}" wx:key="city" wx:for-item="city">
+            <span>{{city.chineseName}} {{city.name}}</span>
+            <text class="fa fa-angle-right color-grey" />
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

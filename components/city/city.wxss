@@ -1,0 +1,63 @@
+/*.color-default {
+  color: #ff6600;
+}*/
+.city {
+  position: relative;
+  z-index: 1000;
+}
+
+.city-header {
+  font-size: 4.5vw;
+  width: 100vw;
+  color: #ff6600;
+  background: #fff;
+  height: 12vw;
+  line-height: 12vw;
+  border-bottom: 1px solid #dcdcdc;
+}
+
+.city-header-view {
+  width: 15vw;
+  padding-left: 3vw;
+}
+
+.city-list {
+  height: 100vh;
+  background-color: #f7f7f7;
+}
+
+.city-item-country {
+  background-color: #f7f7f7;
+  height: 10vw;
+  line-height: 10vw;
+  color: #858585;
+  font-size: 4vw;
+  padding-left: 3vw;
+}
+
+.city-item-city {
+  background-color: #fff;
+}
+
+.city-item-city-item {
+  height: 12vw;
+  line-height: 12vw;
+  color: #000;
+  font-size: 4.2vw;
+  width: 94vw;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.city-item-city-item:not(:last-child) {
+  border-bottom: 1px solid #dcdcdc;
+}
+.city-item-city-item text {
+  font-size: 5vw;
+}
+
+.color-grey {
+  color: #C7C7CC;
+}

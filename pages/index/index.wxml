@@ -1,15 +1,31 @@
 <!--index.wxml-->
-<view bindtap="showImage">
+<!-- <view bindtap="showImage">
   商家图片列表
-</view>
-<import src="../../components/load-more/load-more.wxml"/>
+</view> -->
+<!-- <import src="../../components/load-more/load-more.wxml"/> -->
+<import src="../../components/city/city.wxml"/>
+
 <view class="container">
-  <view  bindtap="bindViewTap" class="userinfo">
-    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  <view class="city-choose" >
+    <template is="city" data="{{ ...__city__ }}"/>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <view class="find-list" >
+    <view class="list-item" bindtap="bindItemTap" data-item="{{item}}" wx:for="{{restaurantList}}" wx:key="_id" wx:for-index="_id" wx:for-item="item">
+      <image class="item-pic" src="{{item.mainImage}}" background-size="cover"></image>
+      <view class="item-detail">
+        <view class="item-detail-name">{{item.name}}</view>
+        <view class="item-detail-start">
+          <text wx:for="{{item.rating}}" wx:key="rate" class="fa fa-star color-default" />
+          <text wx:if="{{item.rating2}}" class="fa fa-star-half-o color-default" />
+        </view>
+        <view class="item-detail-level">
+          <text wx:for="{{item.priceLevel}}" wx:key="level" class="fa fa-dollar color-default" />
+        </view>
+        <view class="item-detail-tags">
+          <span wx:for="{{item.cuisines}}" wx:key="id" wx:for-item="tag">{{tag}}</span>
+        </view>
+      </view>
+    </view>
   </view>
-  <template is="loadMore" data="{{ ...__loadmore__ }}"/>
+  <!-- <template is="loadMore" data="{{ ...__loadmore__ }}"/> -->
 </view>

@@ -19,3 +19,68 @@
 .usermotto {
   margin-top: 200px;
 }
+
+.city-choose {
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.find-list {
+  width: 100vw;
+  position: absolute;
+  top: 12vw;
+  left: 0;
+  /*flex-direction: row;*/
+}
+
+.list-item {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  /*border: 1px solid red;*/
+  padding: 5vw;
+  background-color: #fff;
+  margin-top: 8px;
+}
+
+.item-pic {
+  width: 25vw;
+  height: 25vw;
+  /*border-radius: 50%;*/
+}
+
+.item-detail {
+  width: 62vw;
+  margin-left: 3vw;
+  flex-direction: column;
+  /*border: 1px solid green;*/
+  /*height: 25vw;*/
+}
+
+.item-detail-name {
+  font-size: 4.5vw;
+  color: #000;
+  font-weight: 500;
+}
+
+.item-detail-start {
+  font-size: 4vw;
+}
+.item-detail-level {
+  font-size: 3.7vw;
+}
+
+.item-detail-tags span {
+  background-color: #fff0de;
+  font-size: 3.5vw;
+  color: #ff6600;
+  padding: 1px 6px;
+  margin-right: 5px;
+  display: inline-block;
+}
+
+.color-default {
+  color: #ff6600;
+}
