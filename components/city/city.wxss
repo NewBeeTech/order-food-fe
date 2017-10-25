@@ -14,16 +14,24 @@
   height: 12vw;
   line-height: 12vw;
   border-bottom: 1px solid #dcdcdc;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000;
 }
 
 .city-header-view {
-  width: 15vw;
+  display: inline-block;
   padding-left: 3vw;
 }
 
 .city-list {
   height: 100vh;
   background-color: #f7f7f7;
+  overflow-y: scroll;
+  position: relative;
+  top: 12vw;
+  left: 0;
 }
 
 .city-item-country {

@@ -5,8 +5,8 @@
 let _compData = {
   '__city__.isShow': false,
   '__city__.list': [],
+  '__city__.currentCity': '',
 }
-
 let city = {
   // data: {total: number, current: number, pageSize: number}
   show: function(data) {
@@ -17,31 +17,37 @@ let city = {
     if(!isShow) {
       this.setData({ '__city__.list': list });
     }
-    console.log(this.data.__city__.list);
   },
   choose: function(data) {
     let self = this;
-    console.log(data);
-    if(!this.data.__city__.hasMore) return;
-    that.setData({ '__city__.isLoading': true });
-    console.log(this.data.current, this.data.pageSize);
-    wx.request({
-      url: this.data.url,
-      data: {},
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success: function(res) {
-        console.log(res.data)
-        that.setData({
-          list: this.data.list.concat(res.data.result.list),
-          current: Number(res.data.result.current),
-        });
-      }
-    })
+    const city = data.currentTarget.dataset.city;
+    const country = data.currentTarget.dataset.country;
+    const chineseCity = data.currentTarget.dataset.chinese;
+    // if(!this.data.__city__.hasMore) return;
+    // that.setData({ '__city__.isLoading': true });
+    console.log(city, country, chineseCity);
+    self.setData({ '__city__.currentCity': chineseCity });
+    self.setData({ '__city__.isShow': false });
+    // wx.request({
+    //   url: this.data.url,
+    //   data: {},
+    //   header: {
+    //     'content-type': 'application/json' // 默认值
+    //   },
+    //   success: function(res) {
+    //     console.log(res.data)
+    //     that.setData({
+    //       list: this.data.list.concat(res.data.result.list),
+    //       current: Number(res.data.result.current),
+    //     });
+    //   }
+    // });
+
   }
 }
 function City () {
+  console.log(this);
+
   // 拿到当前页面对象
   let pages = getCurrentPages();
   let curPage = pages[pages.length - 1];
@@ -50,6 +56,7 @@ function City () {
   curPage.city = this;
   // 把组件的数据“注入”到页面的data对象中
   curPage.setData(_compData);
+  curPage.setData({'__city__.currentCity': this.data.currentCity });
   return this;
 }
 

@@ -66,35 +66,42 @@ Page({
       },
       mainImage: 'https://pro.modao.cc/uploads3/images/1289/12896118/raw_1505974928.jpeg',
     }],
+    currentCity: '伦敦',
     cityList: [{
       city: [
         {
-          chineseName: '纽约',
-          name: 'New York',
+          chineseName: '伦敦',
+          name: 'London',
         },{
-          chineseName: '华盛顿',
-          name: 'Washington',
+          chineseName: '牛津',
+          name: 'Oxford',
+        }, {
+          chineseName: '埃文河畔斯特拉特福',
+          name: 'Stratford-upon-Avon',
+        }, {
+          chineseName: '爱丁堡',
+          name: 'Edinburgh',
         }
       ],
       country: {
-        chineseName: '美国',
-        currencyType: '$',
-        name: 'US',
+        chineseName: '英国',
+        currencyType: '£',
+        name: 'UK',
       }
     }, {
       city: [
         {
-          chineseName: '纽约',
-          name: 'New York',
+          chineseName: '巴黎',
+          name: 'Paris',
         },{
-          chineseName: '华盛顿',
-          name: 'Washington',
+          chineseName: '里昂',
+          name: 'Lyon',
         }
       ],
       country: {
-        chineseName: '美国',
-        currencyType: '$',
-        name: 'US',
+        chineseName: '法国',
+        currencyType: '€',
+        name: 'France',
       }
     }, {
       city: [
