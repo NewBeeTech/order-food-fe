@@ -2,14 +2,14 @@
 <!-- <view bindtap="showImage">
   商家图片列表
 </view> -->
-<!-- <import src="../../components/load-more/load-more.wxml"/> -->
+<import src="../../components/load-more/load-more.wxml"/>
 <import src="../../components/city/city.wxml"/>
 
 <view class="container">
   <view class="city-choose" >
     <template is="city" data="{{ ...__city__ }}"/>
   </view>
-  <view class="find-list" >
+  <view class="find-list {{noScollClass}}" >
     <view class="list-item" bindtap="bindItemTap" data-item="{{item}}" wx:for="{{restaurantList}}" wx:key="_id" wx:for-index="_id" wx:for-item="item">
       <image class="item-pic" src="{{item.mainImage}}" background-size="cover"></image>
       <view class="item-detail">
@@ -19,13 +19,13 @@
           <text wx:if="{{item.rating2}}" class="fa fa-star-half-o color-default" />
         </view>
         <view class="item-detail-level">
-          <text wx:for="{{item.priceLevel}}" wx:key="level" class="fa fa-dollar color-default" />
+          <text wx:for="{{item.priceLevel}}" wx:key="level" class="color-default">{{currentCurrency}}</text>
         </view>
         <view class="item-detail-tags">
           <span wx:for="{{item.cuisines}}" wx:key="id" wx:for-item="tag">{{tag}}</span>
         </view>
       </view>
     </view>
+    <template is="loadMore" data="{{ ...__loadmore__ }}"/>
   </view>
-  <!-- <template is="loadMore" data="{{ ...__loadmore__ }}"/> -->
 </view>

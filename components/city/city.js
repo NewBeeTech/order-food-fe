@@ -9,25 +9,33 @@ let _compData = {
 }
 let city = {
   // data: {total: number, current: number, pageSize: number}
-  show: function(data) {
+  showCity: function(data) {
     let self = this;
     const isShow = this.data.__city__.isShow;
     const list = self.data.cityList;
     this.setData({ '__city__.isShow': !isShow });
+
     if(!isShow) {
+      this.setData({ noScollClass: 'noscroll' });
       this.setData({ '__city__.list': list });
+    } else {
+      this.setData({ noScollClass: '' });
     }
   },
   choose: function(data) {
     let self = this;
     const city = data.currentTarget.dataset.city;
     const country = data.currentTarget.dataset.country;
-    const chineseCity = data.currentTarget.dataset.chinese;
-    // if(!this.data.__city__.hasMore) return;
-    // that.setData({ '__city__.isLoading': true });
-    console.log(city, country, chineseCity);
-    self.setData({ '__city__.currentCity': chineseCity });
+    const currentCity = data.currentTarget.dataset.chinese;
+    const currency = data.currentTarget.dataset.currency;
+    console.log(city, country, currentCity, currency);
     self.setData({ '__city__.isShow': false });
+    self.setData({ '__city__.currentCity': currentCity });
+    this.setData({
+      currentCurrency: currency,
+      currentCity: currentCity,
+      noScollClass: '',
+    });
     // wx.request({
     //   url: this.data.url,
     //   data: {},
@@ -46,8 +54,6 @@ let city = {
   }
 }
 function City () {
-  console.log(this);
-
   // 拿到当前页面对象
   let pages = getCurrentPages();
   let curPage = pages[pages.length - 1];

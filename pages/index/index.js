@@ -15,13 +15,13 @@ Page({
     scrollTop: 100,
     motto: 'Hello World',
     userInfo: {},
-    total: 100, // 总数
-    current: 2, // 当前页
-    pageSize: 10, // 每页数据条数
+    total: 10, // 总数
+    current: 1, // 当前页
+    pageSize: 5, // 每页数据条数
     list: [],
     restaurantList: [{
       _id: '1',
-      name: 'Byran',
+      name: '名字长到英文单词强制换行hhhhhh',
       cuisines: ['美国菜', '素食', 'hahahahahaha'],
       rating: 4.5,
       priceLevel: 3,
@@ -52,8 +52,39 @@ Page({
     }, {
       _id: '3',
       name: 'Byran',
-      cuisines: ['美国菜sfsfsdfdsfsdf', '素食', 'hahahahahaha'],
+      cuisines: ['标签长的时候怎么展示', '素食', '嗯嗯 可以可以'],
       rating: 4,
+      rating2: 1,
+      priceLevel: 3,
+      city: {
+        chineseName: '纽约',
+        name: 'New York',
+      },
+      country: {
+        chineseName: '美国',
+        name: 'US',
+      },
+      mainImage: 'https://pro.modao.cc/uploads3/images/1289/12896118/raw_1505974928.jpeg',
+    }, {
+      _id: '4',
+      name: 'Byran',
+      cuisines: ['美国菜', '素食', 'hahahahahaha'],
+      rating: 4.5,
+      priceLevel: 3,
+      city: {
+        chineseName: '纽约',
+        name: 'New York',
+      },
+      country: {
+        chineseName: '美国',
+        name: 'US',
+      },
+      mainImage: 'https://pro.modao.cc/uploads3/images/1289/12896118/raw_1505974928.jpeg',
+    }, {
+      _id: '5',
+      name: 'Byran',
+      cuisines: ['美国菜', '素食', 'hahahahahaha'],
+      rating: 3,
       rating2: 1,
       priceLevel: 3,
       city: {
@@ -67,6 +98,7 @@ Page({
       mainImage: 'https://pro.modao.cc/uploads3/images/1289/12896118/raw_1505974928.jpeg',
     }],
     currentCity: '伦敦',
+    currentCurrency: '£',
     cityList: [{
       city: [
         {
@@ -118,7 +150,68 @@ Page({
         currencyType: '$',
         name: 'US',
       }
+    }, {
+      city: [
+        {
+          chineseName: '纽约',
+          name: 'New York',
+        },{
+          chineseName: '华盛顿',
+          name: 'Washington',
+        }
+      ],
+      country: {
+        chineseName: '美国',
+        currencyType: '$',
+        name: 'US',
+      }
+    }, {
+      city: [
+        {
+          chineseName: '纽约',
+          name: 'New York',
+        },{
+          chineseName: '华盛顿',
+          name: 'Washington',
+        }
+      ],
+      country: {
+        chineseName: '美国',
+        currencyType: '$',
+        name: 'US',
+      }
+    }, {
+      city: [
+        {
+          chineseName: '纽约',
+          name: 'New York',
+        },{
+          chineseName: '华盛顿',
+          name: 'Washington',
+        }
+      ],
+      country: {
+        chineseName: '美国',
+        currencyType: '$',
+        name: 'US',
+      }
+    }, {
+      city: [
+        {
+          chineseName: '纽约',
+          name: 'New York',
+        },{
+          chineseName: '华盛顿',
+          name: 'Washington',
+        }
+      ],
+      country: {
+        chineseName: '美国',
+        currencyType: '$',
+        name: 'US',
+      }
     }],
+    noScollClass: '',
     url: '' // url网络请求地址 如：`http://v.juhe.cn/weixin/query?key=f16af393a63364b729fd81ed9fdd4b7d&pno=${Number(this.data.current) + 1}&ps=${Number(this.data.pageSize)}`
   },
   upper: function (e) {
@@ -175,18 +268,19 @@ Page({
 
     // 页面加载时显示上拉状态：没有更多数据/需要上拉加载更多
     that.LoadMore().show(that.data);
+    // 城市选择
     that.City();
   },
   // 上拉加载更多
   onReachBottom: function() {
     var that = this;
-    that.LoadMore().loading(that.data);
+    that.loading(that.data);
   },
+  // 点击跳转餐厅详情
   bindItemTap: function(event) {
     console.log(event.currentTarget.dataset.item);
     wx.navigateTo({
       url: "../restaurant/restaurant"
     })
   },
-  // cityOnShow = that.City().show;
 })

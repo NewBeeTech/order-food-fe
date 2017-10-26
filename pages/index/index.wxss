@@ -1,25 +1,4 @@
 /**index.wxss**/
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
-
-.userinfo-nickname {
-  color: #aaa;
-}
-
-.usermotto {
-  margin-top: 200px;
-}
-
 .city-choose {
   width: 100vw;
   position: absolute;
@@ -27,12 +6,17 @@
   left: 0;
 }
 
+.noscroll {
+  height: 92%;
+  overflow: hidden;
+}
+
 .find-list {
   width: 100vw;
   position: absolute;
   top: 12vw;
   left: 0;
-  /*flex-direction: row;*/
+  background-color: #f2f2f2;
 }
 
 .list-item {
@@ -43,6 +27,10 @@
   padding: 5vw;
   background-color: #fff;
   margin-top: 8px;
+}
+
+.list-item:last-child {
+  /*margin-bottom: 15vh;*/
 }
 
 .item-pic {
@@ -63,6 +51,8 @@
   font-size: 4.5vw;
   color: #000;
   font-weight: 500;
+  word-wrap: break-word;
+  word-break:break-all;
 }
 
 .item-detail-start {

@@ -13,28 +13,31 @@ let loadMore = {
     let self = this;
     let hasMore = false;
     if(data.total > data.current * data.pageSize) hasMore = true;
-    this.setData({ '__loadmore__.hasMore': hasMore });
+    self.setData({ '__loadmore__.hasMore': hasMore });
   },
   loading: function(data) {
     let self = this;
-    console.log(data);
-    if(!this.data.__loadmore__.hasMore) return;
-    that.setData({ '__loadmore__.isLoading': true });
-    console.log(this.data.current, this.data.pageSize);
-    wx.request({
-      url: this.data.url,
-      data: {},
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success: function(res) {
-        console.log(res.data)
-        that.setData({
-          list: this.data.list.concat(res.data.result.list),
-          current: Number(res.data.result.current),
+    if(!data.__loadmore__.hasMore) return;
+    self.setData({ '__loadmore__.isLoading': true });
+    // console.log(data.current, data.pageSize);
+    // wx.request({
+    //   url: this.data.url,
+    //   data: {},
+    //   header: {
+    //     'content-type': 'application/json' // 默认值
+    //   },
+    //   success: function(res) {
+    //     console.log(res.data)
+        this.setData({
+          // list: this.data.list.concat(res.data.result.list),
+          // current: Number(res.data.result.current),
+          restaurantList: this.data.restaurantList.concat(this.data.restaurantList),
+          current: Number(this.data.current + 1),
         });
-      }
-    })
+        // console.log(this.data);
+        self.setData({ '__loadmore__.isLoading': false });
+    //   }
+    // })
   }
 }
 function LoadMore () {
