@@ -8,8 +8,8 @@
 	},
 	"compileType": "weapp",
 	"libVersion": "1.6.0",
-	"appid": "touristappid",
-	"projectname": "菜译通",
+	"appid": "wx63bb49e66f6c6699",
+	"projectname": "%E8%8F%9C%E8%AF%91%E9%80%9A",
 	"condition": {
 		"weapp": {
 			"current": -1,

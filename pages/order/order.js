@@ -22,10 +22,5 @@ Page({
         userInfo:userInfo
       })
     })
-  },
-  routeToOrder: function() {
-    wx.navigateTo({
-      url: '../order/order'
-    })
   }
 })

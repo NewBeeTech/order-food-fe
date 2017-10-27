@@ -1,10 +1,13 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
+  <image class="userinfo-bg" src="../../assets/images/background-me.png" background-size="cover"></image>
+  <view class="userinfo-bg-layer" />
+  <view class="userinfo-detail" >
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     <text class="userinfo-nickname">{{userInfo.nickName}}</text>
   </view>
-  <!-- <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view> -->
+  <view class="route-to-order" bindtap="routeToOrder">
+    <text class="history-order">历史订单</text>
+    <text class="history-order-arrow fa fa-angle-right color-grey" />
+  </view>
 </view>

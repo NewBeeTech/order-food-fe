@@ -10,7 +10,7 @@
     <template is="city" data="{{ ...__city__ }}"/>
   </view>
   <view class="find-list {{noScollClass}}" >
-    <view class="list-item" bindtap="bindItemTap" data-item="{{item}}" wx:for="{{restaurantList}}" wx:key="_id" wx:for-index="_id" wx:for-item="item">
+    <view class="list-item" bindtap="bindItemTap" data-item="{{item}}" wx:for="{{restaurantList}}" wx:key="restaurant" wx:for-index="_id" wx:for-item="item">
       <image class="item-pic" src="{{item.mainImage}}" background-size="cover"></image>
       <view class="item-detail">
         <view class="item-detail-name">{{item.name}}</view>
