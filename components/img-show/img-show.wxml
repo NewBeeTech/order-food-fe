@@ -1,0 +1,24 @@
+<template name="img-show">
+  <swiper
+    class="imgContent"
+    indicator-dots="true"
+    autoplay="true"
+    interval="3000"
+    duration="1000"
+    indicator-color="rgba(255, 255, 255, .5)"
+    indicator-active-color="#ff6600"
+    circular="#true"
+  >
+    <block wx:for="{{detailImage}}" wx:key="index">
+      <swiper-item class="item-image">
+        <image
+          src="{{item}}"
+          class="slide-image"
+          mode="aspectFill"
+          bindtap="clickImage"
+          data-src="{{item}}"
+        />
+      </swiper-item>
+    </block>
+  </swiper>
+</template>

@@ -2,6 +2,7 @@
 //引入上拉加载
 import { LoadMore } from '../../components/load-more/load-more';
 import { City } from '../../components/city/city';
+import apiUrl from '../../common/api-url';
 
 //获取应用实例
 var app = getApp()
@@ -254,15 +255,29 @@ Page({
         userInfo:userInfo
       });
     });
-    //获取远程数据
+    // 请求城市列表
     // wx.request({
-    //   url: 'https://raw.githubusercontent.com/jiangzy27/how_to_react/master/score.json',
+    //   url: apiUrl.city_list,
     //   header:{
     //     "Content-Type":"application/json"
     //   },
     //   data: {},
     //   success: function(res){
-    //     that.setData({restaurantList:res.data.data});
+    //     console.log(res);
+    //     that.setData({ cityList:res.data });
+    //   },
+    // })
+    // // 请求餐厅列表
+    // wx.request({
+    //   url: apiUrl.restaurant_list,
+    //   header:{
+    //     "Content-Type":"application/json"
+    //   },
+    //   data: {
+    //     // "city.name": ''
+    //   },
+    //   success: function(res){
+    //     that.setData({ restaurantList:res.data.row });
     //   },
     // })
 
@@ -280,7 +295,7 @@ Page({
   bindItemTap: function(event) {
     console.log(event.currentTarget.dataset.item);
     wx.navigateTo({
-      url: "../restaurant/restaurant"
+      url: `../restaurant/restaurant?id=${event.currentTarget.dataset.item._id}`
     })
   },
 })

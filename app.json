@@ -1,9 +1,9 @@
 {
   "pages":[
-    "pages/me/me",
-    "pages/index/index",
-    "pages/imgList/imgList",
     "pages/restaurant/restaurant",
+    "pages/index/index",
+    "pages/me/me",
+    "pages/imgList/imgList",
     "pages/order/order"
   ],
   "window":{

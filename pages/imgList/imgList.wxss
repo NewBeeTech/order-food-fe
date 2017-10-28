@@ -1,1 +1,1 @@
-@import "../../common/img-show/img-show.wxss";
+@import "../../components/img-show/img-show.wxss";

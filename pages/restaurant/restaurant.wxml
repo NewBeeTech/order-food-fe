@@ -1,6 +1,47 @@
-<!--index.wxml-->
+<!--restaurant.wxml-->
+<import src="../../components/img-show/img-show.wxml" />
+
 <view class="container">
-  <view class="userinfo">
-    <text class="userinfo-nickname">饭店详情</text>
+  <template wx:if="{{detailImage.length}}" is="img-show" data="{{detailImage}}" />
+  <view class="restaurant-header">
+    <view class="item-detail">
+      <view class="item-detail-name">{{name}}</view>
+      <view class="item-detail-start">
+        <text wx:for="{{rating}}" wx:key="rate" class="fa fa-star color-default" />
+        <!-- <text wx:if="{{rating2}}" class="fa fa-star-half-o color-default" /> -->
+      </view>
+      <view class="item-detail-level">
+        <text wx:for="{{priceLevel}}" wx:key="level" class="color-default">{{currencyType}}</text>
+      </view>
+      <view class="item-detail-line" />
+      <view class="item-detail-tags">
+        <span wx:for="{{cuisines}}" wx:key="id" wx:for-item="tag">{{tag}}</span>
+      </view>
+    </view>
+    <view class="item-detail-line" />
+    <view class="item-address">
+      <view class="item-detail-icon">
+        <text class="fa fa-map-marker color-grey" />
+      </view>
+      <view class="item-detail-address">
+        {{address}}
+      </view>
+      <view class="col-line" />
+      <view class="item-phone">
+        <text class=" fa fa-phone" />
+      </view>
+    </view>
+  </view>
+  <view class="restaurant-header">
+    <view class="item-detail">
+      <text style="color: #858585; font-size: 28rpx;">饭店信息</text>
+      <view class="desc">{{desc}}</view>
+    </view>
+  </view>
+  <view class="restaurant-header">
+    <view class="item-detail">
+      <text style="color: #858585; font-size: 28rpx;">单点</text>
+      <text style="color: #858585; font-size: 28rpx;">套餐</text>
+    </view>
   </view>
 </view>

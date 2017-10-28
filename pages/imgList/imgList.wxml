@@ -1,2 +1,2 @@
-<import src="../../common/img-show/img-show.wxml" />
+<import src="../../components/img-show/img-show.wxml" />
 <template is="img-show" data="{{movies}}" />

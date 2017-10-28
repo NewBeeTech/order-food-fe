@@ -1,0 +1,12 @@
+.imgContent {
+  height: 300rpx;
+  width: 750rpx;
+}
+.item-image {
+  height: 300rpx;
+  width: 750rpx;
+}
+.slide-image {
+  height: 100%;
+  width: 100%;
+}
