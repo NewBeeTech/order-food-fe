@@ -23,11 +23,11 @@
       <view class="item-detail-icon">
         <text class="fa fa-map-marker color-grey" />
       </view>
-      <view class="item-detail-address">
+      <view class="item-detail-address" bindtap="makeMap">
         {{address}}
       </view>
       <view class="col-line" />
-      <view class="item-phone">
+      <view class="item-phone" bindtap="makePhone">
         <text class=" fa fa-phone" />
       </view>
     </view>
@@ -39,9 +39,55 @@
     </view>
   </view>
   <view class="restaurant-header">
-    <view class="item-detail">
-      <text style="color: #858585; font-size: 28rpx;">单点</text>
-      <text style="color: #858585; font-size: 28rpx;">套餐</text>
+    <view class="chooseType">
+      <view bindtap="chooseALaCarte" class="{{selectedStyle === 'aLaCarte' ? 'selected' : '' }}">单点</view>
+      <view bindtap="choosePackage" class="{{selectedStyle === 'package' ? 'selected' : '' }}">套餐</view>
+    </view>
+    <view class="aLaCarte">
+      <view class="aLaCarte-left">
+        <view class="aLaCarte-left-item aLaCarte-left-select">头菜</view>
+        <view class="aLaCarte-left-item">主菜</view>
+      </view>
+      <view class="aLaCarte-right">
+        <view class="aLaCarte-right-item">
+          <image
+            style="width: 160rpx; height: 160rpx; background-color: #eeeeee;"
+            src="https://m.360buyimg.com/n12/jfs/t2938/141/161562315/370464/79e5296/574e38faNb075dd83.jpg!q70.jpg"
+            mode="scaleToFill"
+          />
+          <view class="aLaCarte-right-item-right">
+            <view class="aLaCarte-right-item-name">面包和橄榄</view>
+            <view class="aLaCarte-right-item-Eg">Bread an Olives</view>
+            <view class="aLaCarte-right-item-bottom">
+              <view class="aLaCarte-right-price">$3</view>
+              <view class="aLaCarte-right-price">
+                <text class="fa fa-minus-circle"></text>
+                <view class="" style="width: 80rpx; color: #101010; text-align: center">100</view>
+                <text class="fa fa-plus-circle"></text>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="aLaCarte-right-item">
+          <image
+            style="width: 160rpx; height: 160rpx; background-color: #eeeeee;"
+            src="https://m.360buyimg.com/n12/jfs/t2938/141/161562315/370464/79e5296/574e38faNb075dd83.jpg!q70.jpg"
+            mode="scaleToFill"
+          />
+          <view class="aLaCarte-right-item-right">
+            <view class="aLaCarte-right-item-name">面包和橄榄</view>
+            <view class="aLaCarte-right-item-Eg">Bread an Olives Bread an OlivesBread an Olives</view>
+            <view class="aLaCarte-right-item-bottom">
+              <view class="aLaCarte-right-price">$3</view>
+              <view class="aLaCarte-right-price">
+                <text class="fa fa-minus-circle"></text>
+                <view class="" style="width: 80rpx; color: #101010; text-align: center">100</view>
+                <text class="fa fa-plus-circle"></text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
     </view>
   </view>
 </view>

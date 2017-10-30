@@ -1,0 +1,15 @@
+<!--map.wxml-->
+
+<view class="container" style="background-color: #fff">
+  <view class="address">{{address}}</view>
+  <!-- <map id="myMap" /> -->
+  <map
+    id="myMap"
+    longitude="{{longitude}}"
+    latitude="{{latitude}}"
+    scale="14"
+    markers="{{markers}}"
+    show-location
+  >
+  </map>
+</view>

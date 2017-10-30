@@ -1,0 +1,23 @@
+<!--history.wxml-->
+<view class="container">
+  <view
+    class="history"
+    bindtap="bindViewTap"
+    wx:for="{{histroyList}}"
+    wx:key="history"
+  >
+    <view class="history-first">
+      <view class="history-first-left">
+        就餐时间：{{item.created_time}}
+      </view>
+      <view class="history-first-right" catchtap="bindToRes">
+        <text class="fa fa-bank color-default" style="margin-right: 10rpx;"/>
+        {{item.restaurant_name}}
+        <text class="fa fa-angle-right" style="margin-left: 20rpx;font-size:40rpx"/>
+      </view>
+    </view>
+    <view class="history-second">
+      {{item.country.chineseName}}-{{item.city.chineseName}}
+    </view>
+  </view>
+</view>

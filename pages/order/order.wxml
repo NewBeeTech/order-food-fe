@@ -1,6 +1,10 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <text class="userinfo-nickname">历史订单</text>
+<view class="container" style="background: #fff">
+  <view class="order-header">
+    Byran
+  </view>
+  <view class="order-line" />
+  <view class="order-details">
+    <view>
   </view>
 </view>

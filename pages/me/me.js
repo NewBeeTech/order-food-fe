@@ -25,7 +25,7 @@ Page({
   },
   routeToOrder: function() {
     wx.navigateTo({
-      url: '../order/order'
+      url: '../history/history'
     })
   }
 })

@@ -1,0 +1,40 @@
+.history {
+  width: 750rpx;
+  padding: 20rpx;
+  background-color: #fff;
+  cursor: pointer;
+}
+.history:not(:first-child) {
+  margin-top: 20rpx;
+}
+
+.history-first {
+  display: flex;
+  width: 690rpx;
+  margin: 0 auto;
+}
+.history-second {
+  display: flex;
+  width: 690rpx;
+  margin: 0 auto;
+  font-size: 28rpx;
+  color: #101010;
+  font-weight: bold;
+  margin-top: 15rpx;
+}
+
+.history-first-left {
+  width: 300rpx;
+  color: #666666;
+  font-size: 28rpx;
+}
+.history-first-right {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 390rpx;
+  color: #101010;
+  font-size: 30rpx;
+  font-weight: bold;
+}

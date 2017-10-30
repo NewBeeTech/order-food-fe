@@ -1,10 +1,12 @@
 {
   "pages":[
-    "pages/index/index",
+    "pages/order/order",
+    "pages/history/history",
     "pages/me/me",
-    "pages/imgList/imgList",
     "pages/restaurant/restaurant",
-    "pages/order/order"
+    "pages/index/index",
+    "pages/imgList/imgList",
+    "pages/map/map"
   ],
   "window":{
     "backgroundTextStyle":"light",

@@ -30,10 +30,11 @@ Page({
     notes: '本店另加12.5%服务费',
     phoneNumber: '18612761252',
     operator: 'UT-TESTER',
-    position: '34,56',
+    position: '40.002607,116.487847',
     priceLevel: 5,
     rating: 4,
     setMenu: [],
+    selectedStyle: 'aLaCarte'
   },
   //事件处理函数
   // bindViewTap: function() {
@@ -41,6 +42,10 @@ Page({
   //     url: '../logs/logs'
   //   })
   // },
+  onReady: function (e) {
+    // 使用 wx.createMapContext 获取 map 上下文
+    this.mapCtx = wx.createMapContext('myMap')
+  },
   onLoad: function () {
     console.log('onLoad', this)
     var that = this;
@@ -63,5 +68,34 @@ Page({
         current: current,
         urls: this.data.movies,
     })
+  },
+  makePhone: function(e) {
+    wx.makePhoneCall({
+      phoneNumber: this.data.phoneNumber,
+      fail: (res) => {
+        console.log(res);
+      },
+    })
+  },
+  makeMap: function(e) {
+    const latitude = this.data.position.split(",")[0];
+    const longitude = this.data.position.split(",")[1];
+    wx.navigateTo({
+      url: `../map/map?latitude=${latitude}&longitude=${longitude}&address=${this.data.address}`
+    })
+  },
+  chooseALaCarte: function(e) {
+    if(this.data.selectedStyle === 'package') {
+      this.setData({
+        selectedStyle: 'aLaCarte',
+      });
+    }
+  },
+  choosePackage: function(e) {
+    if(this.data.selectedStyle === 'aLaCarte') {
+      this.setData({
+        selectedStyle: 'package',
+      });
+    }
   }
 })

@@ -1,0 +1,16 @@
+#myMap {
+  margin-top: 100rpx;
+  width: 750rpx;
+  height: 550rpx;
+  border-top: 1px solid #dadada;
+  border-bottom: 1px solid #dadada;
+}
+
+.address {
+  font-size: 35rpx;
+  width: 500rpx;
+  margin: 0 auto;
+  margin-top: 50rpx;
+  word-wrap: break-word;
+  word-break:break-all;
+}
