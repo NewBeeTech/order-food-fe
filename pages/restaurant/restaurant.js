@@ -34,7 +34,8 @@ Page({
     priceLevel: 5,
     rating: 4,
     setMenu: [],
-    selectedStyle: 'aLaCarte'
+    selectedStyle: 'aLaCarte',
+    hidden: true,
   },
   //事件处理函数
   // bindViewTap: function() {
@@ -97,5 +98,22 @@ Page({
         selectedStyle: 'package',
       });
     }
+  },
+  cancel: function(){
+    this.setData({
+       hidden: true
+    });
+  },
+  confirm: function(){
+    this.setData({
+       nocancel: !this.data.nocancel
+    });
+    console.log("clicked confirm");
+  },
+  showDetails: function(e) {
+    this.setData({
+       hidden: false,
+    });
+    console.log(e);
   }
 })

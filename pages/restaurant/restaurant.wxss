@@ -146,8 +146,7 @@
   padding-bottom: 20rpx;
 }
 .aLaCarte-right-item-right {
-  width: calc(100% - 210rpx);
-  margin-left: 20rpx;
+  width: calc(100% - 30rpx);
 }
 .aLaCarte-right-item-name {
   width: 100%;
@@ -183,4 +182,8 @@
 .aLaCarte-right-price {
   display: flex;
   align-items: center;
+}
+
+.show-details {
+  /*border-radius: 8rpx;*/
 }

@@ -43,19 +43,14 @@
       <view bindtap="chooseALaCarte" class="{{selectedStyle === 'aLaCarte' ? 'selected' : '' }}">单点</view>
       <view bindtap="choosePackage" class="{{selectedStyle === 'package' ? 'selected' : '' }}">套餐</view>
     </view>
-    <view class="aLaCarte">
+    <view class="aLaCarte" hidden="{{selectedStyle === 'package'}}">
       <view class="aLaCarte-left">
         <view class="aLaCarte-left-item aLaCarte-left-select">头菜</view>
         <view class="aLaCarte-left-item">主菜</view>
       </view>
       <view class="aLaCarte-right">
-        <view class="aLaCarte-right-item">
-          <image
-            style="width: 160rpx; height: 160rpx; background-color: #eeeeee;"
-            src="https://m.360buyimg.com/n12/jfs/t2938/141/161562315/370464/79e5296/574e38faNb075dd83.jpg!q70.jpg"
-            mode="scaleToFill"
-          />
-          <view class="aLaCarte-right-item-right">
+        <view class="aLaCarte-right-item" bindtap="showDetails">
+          <view class="aLaCarte-right-item-right" >
             <view class="aLaCarte-right-item-name">面包和橄榄</view>
             <view class="aLaCarte-right-item-Eg">Bread an Olives</view>
             <view class="aLaCarte-right-item-bottom">
@@ -69,11 +64,11 @@
           </view>
         </view>
         <view class="aLaCarte-right-item">
-          <image
+          <!-- <image
             style="width: 160rpx; height: 160rpx; background-color: #eeeeee;"
             src="https://m.360buyimg.com/n12/jfs/t2938/141/161562315/370464/79e5296/574e38faNb075dd83.jpg!q70.jpg"
             mode="scaleToFill"
-          />
+          /> -->
           <view class="aLaCarte-right-item-right">
             <view class="aLaCarte-right-item-name">面包和橄榄</view>
             <view class="aLaCarte-right-item-Eg">Bread an Olives Bread an OlivesBread an Olives</view>
@@ -89,5 +84,41 @@
         </view>
       </view>
     </view>
+    <view class="aLaCarte" hidden="{{selectedStyle === 'aLaCarte'}}">
+      <view class="aLaCarte-left">
+        <view class="aLaCarte-left-item aLaCarte-left-select">套餐一</view>
+        <view class="aLaCarte-left-item">套餐二</view>
+      </view>
+      <view class="aLaCarte-right">
+        <view class="aLaCarte-right-item" bindtap="showDetails">
+          <view class="aLaCarte-right-item-right">
+            <view class="aLaCarte-right-item-name">面包和橄榄</view>
+            <view class="aLaCarte-right-item-Eg">Bread an Olives</view>
+          </view>
+        </view>
+        <view class="aLaCarte-right-item" bindtap="showDetails">
+          <view class="aLaCarte-right-item-right">
+            <view class="aLaCarte-right-item-name">面包和橄榄</view>
+            <view class="aLaCarte-right-item-Eg">Bread an Olives Bread an OlivesBread an Olives</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <modal
+      hidden="{{hidden}}"
+      title="这里是title"
+      confirm-text="自定义确定按钮"
+      cancel-text="自定义取消按钮"
+      bindcancel="cancel"
+      bindconfirm="confirm"
+      no-cancel="{{nocancel}}"
+      class="show-details"
+    >
+      <image
+        style="width: 100%; background-color: #eeeeee;"
+        src="https://m.360buyimg.com/n12/jfs/t2938/141/161562315/370464/79e5296/574e38faNb075dd83.jpg!q70.jpg"
+        mode="scaleToFill"
+      />
+    </modal>
   </view>
 </view>
