@@ -357,9 +357,21 @@
   height: 50vh;
   overflow-x: scroll;
 }
+
+.scroll-group2 {
+  height: 50vh;
+  overflow-x: scroll;
+}
+.scroll-group3 {
+  height: 50vh;
+  overflow-x: scroll;
+  margin-bottom: 86rpx;
+}
+
 .scroll-group .modal-content:last-child {
   margin-bottom: 100rpx;
 }
+
 .scroll-group .modal-content:last-child .modal-line {
   border-color: #fff;
 }
@@ -443,6 +455,36 @@
   margin-top: 10rpx;
 }
 
+.modal-content-option {
+  font-size: 28rpx;
+  color: #101010;
+  width: 90%;
+  background-color: #f2f2f2;
+  /*margin-left: 4%;*/
+  align-items: center;
+  /*margin-top: 10rpx;*/
+  border-radius: 12rpx;
+  margin: 10rpx auto;
+  padding: 10rpx;
+}
+
+.modal-content-option-title {
+  width: 96%;
+  margin: 0 auto;
+  margin-top: 10rpx;
+  padding: 10rpx;
+}
+.modal-content-option-item {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  margin-left: 4%;
+  font-size: 26rpx;
+  margin: 5rpx auto;
+}
+.modal-content-option-item-1 {
+  width: 90%;
+}
 .modal-content-radio view:first-child  {
   width: 70%;
 }
@@ -455,6 +497,14 @@
 .modal-content-radio view:last-child {
   width: 20%;
   text-align: right;
+}
+.modal-content-title {
+  width: 100%;
+  background-color: #f2f2f2;
+  height: 34rpx;
+  line-height: 34rpx;
+  font-size: 28rpx;
+  color: #101010;
 }
 
 /*自定义单选多选样式*/

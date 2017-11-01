@@ -544,12 +544,19 @@ Page({
     showModal: false,
     alaCarteModal: false,
     removeAlaCarteModal: false,
-    removeAlaCarte: [], // 删除弹框里的数据
+    setMenuModal: false,
+    removeSetMenuModal: false,
+    removeAlaCarte: [], // 删除弹框里的单品
     radioALaCarteRemoveIndex: '',
     addAlaCarte: [], // 已经添加的单品
+    addSetMenu: [], // 已经添加的套餐
+    removeSetMenu: [], // 删除弹框里的套餐
+    radioSetMenuRemoveIndex: '',
     addItem: {}, // 添加的食物临时站位
     totalFee: 0,
     detailInfo: {},
+    hidden: true,
+    hiddenToast: true,
   },
   //事件处理函数
   // bindViewTap: function() {
@@ -670,7 +677,6 @@ Page({
   removeAlaCarte: function(addItem) {
     const aLaCarte = this.data.aLaCarte;
     const removeAlaCarte = this.data.removeAlaCarte;
-    console.log(removeAlaCarte[this.data.radioALaCarteRemoveIndex]);
     const addAlaCarte = this.data.addAlaCarte;
     let totalFee = this.data.totalFee;
     for (var i in addAlaCarte) {
@@ -713,33 +719,56 @@ Page({
   /**
    * 添加套餐
    */
-  addSetMenu: function(e) {
-    const addItem = e.target.dataset.setmenu;
+  addSetMenu: function(addItem) {
     const setMenu = this.data.setMenu;
+    let totalFee = this.data.totalFee;
     for (var p in setMenu) {
       if(setMenu[p]._id === addItem._id) {
+        totalFee += setMenu[p].price;
         const number = setMenu[p].num || 0;
         setMenu[p].num = number + 1;
       }
     }
+    const addSetMenu = this.data.addSetMenu;
+    addSetMenu.push(addItem);
     this.setData({
       setMenu,
+      addSetMenu,
+      addItem: {},
+      totalFee,
     });
   },
   /**
    * 删除套餐
    */
-  removeSetMenu: function(e) {
-    const addItem = e.target.dataset.setmenu;
+  removeSetMenu: function(addItem) {
     const setMenu = this.data.setMenu;
+    const removeSetMenu = this.data.removeSetMenu;
+    const addSetMenu = this.data.addSetMenu;
+    let totalFee = this.data.totalFee;
     for (var p in setMenu) {
       if(setMenu[p]._id === addItem._id) {
         const number = setMenu[p].num || 0;
         setMenu[p].num = number - 1;
       }
     }
+    for (var i in addSetMenu) {
+      console.log(addSetMenu[i]);
+      if(addSetMenu[i].toString() === removeSetMenu[this.data.radioSetMenuRemoveIndex].toString()) {
+        totalFee -= addSetMenu[i].price;
+        addSetMenu.splice(i, 1);
+        break;
+      }
+    }
+    const removeItem = removeSetMenu[this.data.radioSetMenuRemoveIndex];
+    removeSetMenu.splice(this.data.radioSetMenuRemoveIndex, 1);
+    console.log(setMenu);
     this.setData({
       setMenu,
+      removeSetMenu,
+      addSetMenu,
+      addItem: {},
+      totalFee,
     });
   },
   /**
@@ -772,6 +801,36 @@ Page({
   /**
    * 弹窗
    */
+  showSetMenuModal: function(e) {
+    console.log(e.target.dataset.setmenu);
+    this.setData({
+      setMenuModal: true,
+      addItem: e.target.dataset.setmenu,
+    })
+  },
+  /**
+   * 弹窗
+   */
+  showRemoveSetMenuModal: function(e) {
+    const currentSetMenu = e.target.dataset.setmenu;
+    console.log(currentSetMenu);
+    const addSetMenu = this.data.addSetMenu;
+    const removeSetMenu = [];
+    addSetMenu.map((item, index) => {
+      if(item._id === currentSetMenu._id){
+        removeSetMenu.push(item);
+      }
+    });
+    console.log(removeSetMenu);
+    this.setData({
+      addItem: currentSetMenu,
+      removeSetMenu,
+      removeSetMenuModal: true,
+    })
+  },
+  /**
+   * 弹窗
+   */
   showDetails: function(e) {
     const detailInfo = e.currentTarget.dataset;
     this.setData({
@@ -787,7 +846,23 @@ Page({
   /**
    * 隐藏模态对话框
    */
-  hiddenAlaCarteModal: function (e) {
+  hideSetMenuModal: function (e) {
+    this.setData({
+      setMenuModal: false
+    });
+  },
+  /**
+   * 隐藏模态对话框
+   */
+  hideRemoveSetMenuModal: function (e) {
+    this.setData({
+      removeSetMenuModal: false
+    });
+  },
+  /**
+   * 隐藏模态对话框
+   */
+  hideAlaCarteModal: function (e) {
     this.setData({
       alaCarteModal: false
     });
@@ -795,7 +870,7 @@ Page({
   /**
    * 隐藏模态对话框
    */
-  hiddenRemoveAlaCarteModal: function (e) {
+  hideRemoveAlaCarteModal: function (e) {
     this.setData({
       removeAlaCarteModal: false
     });
@@ -808,11 +883,6 @@ Page({
       showModal: false
     });
   },
-  hideAlaCarteModal: function () {
-    this.setData({
-      alaCarteModal: false
-    });
-  },
   /**
    * 对话框取消按钮点击事件
    */
@@ -823,7 +893,13 @@ Page({
    * 对话框取消按钮点击事件
    */
   onRemoveAlaCarteCancel: function () {
-    this.hiddenRemoveAlaCarteModal();
+    this.hideRemoveAlaCarteModal();
+  },
+  /**
+   * 对话框取消按钮点击事件
+   */
+  onRemoveSetMenuCancel: function () {
+    this.hideRemoveSetMenuModal();
   },
   /**
    * 对话框确认按钮点击事件
@@ -842,8 +918,19 @@ Page({
    * 对话框确认按钮点击事件
    */
   onRemoveAlaCarteConfirm: function () {
-    this.hiddenRemoveAlaCarteModal();
+    this.hideRemoveAlaCarteModal();
     this.removeAlaCarte(this.data.addItem);
+  },
+  onSetMenuConfirm: function () {
+    this.hideSetMenuModal();
+    this.addSetMenu(this.data.addItem);
+  },
+  /**
+   * 对话框确认按钮点击事件
+   */
+  onRemoveSetMenuConfirm: function () {
+    this.hideRemoveSetMenuModal();
+    this.removeSetMenu(this.data.addItem);
   },
   // 单品添加选规格 单选
   radioALaCarteChange: function(e) {
@@ -898,6 +985,156 @@ Page({
   radioALaCarteRemove: function(e) {
     this.setData({
       radioALaCarteRemoveIndex: Number(e.detail.value),
+    });
+  },
+  radioSetMenuRemove: function(e) {
+    this.setData({
+      radioSetMenuRemoveIndex: Number(e.detail.value),
+    });
+  },
+  radioSetMenuChange: function(e) {
+    const addItem = this.data.addItem;
+    const setMenu = this.data.setMenu;
+    for (var p in setMenu) {
+      if(setMenu[p]._id === addItem._id) {
+        for(var q in setMenu[p].setMenuDetail) {
+          if(q === e.currentTarget.dataset.index) {
+            setMenu[p].setMenuDetail[q].map((item, key) => {
+              if(item.name.chineseName === e.detail.value) {
+                addItem.setMenuDetail[q][key].checked = true;
+              } else {
+                const content = item.options.radio.content;
+                content.map((i, index) => {
+                  addItem.setMenuDetail[q][key].options.radio.content[index].checked = false;
+                })
+                const content2 = item.options.checkbox.content;
+                content2.map((i, index) => {
+                  addItem.setMenuDetail[q][key].options.checkbox.content[index].checked = false;
+                })
+                addItem.setMenuDetail[q][key].checked = false;
+              }
+            });
+          } else {
+            console.log(setMenu[p].setMenuDetail[q]);
+          }
+        }
+      }
+    }
+    this.setData({
+      addItem,
+    });
+  },
+  radioSetMenuOptionChange: function(e) {
+    const addItem = this.data.addItem;
+    const setMenu = this.data.setMenu;
+    for (var p in setMenu) {
+      if(setMenu[p]._id === addItem._id) {
+        for(var q in setMenu[p].setMenuDetail) {
+          setMenu[p].setMenuDetail[q].map((item, key) => {
+            if(q === e.currentTarget.dataset.index) {
+              if(setMenu[p].setMenuDetail[q][key].name.chineseName === e.currentTarget.dataset.chinesename) {
+                const content = item.options.radio.content;
+                content.map((i, index) => {
+                  if(i.chineseName === e.detail.value) {
+                    addItem.setMenuDetail[q][key].checked = true;
+                    addItem.setMenuDetail[q][key].options.radio.content[index].checked = true;
+                  } else {
+                    addItem.setMenuDetail[q][key].options.radio.content[index].checked = false;
+                  }
+                })
+              } else {
+                const content = item.options.radio.content;
+                content.map((i, index) => {
+                  addItem.setMenuDetail[q][key].options.radio.content[index].checked = false;
+                })
+                const content2 = item.options.checkbox.content;
+                content2.map((i, index) => {
+                  addItem.setMenuDetail[q][key].options.checkbox.content[index].checked = false;
+                })
+                addItem.setMenuDetail[q][key].checked = false;
+              }
+            }
+          });
+        }
+      }
+    }
+    this.setData({
+      addItem,
+    });
+  },
+  checkboxSetMenuOptionChange: function(e) {
+    const addItem = this.data.addItem;
+    const setMenu = this.data.setMenu;
+    for (var p in setMenu) {
+      if(setMenu[p]._id === addItem._id) {
+        for(var q in setMenu[p].setMenuDetail) {
+          setMenu[p].setMenuDetail[q].map((item, key) => {
+            if(q === e.currentTarget.dataset.index) {
+              if(setMenu[p].setMenuDetail[q][key].name.chineseName === e.currentTarget.dataset.chinesename) {
+                const content = item.options.checkbox.content;
+                content.map((i, index) => {
+                  if(e.detail.value.indexOf(i.chineseName) !== -1) {
+                    addItem.setMenuDetail[q][key].checked = true;
+                    addItem.setMenuDetail[q][key].options.checkbox.content[index].checked = true;
+                  } else {
+                    addItem.setMenuDetail[q][key].options.checkbox.content[index].checked = false;
+                  }
+                })
+              } else {
+                const content = item.options.radio.content;
+                content.map((i, index) => {
+                  addItem.setMenuDetail[q][key].options.radio.content[index].checked = false;
+                })
+                const content2 = item.options.checkbox.content;
+                content2.map((i, index) => {
+                  addItem.setMenuDetail[q][key].options.checkbox.content[index].checked = false;
+                })
+                addItem.setMenuDetail[q][key].checked = false;
+              }
+            }
+          });
+        }
+      }
+    }
+    this.setData({
+      addItem,
+    });
+  },
+  alertNotice: function() {
+    this.setData({
+      hidden: false,
+    })
+  },
+  noticeCancel: function() {
+    this.setData({
+      hidden: true,
+    })
+  },
+  noticeConfirm: function() {
+    var that = this;
+    this.setData({
+      hidden: true,
+    });
+    if(!this.data.addSetMenu && !this.data.addSetMenu) {
+      this.setData({
+        hiddenToast: false,
+        toastInfo: '请选择菜品'
+      });
+      return false;
+    }
+    app.globalData.addSetMenu = this.data.addSetMenu;
+    app.globalData.addAlaCarte = this.data.addAlaCarte;
+    app.globalData.currencyType = this.data.currencyType;
+    this.createOrder();
+  },
+  createOrder: function() {
+    wx.navigateTo({
+      url: '../order/order'
+    })
+  },
+  toastHidden:function() {
+    this.setData({
+      hiddenToast: true,
     });
   }
 

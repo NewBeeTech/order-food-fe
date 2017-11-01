@@ -4,6 +4,199 @@
     Byran
   </view>
   <view class="order-line" />
-  <view class="order-details">
+  <view class="order-details" wx:for="{{addAlaCarte}}" wx:key="alaCarte">
+    <view class="order-details-top">
+      <view class="order-details-num">{{index + 1}}.</view>
+      <view class="order-details-num-after">
+        <view class="order-details-num-after-name">
+          <view>{{item.name.name}}</view>
+          <view style="font-size: 0.9em; color: #bbbbbb">{{item.name.chineseName}}</view>
+        </view>
+        <view class="order-details-num-after-price">
+          {{currencyType}}{{item.price}}
+        </view>
+        <view class="order-details-num-after-number">
+          ×{{item.num}}
+        </view>
+      </view>
+    </view>
+    <view class="order-details-option">
+      <view class="order-details-option-title">
+        <view>{{item.options.radio.title.name}}：</view>
+      </view>
+      <view class="order-details-option-sub-title">
+        <view>{{item.options.radio.title.chineseName}}：</view>
+      </view>
+      <view
+        class="order-details-option-checkbox"
+        wx:for="{{item.options.radio.content}}"
+        wx:for-item="radio"
+        wx:key="radio"
+        wx:if="{{radio.checked}}"
+      >
+        <view class="order-details-option-name">
+          <view class="order-details-option-title">
+            <view>{{radio.name}}</view>
+          </view>
+          <view class="order-details-option-sub-title">
+            <view>{{radio.chineseName}}</view>
+          </view>
+        </view>
+        <view class="order-details-option-price">
+          {{currencyType}}{{radio.price}}
+        </view>
+      </view>
+      <view class="order-details-option-title">
+        <view>{{item.options.checkbox.title.name}}：</view>
+      </view>
+      <view class="order-details-option-sub-title">
+        <view>{{item.options.checkbox.title.chineseName}}：</view>
+      </view>
+      <view
+        class="order-details-option-checkbox"
+        wx:for="{{item.options.checkbox.content}}"
+        wx:for-item="checkbox"
+        wx:key="checkbox"
+        wx:if="{{checkbox.checked}}"
+      >
+        <view class="order-details-option-name">
+          <view class="order-details-option-title">
+            <view>{{checkbox.name}}</view>
+          </view>
+          <view class="order-details-option-sub-title">
+            <view>{{checkbox.chineseName}}</view>
+          </view>
+        </view>
+        <view class="order-details-option-price">
+          {{currencyType}}{{checkbox.price}}
+        </view>
+      </view>
+
+
+    </view>
+  </view>
+  <view class="order-details" wx:for="{{addSetMenu}}" wx:key="setMenu">
+    <view class="order-details-top">
+      <view class="order-details-num">{{addAlaCarte.length + index + 1}}.</view>
+      <view class="order-details-num-after">
+        <view class="order-details-num-after-name">
+          <view>{{item.category.name}}</view>
+          <view style="font-size: 0.9em; color: #bbbbbb">{{item.category.chineseName}}</view>
+        </view>
+        <view class="order-details-num-after-price">
+          {{currencyType}}{{item.price}}
+        </view>
+        <view class="order-details-num-after-number">
+          ×{{item.num}}
+        </view>
+      </view>
+    </view>
+      <view
+        class="order-details-option"
+      >
+        <view
+          wx:for="{{item.setMenuDetail}}"
+          wx:key="setMenuDetail"
+          wx:for-item="setMenuDetail"
+          wx:for-index="setMenuDetailIndex"
+        >
+        <view
+          wx:for="{{item.setMenuDetail[setMenuDetailIndex]}}"
+          wx:for-item="item2"
+          wx:for-index="index2"
+          wx:if="{{item2.checked}}"
+          wx:key="bb"
+        >
+          <view
+            class="order-details-option-title"
+          >
+            <view>{{item2.category.name}}：</view>
+          </view>
+          <view class="order-details-option-sub-title">
+            <view>{{item2.category.chineseName}}：</view>
+          </view>
+          <view
+            class="order-details-option-checkbox"
+          >
+            <view class="order-details-option-name">
+              <view class="order-details-option-title">
+                <view>{{item2.name.name}}</view>
+              </view>
+              <view class="order-details-option-sub-title">
+                <view>{{item2.name.chineseName}}</view>
+              </view>
+            </view>
+          </view>
+          <view class="" style="width: 80%; margin-left: 10%">
+            <view class="order-details-option-title">
+              <view>{{item2.options.radio.title.name}}：</view>
+            </view>
+            <view class="order-details-option-sub-title">
+              <view>{{item2.options.radio.title.chineseName}}：</view>
+            </view>
+            <view
+              class="order-details-option-checkbox"
+              wx:for="{{item2.options.radio.content}}"
+              wx:for-item="radio"
+              wx:key="radio"
+              wx:if="{{radio.checked}}"
+            >
+              <view class="order-details-option-name">
+                <view class="order-details-option-title">
+                  <view>{{radio.name}}</view>
+                </view>
+                <view class="order-details-option-sub-title">
+                  <view>{{radio.chineseName}}</view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="" style="width: 80%; margin-left: 10%">
+            <view class="order-details-option-title">
+              <view>{{item2.options.checkbox.title.name}}：</view>
+            </view>
+            <view class="order-details-option-sub-title">
+              <view>{{item2.options.checkbox.title.chineseName}}：</view>
+            </view>
+            <view
+              class="order-details-option-checkbox"
+              wx:for="{{item2.options.checkbox.content}}"
+              wx:for-item="checkbox"
+              wx:key="checkbox"
+              wx:if="{{checkbox.checked}}"
+            >
+              <view class="order-details-option-name">
+                <view class="order-details-option-title">
+                  <view>{{checkbox.name}}</view>
+                </view>
+                <view class="order-details-option-sub-title">
+                  <view>{{checkbox.chineseName}}</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="totalFee">共计约：{{currencyType}}{{totalFee}}</view>
+  <view class="notice-1">改价格仅供参考，最终价格请以餐厅结账为准</view>
+  <view class="notice-2">
+    <view class="notice-2-1">
+      <view class="notice-2-1-title">餐厅提示：</view>
+      <view class="notice-2-1-content">本店另外加12.5%服务费</view>
+    </view>
+    <view class="notice-2-1">
+      <view class="notice-2-1-title">重要提示：</view>
+      <view class="notice-2-1-content">请您将手机出示给服务员完成点餐，本小程序不能自动下单</view>
+    </view>
+  </view>
+  <view class="footer">
+    <view class="return">
+      修改
+    </view>
+    <view class="confirm">
+      完成
+    </view>
   </view>
 </view>

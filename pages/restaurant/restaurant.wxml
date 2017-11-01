@@ -151,7 +151,7 @@
         <view class="setMenu-right-item-bottom">
           <view class="setMenu-right-bottom-price">
             <text
-              bindtap="removeSetMenu"
+              bindtap="showRemoveSetMenuModal"
               data-setmenu="{{setMenu[setMenuLeftSelected]}}"
               class="fa fa-minus-circle"
               wx:if="{{setMenu[setMenuLeftSelected].num}}"
@@ -161,7 +161,7 @@
               style="width: 80rpx; color: #101010; text-align: center"
             >{{setMenu[setMenuLeftSelected].num}}</view>
             <text
-              bindtap="addSetMenu"
+              bindtap="showSetMenuModal"
               data-setmenu="{{setMenu[setMenuLeftSelected]}}"
               class="fa fa-plus-circle"
             ></text>
@@ -210,7 +210,7 @@
       </view>
     </view>
     <!-- 删除单品modal -->
-    <view class="modal-mask" bindtap="hiddenRemoveAlaCarteModal" catchtouchmove="preventTouchMove" wx:if="{{removeAlaCarteModal}}"></view>
+    <view class="modal-mask" bindtap="hideRemoveAlaCarteModal" catchtouchmove="preventTouchMove" wx:if="{{removeAlaCarteModal}}"></view>
     <view class="modal-dialog" wx:if="{{removeAlaCarteModal}}">
       <view class="modal-content fixed-title">
         <view class="modal-content-item-name">{{removeAlaCarte[0].name.chineseName}}</view>
@@ -264,6 +264,160 @@
         删除</view>
       </view>
     </view>
+    <!-- 添加套餐选择规格modal -->
+    <view class="modal-mask" bindtap="hideSetMenuModal" catchtouchmove="preventTouchMove" wx:if="{{setMenuModal}}"></view>
+    <view class="modal-dialog" wx:if="{{setMenuModal}}">
+      <view class="scroll-group2">
+        <view class="modal-content">
+          <view class="modal-content-item-name">{{addItem.category.chineseName}}</view>
+        </view>
+        <view
+          wx:for="{{addItem.setMenuDetail}}"
+          wx:key="setMenuDetail"
+        >
+          <view class="modal-content-title">
+            <view style="width: 92%; margin: 0 auto;">{{index}}</view>
+          </view>
+          <radio-group class="radio-group" data-index="{{index}}" bindchange="radioSetMenuChange">
+            <view
+              class="modal-content"
+              style="padding: 5rpx 10rpx;"
+              wx:for="{{item}}"
+              wx:for-item="itemName"
+              wx:for-index="indexName"
+              wx:key="setMenuDetailItem"
+            >
+              <view class="modal-content-radio">
+                <view style="width:90%;">
+                  {{itemName.name.chineseName}}
+                </view>
+                <radio
+                  value="{{itemName.name.chineseName}}"
+                  color="#f60"
+                  checked="{{itemName.checked}}"
+                />
+              </view>
+              <view class="modal-content-option">
+                <view class="modal-content-option-title" style="margin-top: 10rpx;">{{itemName.options.radio.title.chineseName}}</view>
+                <radio-group
+                  class="radio-group"
+                  data-index="{{index}}"
+                  data-chinesename="{{itemName.name.chineseName}}"
+                  bindchange="radioSetMenuOptionChange">
+                  <view
+                    wx:key="setMenuRadio"
+                    wx:for="{{itemName.options.radio.content}}"
+                    wx:for-item="setMenuRadio"
+                    class="modal-content-option-item"
+                  >
+                    <view class="modal-content-option-item-1">{{setMenuRadio.chineseName}}</view>
+                    <radio value="{{setMenuRadio.chineseName}}" color="#f60" checked="{{setMenuRadio.checked}}" />
+                  </view>
+                </radio-group>
+                <view class="modal-content-option-title">{{itemName.options.checkbox.title.chineseName}}</view>
+                <checkbox-group
+                  class="radio-group"
+                  data-index="{{index}}"
+                  data-chinesename="{{itemName.name.chineseName}}"
+                  bindchange="checkboxSetMenuOptionChange"
+                >
+                  <view
+                    wx:key="setMenuCheckbox"
+                    wx:for="{{itemName.options.checkbox.content}}"
+                    wx:for-item="setMenuCheckbox"
+                    class="modal-content-option-item"
+                  >
+                    <view class="modal-content-option-item-1">{{setMenuCheckbox.chineseName}}</view>
+                    <checkbox value="{{setMenuCheckbox.chineseName}}" color="#f60" checked="{{setMenuCheckbox.checked}}" />
+                  </view>
+                </checkbox-group>
+              </view>
+            </view>
+          </radio-group>
+        </view>
+      </view>
+      <view class="modal-footer">
+      <!-- <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view> -->
+        <view
+          class="btn-confirm"
+          bindtap="onSetMenuConfirm"
+          data-status="confirm">
+        确定</view>
+      </view>
+    </view>
+    <!-- 删除套餐modal -->
+    <view class="modal-mask" bindtap="hideRemoveSetMenuModal" catchtouchmove="preventTouchMove" wx:if="{{removeSetMenuModal}}"></view>
+    <view class="modal-dialog" wx:if="{{removeSetMenuModal}}">
+      <view class="scroll-group3">
+        <view class="modal-content">
+          <view class="modal-content-item-name">{{removeSetMenu[0].category.chineseName}}</view>
+        </view>
+        <radio-group class="radio-group" bindchange="radioSetMenuRemove">
+          <view wx:for="{{removeSetMenu}}" wx:key="removeSetMenu" wx:for-item="removeSetMenuItem">
+          <view style="display:flex; align-items:center" class="modal-content">
+            <view style="width:90%; color:#f60;font-weight:bold; font-size:28rpx;">第 {{index + 1}} 份</view>
+            <radio value="{{index}}" color="#f60" />
+          </view>
+          <view
+            wx:for="{{removeSetMenuItem.setMenuDetail}}"
+            wx:key="setMenuDetail"
+          >
+            <view class="modal-content-title">
+              <view style="width: 92%; margin: 0 auto;">{{index}}</view>
+            </view>
+            <view
+              class="modal-content aaa"
+              style="padding: 5rpx 10rpx;"
+              wx:for="{{item}}"
+              wx:for-item="itemName"
+              wx:for-index="indexName"
+              wx:key="setMenuDetailItem"
+            >
+              <view class="modal-content-radio">
+                <view style="width:100%; text-align:left">
+                  {{itemName.name.chineseName}}
+                </view>
+              </view>
+              <view class="modal-content-option">
+                <view class="modal-content-option-title" style="margin-top: 10rpx;">{{itemName.options.radio.title.chineseName}}</view>
+                <view
+                  wx:key="setMenuRadio"
+                  wx:for="{{itemName.options.radio.content}}"
+                  wx:for-item="setMenuRadio"
+                  class="modal-content-option-item"
+                >
+                  <view class="modal-content-option-item-1">{{setMenuRadio.chineseName}}</view>
+                </view>
+                <view class="modal-content-option-title">{{itemName.options.checkbox.title.chineseName}}</view>
+                <view
+                  wx:key="setMenuCheckbox"
+                  wx:for="{{itemName.options.checkbox.content}}"
+                  wx:for-item="setMenuCheckbox"
+                  class="modal-content-option-item"
+                >
+                  <view class="modal-content-option-item-1">{{setMenuCheckbox.chineseName}}</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        </radio-group>
+      </view>
+      <view class="modal-footer fixed-footer">
+        <view
+          class="btn-cancel"
+          bindtap="onRemoveSetMenuCancel"
+          data-status="cancel"
+        >取消</view>
+        <view
+          class="btn-confirm"
+          bindtap="onRemoveSetMenuConfirm"
+          data-status="confirm"
+          style="width: 50%"
+        >
+        删除</view>
+      </view>
+    </view>
     <!-- 菜品详情弹框 -->
     <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
     <view class="modal-dialog" wx:if="{{showModal}}">
@@ -287,15 +441,29 @@
           <view class="modal-content-item-second">{{detailInfo.extrainfo}}</view>
         </view>
       </view>
-      <!-- <view class="modal-footer">
-        <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
-        <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
-      </view> -->
     </view>
+    <!-- 重要提示 -->
+    <modal
+      hidden="{{hidden}}"
+      title="重要提示"
+      confirm-text="好的"
+      cancel-text="返回"
+      bindcancel="noticeCancel"
+      bindconfirm="noticeConfirm"
+      no-cancel="{{nocancel}}"
+    >
+      {{notes}}
+    </modal>
+    <!-- Toast -->
+    <toast
+      hidden="{{hiddenToast}}"
+      duration="3000"
+      bindchange="toastHidden"
+    >{{toastInfo}}</toast>
     <!-- 底部生成菜单按钮 -->
     <view class="restaurant-footer">
       <text>总金额约 {{currencyType}}{{totalFee}}</text>
-      <view class="create-order">生成菜单</view>
+      <view class="create-order" bindtap="alertNotice">生成菜单</view>
     </view>
   </view>
 </view>

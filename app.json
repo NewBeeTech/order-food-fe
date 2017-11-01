@@ -1,7 +1,7 @@
 {
   "pages":[
-    "pages/restaurant/restaurant",
     "pages/order/order",
+    "pages/restaurant/restaurant",
     "pages/history/history",
     "pages/me/me",
     "pages/index/index",
