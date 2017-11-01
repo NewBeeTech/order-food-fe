@@ -39,86 +39,195 @@
     </view>
   </view>
   <view class="restaurant-header">
+    <!-- 单点和套餐 tab -->
     <view class="chooseType">
       <view bindtap="chooseALaCarte" class="{{selectedStyle === 'aLaCarte' ? 'selected' : '' }}">单点</view>
       <view bindtap="choosePackage" class="{{selectedStyle === 'package' ? 'selected' : '' }}">套餐</view>
     </view>
+    <!-- 单点 -->
     <view class="aLaCarte" hidden="{{selectedStyle === 'package'}}">
       <view class="aLaCarte-left">
-        <view class="aLaCarte-left-item aLaCarte-left-select">头菜</view>
-        <view class="aLaCarte-left-item">主菜</view>
+        <view
+          bindtap="checkAlaCateLeft"
+          wx:for="{{aLaCarte}}"
+          data-index="{{index}}"
+          wx:key="aLaCarte-left"
+          wx:index="index"
+          class="aLaCarte-left-item {{aLaCarteLeftSelected === index ? 'aLaCarte-left-select' : ''}}"
+        >
+          {{index}}
+          <view
+            class="aLaCarte-left-item-number"
+            wx:if=""
+          ></view>
+        </view>
       </view>
       <view class="aLaCarte-right">
-        <view class="aLaCarte-right-item" bindtap="showDetails">
+        <view
+          class="aLaCarte-right-item"
+          bindtap="showDetails"
+          wx:for="{{aLaCarte[aLaCarteLeftSelected]}}"
+          wx:key="aLaCarte-right"
+        >
           <view class="aLaCarte-right-item-right" >
-            <view class="aLaCarte-right-item-name">面包和橄榄</view>
-            <view class="aLaCarte-right-item-Eg">Bread an Olives</view>
+            <view class="aLaCarte-right-item-name">{{item.name.chineseName}}</view>
+            <view class="aLaCarte-right-item-Eg">{{item.name.name}}</view>
             <view class="aLaCarte-right-item-bottom">
-              <view class="aLaCarte-right-price">$3</view>
+              <view class="aLaCarte-right-price">{{currencyType}} {{item.price}}</view>
               <view class="aLaCarte-right-price">
-                <text class="fa fa-minus-circle"></text>
-                <view class="" style="width: 80rpx; color: #101010; text-align: center">100</view>
-                <text class="fa fa-plus-circle"></text>
-              </view>
-            </view>
-          </view>
-        </view>
-        <view class="aLaCarte-right-item">
-          <!-- <image
-            style="width: 160rpx; height: 160rpx; background-color: #eeeeee;"
-            src="https://m.360buyimg.com/n12/jfs/t2938/141/161562315/370464/79e5296/574e38faNb075dd83.jpg!q70.jpg"
-            mode="scaleToFill"
-          /> -->
-          <view class="aLaCarte-right-item-right">
-            <view class="aLaCarte-right-item-name">面包和橄榄</view>
-            <view class="aLaCarte-right-item-Eg">Bread an Olives Bread an OlivesBread an Olives</view>
-            <view class="aLaCarte-right-item-bottom">
-              <view class="aLaCarte-right-price">$3</view>
-              <view class="aLaCarte-right-price">
-                <text class="fa fa-minus-circle"></text>
-                <view class="" style="width: 80rpx; color: #101010; text-align: center">100</view>
-                <text class="fa fa-plus-circle"></text>
+                <text
+                  catchtap="removeAlaCarte"
+                  wx:if="{{item.num}}"
+                  data-alacarte="{{item}}"
+                  class="fa fa-minus-circle"
+                ></text>
+                <view
+                  wx:if="{{item.num}}"
+                  style="width: 80rpx; color: #101010; text-align: center"
+                >{{item.num}}</view>
+                <text
+                  catchtap="showALaCarteModal"
+                  data-alacarte="{{item}}"
+                  class="fa fa-plus-circle"
+                ></text>
               </view>
             </view>
           </view>
         </view>
       </view>
     </view>
+    <!-- 套餐 -->
     <view class="aLaCarte" hidden="{{selectedStyle === 'aLaCarte'}}">
       <view class="aLaCarte-left">
-        <view class="aLaCarte-left-item aLaCarte-left-select">套餐一</view>
-        <view class="aLaCarte-left-item">套餐二</view>
+        <view
+          bindtap="checkSetMenuLeft"
+          wx:for="{{setMenu}}"
+          data-index="{{index}}"
+          wx:key="setMenu-left"
+          class="aLaCarte-left-item {{setMenuLeftSelected === index ? 'aLaCarte-left-select' : ''}}"
+        >
+          {{index}}
+          <view
+            class="aLaCarte-left-item-number"
+            wx:if="{{setMenu[index].num}}"
+          >{{setMenu[index].num}}</view>
+        </view>
       </view>
       <view class="aLaCarte-right">
-        <view class="aLaCarte-right-item" bindtap="showDetails">
-          <view class="aLaCarte-right-item-right">
-            <view class="aLaCarte-right-item-name">面包和橄榄</view>
-            <view class="aLaCarte-right-item-Eg">Bread an Olives</view>
+        <view class="setMenu-right-item">
+          <view class="setMenu-right-item-right">
+            <view class="setMenu-right-item-top">
+              <view class="setMenu-right-item-top-desc">
+                {{setMenu[setMenuLeftSelected].desc}}
+              </view>
+              <view class="setMenu-right-item-top-price">
+                {{currencyType}} {{setMenu[setMenuLeftSelected].price}}
+              </view>
+            </view>
+            <view wx:for="{{setMenu[setMenuLeftSelected].setMenuDetail}}" wx:key="setMenuDetail">
+              <view class="setMenu-right-item-type">{{index}}</view>
+              <view
+                class="setMenu-right-item-type-item"
+                wx:for="{{item}}"
+                wx:key="itemName"
+                wx:for-item="itemName"
+                bindtap="showDetails"
+              >
+                <view class="aLaCarte-right-item-name">{{itemName.name.chineseName}}</view>
+                <view class="aLaCarte-right-item-Eg">{{itemName.name.name}}</view>
+              </view>
+            </view>
           </view>
         </view>
-        <view class="aLaCarte-right-item" bindtap="showDetails">
-          <view class="aLaCarte-right-item-right">
-            <view class="aLaCarte-right-item-name">面包和橄榄</view>
-            <view class="aLaCarte-right-item-Eg">Bread an Olives Bread an OlivesBread an Olives</view>
+        <view class="setMenu-right-item-bottom">
+          <view class="setMenu-right-bottom-price">
+            <text
+              bindtap="removeSetMenu"
+              data-setmenu="{{setMenu[setMenuLeftSelected]}}"
+              class="fa fa-minus-circle"
+              wx:if="{{setMenu[setMenuLeftSelected].num}}"
+            ></text>
+            <view
+              wx:if="{{setMenu[setMenuLeftSelected].num}}"
+              style="width: 80rpx; color: #101010; text-align: center"
+            >{{setMenu[setMenuLeftSelected].num}}</view>
+            <text
+              bindtap="addSetMenu"
+              data-setmenu="{{setMenu[setMenuLeftSelected]}}"
+              class="fa fa-plus-circle"
+            ></text>
           </view>
         </view>
       </view>
     </view>
-    <modal
-      hidden="{{hidden}}"
-      title="这里是title"
-      confirm-text="自定义确定按钮"
-      cancel-text="自定义取消按钮"
-      bindcancel="cancel"
-      bindconfirm="confirm"
-      no-cancel="{{nocancel}}"
-      class="show-details"
-    >
+    <!-- 添加单品选择规格modal -->
+    <view class="modal-mask" bindtap="addAlaCarteModal" catchtouchmove="preventTouchMove" wx:if="{{alaCarteModal}}"></view>
+    <view class="modal-dialog" wx:if="{{alaCarteModal}}">
+      <view class="modal-content">
+        <view class="modal-content-item-name">{{addItem.name.chineseName}}</view>
+        <view class="modal-content-item-second">{{addItem.name.name}}</view>
+      </view>
+      <view class="modal-line" />
+      <view class="modal-content">
+        <view class="modal-content-radio-title">{{addItem.options.radio.title.chineseName}}：</view>
+        <view class="modal-content-radio" wx:for="{{addItem.options.radio.content}}" wx:key="radio">
+          <view>{{item.chineseName}}</view>
+          <view wx:if="{{item.price}}">{{currencyType}}{{item.price}}</view>
+          <view wx:else></view>
+          <view><radio value="" checked="" color="#f60" /></view>
+        </view>
+      </view>
+      <view class="modal-line" style="width: 94%" />
+      <view class="modal-content">
+        <view class="modal-content-radio-title">{{addItem.options.checkbox.title.chineseName}}</view>
+        <view class="modal-content-radio" wx:for="{{addItem.options.checkbox.content}}" wx:key="checkbox">
+          <view>{{item.chineseName}}</view>
+          <view wx:if="{{item.price}}">{{currencyType}}{{item.price}}</view>
+          <view wx:else></view>
+          <view><checkbox value="" checked="" color="#f60" /></view>
+        </view>
+      </view>
+      <view class="modal-footer">
+      <!-- <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view> -->
+        <view
+          class="btn-confirm"
+          bindtap="onAlaCarteConfirm"
+          data-status="confirm">
+        确定</view>
+      </view>
+    </view>
+    <!-- 菜品详情弹框 -->
+    <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+    <view class="modal-dialog" wx:if="{{showModal}}">
+      <!-- <view class="modal-title">添加数量</view> -->
       <image
         style="width: 100%; background-color: #eeeeee;"
         src="https://m.360buyimg.com/n12/jfs/t2938/141/161562315/370464/79e5296/574e38faNb075dd83.jpg!q70.jpg"
         mode="scaleToFill"
       />
-    </modal>
+      <view class="modal-content">
+        <view class="modal-content-item">
+          <view class="modal-content-item-name">面包和橄榄</view>
+          <view class="modal-content-item-second">Bread an Olives Bread an OlivesBread an Olives</view>
+        </view>
+        <view class="modal-content-item">
+          <view class="aLaCarte-right-item-name">配料</view>
+          <view class="modal-content-item-second">配料信息（可空）</view>
+        </view>
+        <view class="modal-content-item">
+          <view class="aLaCarte-right-item-name">附加信息</view>
+          <view class="modal-content-item-second">附加信息（可空）</view>
+        </view>
+      </view>
+      <!-- <view class="modal-footer">
+        <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
+        <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+      </view> -->
+    </view>
+    <!-- 底部生成菜单按钮 -->
+    <view class="restaurant-footer">
+      <text>总金额约 {{currencyType}}</text>
+      <view class="create-order">生成菜单</view>
+    </view>
   </view>
 </view>
