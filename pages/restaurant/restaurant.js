@@ -30,6 +30,14 @@ Page({
               chineseName: '炸薯条',
               name: 'French fries',
               price: 3,
+            }, {
+              chineseName: '炸薯条4',
+              name: 'French fries',
+              price: 4,
+            }, {
+              chineseName: '炸薯条5',
+              name: 'French fries',
+              price: 5,
             }],
             title: {
               chineseName: '配菜',
@@ -106,9 +114,9 @@ Page({
               name: 'xinghao',
             },
           },
-          price: 3,
-          stock: 6,
         },
+        price: 3,
+        stock: 6,
       }, {
         _id: 'aLaCarte_001',
         category: {
@@ -128,9 +136,17 @@ Page({
         options: {
           checkbox: {
             content: [{
-              chineseName: '炸薯条',
+              chineseName: '炸薯条3',
               name: 'French fries',
               price: 3,
+            }, {
+              chineseName: '炸薯条4',
+              name: 'French fries',
+              price: 4,
+            }, {
+              chineseName: '炸薯条5',
+              name: 'French fries',
+              price: 5,
             }],
             title: {
               chineseName: '配菜',
@@ -527,6 +543,13 @@ Page({
     selectedStyle: 'aLaCarte',
     showModal: false,
     alaCarteModal: false,
+    removeAlaCarteModal: false,
+    removeAlaCarte: [], // 删除弹框里的数据
+    radioALaCarteRemoveIndex: '',
+    addAlaCarte: [], // 已经添加的单品
+    addItem: {}, // 添加的食物临时站位
+    totalFee: 0,
+    detailInfo: {},
   },
   //事件处理函数
   // bindViewTap: function() {
@@ -609,9 +632,22 @@ Page({
   addAlaCarte: function(addItem) {
     // const addItem = e.target.dataset.alacarte;
     const aLaCarte = this.data.aLaCarte;
+    let totalFee = this.data.totalFee;
     for (var p in aLaCarte) {
       aLaCarte[p].map(item => {
         if(item._id === addItem._id) {
+          totalFee += item.price;
+          addItem.options.checkbox.content.map((i, key) => {
+            if(i.checked) {
+              totalFee += i.price;
+            }
+          });
+          addItem.options.radio.content.map((i, key) => {
+            if(i.checked) {
+              totalFee += i.price;
+            }
+          });
+          // console.log(totalFee);
           const number = item.num || 0;
           item.num = number + 1;
           // const aLaCarteNumber = aLaCarte[p].aLaCarteNumber || 0;
@@ -619,21 +655,46 @@ Page({
         }
       });
     }
-    console.log(aLaCarte);
+    const addAlaCarte = this.data.addAlaCarte;
+    addAlaCarte.push(addItem);
     this.setData({
       aLaCarte,
+      addAlaCarte,
+      addItem: {},
+      totalFee,
     });
-    console.log(this.data.aLaCarte);
   },
   /**
    * 删除单点
    */
-  removeAlaCarte: function(e) {
-    const addItem = e.target.dataset.alacarte;
+  removeAlaCarte: function(addItem) {
     const aLaCarte = this.data.aLaCarte;
+    const removeAlaCarte = this.data.removeAlaCarte;
+    console.log(removeAlaCarte[this.data.radioALaCarteRemoveIndex]);
+    const addAlaCarte = this.data.addAlaCarte;
+    let totalFee = this.data.totalFee;
+    for (var i in addAlaCarte) {
+      if(addAlaCarte[i].toString() === removeAlaCarte[this.data.radioALaCarteRemoveIndex].toString()) {
+        addAlaCarte.splice(i, 1);
+        break;
+      }
+    }
+    const removeItem = removeAlaCarte[this.data.radioALaCarteRemoveIndex];
+    removeAlaCarte.splice(this.data.radioALaCarteRemoveIndex, 1);
     for (var p in aLaCarte) {
       aLaCarte[p].map(item => {
         if(item._id === addItem._id) {
+          totalFee -= item.price;
+          removeItem.options.checkbox.content.map((i, key) => {
+            if(i.checked) {
+              totalFee -= i.price;
+            }
+          });
+          removeItem.options.radio.content.map((i, key) => {
+            if(i.checked) {
+              totalFee -= i.price;
+            }
+          });
           const number = item.num || 0;
           item.num = number - 1;
           // const aLaCarteNumber = aLaCarte[p].aLaCarteNumber || 0;
@@ -643,6 +704,10 @@ Page({
     }
     this.setData({
       aLaCarte,
+      removeAlaCarte,
+      addAlaCarte,
+      addItem: {},
+      totalFee,
     });
   },
   /**
@@ -681,7 +746,6 @@ Page({
    * 弹窗
    */
   showALaCarteModal: function(e) {
-    console.log(e);
     this.setData({
       alaCarteModal: true,
       addItem: e.target.dataset.alacarte,
@@ -690,9 +754,29 @@ Page({
   /**
    * 弹窗
    */
-  showDetails: function() {
+  showRemoveAlaCarteModal: function(e) {
+    const currentAlacarte = e.target.dataset.alacarte;
+    const addAlaCarte = this.data.addAlaCarte;
+    const removeAlaCarte = [];
+    addAlaCarte.map((item, index) => {
+      if(item._id === currentAlacarte._id){
+        removeAlaCarte.push(item);
+      }
+    });
     this.setData({
-      showModal: true
+      addItem: currentAlacarte,
+      removeAlaCarte,
+      removeAlaCarteModal: true,
+    })
+  },
+  /**
+   * 弹窗
+   */
+  showDetails: function(e) {
+    const detailInfo = e.currentTarget.dataset;
+    this.setData({
+      showModal: true,
+      detailInfo,
     })
   },
   /**
@@ -706,6 +790,14 @@ Page({
   hiddenAlaCarteModal: function (e) {
     this.setData({
       alaCarteModal: false
+    });
+  },
+  /**
+   * 隐藏模态对话框
+   */
+  hiddenRemoveAlaCarteModal: function (e) {
+    this.setData({
+      removeAlaCarteModal: false
     });
   },
   /**
@@ -728,6 +820,12 @@ Page({
     this.hideModal();
   },
   /**
+   * 对话框取消按钮点击事件
+   */
+  onRemoveAlaCarteCancel: function () {
+    this.hiddenRemoveAlaCarteModal();
+  },
+  /**
    * 对话框确认按钮点击事件
    */
   onConfirm: function () {
@@ -737,9 +835,70 @@ Page({
    * 对话框确认按钮点击事件
    */
   onAlaCarteConfirm: function () {
-    console.log();
     this.hideAlaCarteModal();
     this.addAlaCarte(this.data.addItem);
+  },
+  /**
+   * 对话框确认按钮点击事件
+   */
+  onRemoveAlaCarteConfirm: function () {
+    this.hiddenRemoveAlaCarteModal();
+    this.removeAlaCarte(this.data.addItem);
+  },
+  // 单品添加选规格 单选
+  radioALaCarteChange: function(e) {
+    const addItem = this.data.addItem;
+    const aLaCarte = this.data.aLaCarte;
+    for (var p in aLaCarte) {
+      aLaCarte[p].map((item, key) => {
+        if(item._id === addItem._id) {
+          const content = item.options.radio.content;
+          content.map((i, index) => {
+            if(i.chineseName === e.detail.value) {
+              // aLaCarte[p][key].options.radio.content[index].checked = true;
+              addItem.options.radio.content[index].checked = true;
+            } else {
+              // aLaCarte[p][key].options.radio.content[index].checked = false;
+              addItem.options.radio.content[index].checked = false;
+            }
+          })
+        }
+      });
+    }
+    this.setData({
+      // aLaCarte,
+      addItem,
+    });
+  },
+  // 单品添加选规格 多选
+  checkboxALaCarteChange: function(e) {
+    const addItem = this.data.addItem;
+    const aLaCarte = this.data.aLaCarte;
+    for (var p in aLaCarte) {
+      aLaCarte[p].map((item, key) => {
+        if(item._id === addItem._id) {
+          const content = item.options.checkbox.content;
+          content.map((i, index) => {
+            if(e.detail.value.indexOf(i.chineseName) !== -1) {
+              // aLaCarte[p][key].options.checkbox.content[index].checked = true;
+              addItem.options.checkbox.content[index].checked = true;
+            } else {
+              // aLaCarte[p][key].options.checkbox.content[index].checked = false;
+              addItem.options.checkbox.content[index].checked = false;
+            }
+          })
+        }
+      });
+    }
+    this.setData({
+      // aLaCarte,
+      addItem,
+    });
+  },
+  radioALaCarteRemove: function(e) {
+    this.setData({
+      radioALaCarteRemoveIndex: Number(e.detail.value),
+    });
   }
 
 })

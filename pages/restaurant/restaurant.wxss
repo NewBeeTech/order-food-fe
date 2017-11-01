@@ -290,7 +290,7 @@
 .restaurant-footer {
   background-color: #666;
   width: 750rpx;
-  height: 80rpx;
+  height: 90rpx;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -309,7 +309,7 @@
   height: 100%;
   background-color: #76a63a;
   text-align: center;
-  line-height: 80rpx;
+  line-height: 90rpx;
   cursor: pointer;
 }
 /*弹框*/
@@ -325,8 +325,8 @@
   position: fixed;
   top: 0;
   left: 0;
-  background: #000;
-  opacity: 0.5;
+  background: #666666;
+  opacity: 0.9;
   overflow: hidden;
   z-index: 9000;
   color: #fff;
@@ -353,6 +353,16 @@
   text-align: center;
 }
 
+.scroll-group {
+  height: 50vh;
+  overflow-x: scroll;
+}
+.scroll-group .modal-content:last-child {
+  margin-bottom: 100rpx;
+}
+.scroll-group .modal-content:last-child .modal-line {
+  border-color: #fff;
+}
 .modal-content {
   padding: 20rpx;
 }
@@ -395,6 +405,12 @@
   border-top: 1px solid #dedede;
   font-size: 34rpx;
   line-height: 86rpx;
+  width: 100%;
+  background-color: #fff;
+}
+.fixed-footer {
+  position: absolute;
+  bottom: 0;
 }
 
 .btn-cancel {
@@ -441,6 +457,7 @@
   text-align: right;
 }
 
+/*自定义单选多选样式*/
 .wx-radio-input{
   width:24rpx !important;
   height:24rpx !important;
