@@ -1,5 +1,8 @@
 <!--restaurant.wxml-->
 <import src="../../components/img-show/img-show.wxml" />
+<import src="../../components/toast-custom/toast-custom.wxml" />
+
+<template is="toast" data="{{ ...__toast__ }}" />
 
 <view class="container">
   <template wx:if="{{detailImage.length}}" is="img-show" data="{{detailImage}}" />

@@ -564,6 +564,23 @@ Page({
   //     url: '../logs/logs'
   //   })
   // },
+  onShareAppMessage: function (res) {
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: `${this.data.city.chineseName} - ${this.data.name}`,
+      path: `/page/restaurant/restaurant?id=${this.data.menuId}`,
+      imageUrl: `${this.data.mainImage}`,
+      success: function(res) {
+        // 转发成功
+      },
+      fail: function(res) {
+        // 转发失败
+      }
+    }
+  },
   onReady: function (e) {
     // 使用 wx.createMapContext 获取 map 上下文
     this.mapCtx = wx.createMapContext('myMap')
@@ -571,6 +588,7 @@ Page({
   onLoad: function () {
     console.log('onLoad', this)
     var that = this;
+    new app.ToastCustom();
     // 请求饭店详情
     // wx.request({
     //   url: apiUrl.restaurant_details,
@@ -657,6 +675,7 @@ Page({
           // console.log(totalFee);
           const number = item.num || 0;
           item.num = number + 1;
+          addItem.num = number + 1;
           // const aLaCarteNumber = aLaCarte[p].aLaCarteNumber || 0;
           // aLaCarte[p].aLaCarteNumber = aLaCarteNumber + 1;
         }
@@ -727,6 +746,7 @@ Page({
         totalFee += setMenu[p].price;
         const number = setMenu[p].num || 0;
         setMenu[p].num = number + 1;
+        addItem.num = number + 1;
       }
     }
     const addSetMenu = this.data.addSetMenu;
@@ -1101,6 +1121,10 @@ Page({
     });
   },
   alertNotice: function() {
+    if(!this.data.addSetMenu.length && !this.data.addAlaCarte.length) {
+      this.showToast("请选择菜品");
+      return false;
+    }
     this.setData({
       hidden: false,
     })
@@ -1115,16 +1139,10 @@ Page({
     this.setData({
       hidden: true,
     });
-    if(!this.data.addSetMenu && !this.data.addSetMenu) {
-      this.setData({
-        hiddenToast: false,
-        toastInfo: '请选择菜品'
-      });
-      return false;
-    }
     app.globalData.addSetMenu = this.data.addSetMenu;
     app.globalData.addAlaCarte = this.data.addAlaCarte;
     app.globalData.currencyType = this.data.currencyType;
+    app.globalData.totalFee = this.data.totalFee;
     this.createOrder();
   },
   createOrder: function() {

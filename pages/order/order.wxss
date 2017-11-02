@@ -117,13 +117,13 @@
   /*text-align: right;*/
   width: 650rpx;
   margin: 0 auto;
-  margin-top: 20rpx;
+  margin-top: 30rpx;
   font-size: 24rpx;
   border: 1px solid #f60;
   background: #fff0de;
   border-radius: 12rpx;
   padding: 10rpx 20rpx;
-  margin-bottom: 100rpx;
+  margin-bottom: 150rpx;
 }
 
 .notice-2-1 {
@@ -139,4 +139,30 @@
 .notice-2-1-content {
   width: 510rpx;
   font-size: 24rpx;
+}
+
+.order-footer {
+  width:750rpx;
+  position: fixed;
+  bottom: 0;
+  height: 100rpx;
+  border-top: 1px solid #dcdcdc;
+  background: #fff;
+  display: flex;
+}
+.order-footer .return {
+  width:50%;
+  background-color: #f2f2f2;
+  color:#101010;
+  font-size: 34rpx;
+  line-height: 100rpx;
+  text-align: center;
+}
+.order-footer .confirm {
+  width:50%;
+  background-color: #f60;
+  color:#fff;
+  font-size: 34rpx;
+  line-height: 100rpx;
+  text-align: center;
 }

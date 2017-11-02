@@ -1,8 +1,8 @@
 {
   "pages":[
-    "pages/order/order",
     "pages/restaurant/restaurant",
     "pages/history/history",
+    "pages/order/order",
     "pages/me/me",
     "pages/index/index",
     "pages/imgList/imgList",

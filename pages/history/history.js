@@ -33,7 +33,7 @@ Page({
   bindViewTap: function(e) {
     console.log(e);
     wx.navigateTo({
-      url: '../order/order?id='
+      url: '../order/order?id=1'
     })
   },
   bindToRes: function(e) {

@@ -474,14 +474,34 @@ Page({
   //     url: '../logs/logs'
   //   })
   // },
-  onLoad: function () {
+  onLoad: function (options) {
     console.log('onLoad', this.data)
-    var that = this
+    console.log('onLoad ===> options', options)
+    var that = this;
+    new app.ToastCustom();
     //调用应用实例的方法获取全局数据
-    // that.setData({
-    //   addAlaCarte: app.globalData.addAlaCarte,
-    //   addSetMenu: app.globalData.addSetMenu,
-    //   currencyType: app.globalData.currencyType,
+    that.setData({
+      addAlaCarte: app.globalData.addAlaCarte,
+      addSetMenu: app.globalData.addSetMenu,
+      currencyType: app.globalData.currencyType,
+      totalFee: app.globalData.totalFee,
+      urlId: options.id,
+    })
+  },
+  returnToUpdate: function() {
+    // wx.navigateTo({
+    //   url: '../restaurant/restaurant'
+    // })
+    wx.navigateBack({
+      delta: 1
+    })
+  },
+  confirm: function() {
+    this.showToast("TODO: 调接口")
+    // wx.navigateTo({
+    //   url: '../history/history'
     // })
   }
+
+
 })

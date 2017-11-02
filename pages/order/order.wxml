@@ -1,4 +1,8 @@
 <!--index.wxml-->
+<import src="../../components/toast-custom/toast-custom.wxml" />
+
+<template is="toast" data="{{ ...__toast__ }}" />
+
 <view class="container" style="background: #fff">
   <view class="order-header">
     Byran
@@ -71,8 +75,6 @@
           {{currencyType}}{{checkbox.price}}
         </view>
       </view>
-
-
     </view>
   </view>
   <view class="order-details" wx:for="{{addSetMenu}}" wx:key="setMenu">
@@ -91,15 +93,15 @@
         </view>
       </view>
     </view>
+    <view
+      class="order-details-option"
+    >
       <view
-        class="order-details-option"
+        wx:for="{{item.setMenuDetail}}"
+        wx:key="setMenuDetail"
+        wx:for-item="setMenuDetail"
+        wx:for-index="setMenuDetailIndex"
       >
-        <view
-          wx:for="{{item.setMenuDetail}}"
-          wx:key="setMenuDetail"
-          wx:for-item="setMenuDetail"
-          wx:for-index="setMenuDetailIndex"
-        >
         <view
           wx:for="{{item.setMenuDetail[setMenuDetailIndex]}}"
           wx:for-item="item2"
@@ -191,12 +193,12 @@
       <view class="notice-2-1-content">请您将手机出示给服务员完成点餐，本小程序不能自动下单</view>
     </view>
   </view>
-  <view class="footer">
-    <view class="return">
-      修改
-    </view>
-    <view class="confirm">
-      完成
-    </view>
+</view>
+<view class="order-footer" wx:if="{{!urlId}}">
+  <view class="return" bindtap="returnToUpdate">
+    返回餐厅
+  </view>
+  <view class="confirm" bindtap="confirm">
+    完 成
   </view>
 </view>
