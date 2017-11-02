@@ -571,7 +571,7 @@ Page({
     }
     return {
       title: `${this.data.city.chineseName} - ${this.data.name}`,
-      path: `/page/restaurant/restaurant?id=${this.data.menuId}`,
+      path: `/pages/restaurant/restaurant?id=${this.data.menuId}`,
       imageUrl: `${this.data.mainImage}`,
       success: function(res) {
         // 转发成功
@@ -689,6 +689,7 @@ Page({
       addItem: {},
       totalFee,
     });
+    console.log(addAlaCarte);
   },
   /**
    * 删除单点
