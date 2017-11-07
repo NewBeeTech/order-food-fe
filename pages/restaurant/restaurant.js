@@ -18,8 +18,8 @@ Page({
         description: '配料信息mock数据',
         extraInfo: '附加信息mock数据',
         name: {
-          chineseName: '大龙虾3',
-          name: 'XXXX3',
+          chineseName: '单选复选都有',
+          name: '主菜XXXX1',
         },
         image: 'https://m.360buyimg.com/n12/jfs/t2938/141/161562315/370464/79e5296/574e38faNb075dd83.jpg!q70.jpg',
         operateTime: '2017-10-30T13:24:32.201Z',
@@ -66,6 +66,103 @@ Page({
         },
         price: 3,
         stock: 6,
+      }, {
+        _id: 'aLaCarte_004',
+        category: {
+          chineseName: '主菜',
+          name: 'The Main dash',
+        },
+        categoryNum: 2,
+        description: '配料信息mock数据',
+        extraInfo: '附加信息mock数据',
+        name: {
+          chineseName: '只有单选',
+          name: 'XXXXXX2',
+        },
+        image: 'https://m.360buyimg.com/n12/jfs/t2938/141/161562315/370464/79e5296/574e38faNb075dd83.jpg!q70.jpg',
+        operateTime: '2017-10-30T13:24:32.201Z',
+        operator: 'UT-TESTER',
+        options: {
+          radio: {
+            content: [{
+              chineseName: '大杯',
+              name: 'big',
+              price: 3,
+            }, {
+              chineseName: '中杯',
+              name: 'mid',
+              price: 2,
+            }, {
+              chineseName: '小杯',
+              name: 'sm',
+              price: 0,
+            }],
+            title: {
+              chineseName: '型号',
+              name: 'xinghao',
+            },
+          },
+        },
+        price: 5,
+        stock: 6,
+      }, {
+        _id: 'aLaCarte_005',
+        category: {
+          chineseName: '主菜',
+          name: 'The Main dash',
+        },
+        categoryNum: 2,
+        description: '配料信息mock数据',
+        extraInfo: '附加信息mock数据',
+        name: {
+          chineseName: '只有复选',
+          name: '主菜XXXX1',
+        },
+        image: 'https://m.360buyimg.com/n12/jfs/t2938/141/161562315/370464/79e5296/574e38faNb075dd83.jpg!q70.jpg',
+        operateTime: '2017-10-30T13:24:32.201Z',
+        operator: 'UT-TESTER',
+        options: {
+          checkbox: {
+            content: [{
+              chineseName: '炸薯条',
+              name: 'French fries',
+              price: 3,
+            }, {
+              chineseName: '炸薯条4',
+              name: 'French fries',
+              price: 4,
+            }, {
+              chineseName: '炸薯条5',
+              name: 'French fries',
+              price: 5,
+            }],
+            title: {
+              chineseName: '配菜',
+              name: 'Garnish',
+            },
+          },
+        },
+        price: 2,
+        stock: 6,
+      }, {
+        _id: 'aLaCarte_006',
+        category: {
+          chineseName: '主菜',
+          name: 'The Main dash',
+        },
+        categoryNum: 2,
+        description: '配料信息mock数据',
+        extraInfo: '附加信息mock数据',
+        name: {
+          chineseName: '无需选规格',
+          name: '主菜XXXX1',
+        },
+        image: 'https://m.360buyimg.com/n12/jfs/t2938/141/161562315/370464/79e5296/574e38faNb075dd83.jpg!q70.jpg',
+        operateTime: '2017-10-30T13:24:32.201Z',
+        operator: 'UT-TESTER',
+        options: {},
+        price: 4,
+        stock: 6,
       }],
       '头菜': [{
         _id: 'aLaCarte_002',
@@ -84,17 +181,6 @@ Page({
         operateTime: '2017-10-30T13:24:32.201Z',
         operator: 'UT-TESTER',
         options: {
-          checkbox: {
-            content: [{
-              chineseName: '炸薯条',
-              name: 'French fries',
-              price: 3,
-            }],
-            title: {
-              chineseName: '配菜',
-              name: 'Garnish',
-            },
-          },
           radio: {
             content: [{
               chineseName: '大杯',
@@ -151,25 +237,6 @@ Page({
             title: {
               chineseName: '配菜',
               name: 'Garnish',
-            },
-          },
-          radio: {
-            content: [{
-              chineseName: '大杯',
-              name: 'big',
-              price: 3,
-            }, {
-              chineseName: '中杯',
-              name: 'mid',
-              price: 2,
-            }, {
-              chineseName: '小杯',
-              name: 'sm',
-              price: 0,
-            }],
-            title: {
-              chineseName: '型号',
-              name: 'xinghao',
             },
           },
         },
@@ -547,11 +614,11 @@ Page({
     setMenuModal: false,
     removeSetMenuModal: false,
     removeAlaCarte: [], // 删除弹框里的单品
-    radioALaCarteRemoveIndex: '',
+    radioALaCarteRemoveIndex: 0,
     addAlaCarte: [], // 已经添加的单品
     addSetMenu: [], // 已经添加的套餐
     removeSetMenu: [], // 删除弹框里的套餐
-    radioSetMenuRemoveIndex: '',
+    radioSetMenuRemoveIndex: 0,
     addItem: {}, // 添加的食物临时站位
     totalFee: 0,
     detailInfo: {},
@@ -662,16 +729,20 @@ Page({
       aLaCarte[p].map(item => {
         if(item._id === addItem._id) {
           totalFee += item.price;
-          addItem.options.checkbox.content.map((i, key) => {
-            if(i.checked) {
-              totalFee += i.price;
-            }
-          });
-          addItem.options.radio.content.map((i, key) => {
-            if(i.checked) {
-              totalFee += i.price;
-            }
-          });
+          if(addItem.options.checkbox !== undefined) {
+            addItem.options.checkbox.content.map((i, key) => {
+              if(i.checked) {
+                totalFee += i.price;
+              }
+            });
+          }
+          if(addItem.options.radio !== undefined) {
+            addItem.options.radio.content.map((i, key) => {
+              if(i.checked) {
+                totalFee += i.price;
+              }
+            });
+          }
           // console.log(totalFee);
           const number = item.num || 0;
           item.num = number + 1;
@@ -689,7 +760,6 @@ Page({
       addItem: {},
       totalFee,
     });
-    console.log(addAlaCarte);
   },
   /**
    * 删除单点
@@ -699,28 +769,33 @@ Page({
     const removeAlaCarte = this.data.removeAlaCarte;
     const addAlaCarte = this.data.addAlaCarte;
     let totalFee = this.data.totalFee;
+    let removeIndex = this.data.radioALaCarteRemoveIndex
     for (var i in addAlaCarte) {
-      if(addAlaCarte[i].toString() === removeAlaCarte[this.data.radioALaCarteRemoveIndex].toString()) {
+      if(JSON.stringify(addAlaCarte[i]) === JSON.stringify((removeAlaCarte[removeIndex]))) {
         addAlaCarte.splice(i, 1);
         break;
       }
     }
-    const removeItem = removeAlaCarte[this.data.radioALaCarteRemoveIndex];
-    removeAlaCarte.splice(this.data.radioALaCarteRemoveIndex, 1);
+    const removeItem = removeAlaCarte[removeIndex];
+    removeAlaCarte.splice(removeIndex, 1);
     for (var p in aLaCarte) {
       aLaCarte[p].map(item => {
         if(item._id === addItem._id) {
           totalFee -= item.price;
-          removeItem.options.checkbox.content.map((i, key) => {
-            if(i.checked) {
-              totalFee -= i.price;
-            }
-          });
-          removeItem.options.radio.content.map((i, key) => {
-            if(i.checked) {
-              totalFee -= i.price;
-            }
-          });
+          if(removeItem.options.checkbox !== undefined) {
+            removeItem.options.checkbox.content.map((i, key) => {
+              if(i.checked) {
+                totalFee -= i.price;
+              }
+            });
+          }
+          if(removeItem.options.radio !== undefined) {
+            removeItem.options.radio.content.map((i, key) => {
+              if(i.checked) {
+                totalFee -= i.price;
+              }
+            });
+          }
           const number = item.num || 0;
           item.num = number - 1;
           // const aLaCarteNumber = aLaCarte[p].aLaCarteNumber || 0;
@@ -730,9 +805,10 @@ Page({
     }
     this.setData({
       aLaCarte,
-      removeAlaCarte,
+      removeAlaCarte: [],
       addAlaCarte,
       addItem: {},
+      radioALaCarteRemoveIndex: 0,
       totalFee,
     });
   },
@@ -774,7 +850,6 @@ Page({
       }
     }
     for (var i in addSetMenu) {
-      console.log(addSetMenu[i]);
       if(addSetMenu[i].toString() === removeSetMenu[this.data.radioSetMenuRemoveIndex].toString()) {
         totalFee -= addSetMenu[i].price;
         addSetMenu.splice(i, 1);
@@ -783,7 +858,6 @@ Page({
     }
     const removeItem = removeSetMenu[this.data.radioSetMenuRemoveIndex];
     removeSetMenu.splice(this.data.radioSetMenuRemoveIndex, 1);
-    console.log(setMenu);
     this.setData({
       setMenu,
       removeSetMenu,
@@ -796,9 +870,19 @@ Page({
    * 弹窗
    */
   showALaCarteModal: function(e) {
+    const alacarte = e.target.dataset.alacarte
+    var arr = Object.keys(alacarte.options);
+    var len = arr.length;
+    if(!len) {
+      this.setData({
+        addItem: alacarte,
+      });
+      this.addAlaCarte(this.data.addItem);
+      return;
+    }
     this.setData({
       alaCarteModal: true,
-      addItem: e.target.dataset.alacarte,
+      addItem: alacarte,
     })
   },
   /**
@@ -808,11 +892,21 @@ Page({
     const currentAlacarte = e.target.dataset.alacarte;
     const addAlaCarte = this.data.addAlaCarte;
     const removeAlaCarte = [];
+    var arr = Object.keys(currentAlacarte.options);
+    var len = arr.length;
     addAlaCarte.map((item, index) => {
       if(item._id === currentAlacarte._id){
         removeAlaCarte.push(item);
       }
     });
+    if(!len) {
+      this.setData({
+        addItem: currentAlacarte,
+        removeAlaCarte,
+      })
+      this.removeAlaCarte(this.data.addItem);
+      return;
+    }
     this.setData({
       addItem: currentAlacarte,
       removeAlaCarte,
@@ -823,7 +917,6 @@ Page({
    * 弹窗
    */
   showSetMenuModal: function(e) {
-    console.log(e.target.dataset.setmenu);
     this.setData({
       setMenuModal: true,
       addItem: e.target.dataset.setmenu,
@@ -834,7 +927,6 @@ Page({
    */
   showRemoveSetMenuModal: function(e) {
     const currentSetMenu = e.target.dataset.setmenu;
-    console.log(currentSetMenu);
     const addSetMenu = this.data.addSetMenu;
     const removeSetMenu = [];
     addSetMenu.map((item, index) => {
@@ -842,7 +934,6 @@ Page({
         removeSetMenu.push(item);
       }
     });
-    console.log(removeSetMenu);
     this.setData({
       addItem: currentSetMenu,
       removeSetMenu,
@@ -915,6 +1006,7 @@ Page({
    */
   onRemoveAlaCarteCancel: function () {
     this.hideRemoveAlaCarteModal();
+    this.setData({ radioALaCarteRemoveIndex: 0 })
   },
   /**
    * 对话框取消按钮点击事件

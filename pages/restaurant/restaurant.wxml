@@ -180,7 +180,7 @@
         <view class="modal-content-item-second">{{addItem.name.name}}</view>
       </view>
       <view class="modal-line" />
-      <view class="modal-content">
+      <view wx:if="{{addItem.options.radio}}" class="modal-content">
         <view class="modal-content-radio-title">{{addItem.options.radio.title.chineseName}}：</view>
         <radio-group class="radio-group" bindchange="radioALaCarteChange">
           <view class="modal-content-radio" wx:for="{{addItem.options.radio.content}}" wx:key="radio">
@@ -191,8 +191,8 @@
           </view>
         </radio-group>
       </view>
-      <view class="modal-line" style="width: 94%" />
-      <view class="modal-content">
+      <view wx:if="{{addItem.options.radio && addItem.options.checkbox}}" class="modal-line" style="width: 94%" />
+      <view class="modal-content" wx:if="{{addItem.options.checkbox}}">
         <view class="modal-content-radio-title">{{addItem.options.checkbox.title.chineseName}}</view>
         <checkbox-group bindchange="checkboxALaCarteChange">
           <view class="modal-content-radio" wx:for="{{addItem.options.checkbox.content}}" wx:key="checkbox">
@@ -224,7 +224,7 @@
         <view class="modal-content" wx:for="{{removeAlaCarte}}" wx:key="removeAlaCarte">
           <view style="display:flex; align-items:center">
             <view style="width:90%; color:#f60;font-weight:bold; font-size:28rpx;">第 {{index + 1}} 份</view>
-            <radio value="{{index}}" color="#f60" />
+            <radio value="{{index}}" color="#f60" checked="{{index === radioALaCarteRemoveIndex}}" />
           </view>
           <view class="modal-content-radio-title">{{item.options.radio.title.chineseName}}：</view>
             <view

@@ -564,22 +564,45 @@ Page({
   // },
 
   newAlaCarte: function (arr) {
-    arr.sort();
+    console.log(arr);
+    const newArr = [];
     for (var i = 0; i <= arr.length - 1; i++) {
-      arr[i].list = [];
-      if (arr[i + 1]) {
-        if (arr[i]._id == arr[i + 1]._id) {
-          arr[i].list.push(arr[i].options);
-          arr[i].list.push(arr[i+1].options);
-          arr.splice(i + 1, 1);
+      // 遍历单选、复选checked为true的值。
+      if(arr[i].options.checkbox) {
+        const checkbox = arr[i].options.checkbox.content;
+        const filterCheckbox = checkbox.filter(item => item.checked);
+        arr[i].options.checkbox.content = filterCheckbox;
+      } else if(arr[i].options.radio) {
+        const radio = arr[i].options.radio.content;
+        const filterRadio = radio.filter(item => item.checked);
+        arr[i].options.radio.content = filterRadio;
+      } else {
+        arr[i].options = {};
+      }
+      const ids = newArr.map(item => item._id);
+      if(newArr.length) {
+        if(ids.indexOf(arr[i]._id) > -1) {
+          newArr[ids.indexOf(arr[i]._id)]['list'].push(arr[i]['options']);
+          if(JSON.stringify(arr[i]['options']) == "{}") {
+            newArr[ids.indexOf(arr[i]._id)]['hiddenOption'] = true;
+          }
         } else {
-          arr[i].list.push(arr[i].options);
+          if(JSON.stringify(arr[i]['options']) == "{}") {
+            arr[i]['hiddenOption'] = true;
+          }
+          arr[i]['list'] = [arr[i]['options']];
+          newArr.push(arr[i]);
         }
       } else {
-        arr[i].list.push(arr[i].options);
+        if(JSON.stringify(arr[i]['options']) == "{}") {
+          arr[i]['hiddenOption'] = true;
+        }
+        arr[i]['list'] = [arr[i]['options']];
+        newArr.push(arr[i]);
       }
     };
-    return arr;
+    console.log(newArr);
+    return newArr;
   },
   newSetMenu: function (arr) {
     // console.log(arr);
@@ -599,7 +622,7 @@ Page({
         arr[i].list.push(arr[i].setMenuDetail);
       }
     }
-    console.log(arr);
+    // console.log(arr);
     return arr;
   },
   onLoad: function (options) {
