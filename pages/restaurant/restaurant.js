@@ -273,10 +273,227 @@ Page({
     setMenu: {
       '套餐一': {
         _id: 'setMenu_001',
-        desc: '套餐一含2个头菜1个主菜',
+        desc: '套餐一含3个头菜1个主菜',
         category: {
           chineseName: '套餐一',
           name: 'Combo1',
+        },
+        description: '配料信息mock数据',
+        extraInfo: '附加信息mock数据',
+        operateTime: '2017-10-30T13:24:32.201Z',
+        operator: 'UT-TESTER',
+        price: 86,
+        setMenuDetail: {
+          '主菜': [{
+            _id: 'aLaCarte_003',
+            category: {
+              chineseName: '主菜',
+              name: 'The Main dash',
+            },
+            categoryNum: 2,
+            description: '配料信息mock数据',
+            extraInfo: '附加信息mock数据',
+            name: {
+              chineseName: '大龙虾3',
+              name: 'XXXX3',
+            },
+            image: 'https://m.360buyimg.com/n12/jfs/t2938/141/161562315/370464/79e5296/574e38faNb075dd83.jpg!q70.jpg',
+            operateTime: '2017-10-30T13:24:32.201Z',
+            operator: 'UT-TESTER',
+            options: {
+              checkbox: {
+                content: [{
+                  chineseName: '炸薯条',
+                  name: 'French fries',
+                  price: 3,
+                }],
+                title: {
+                  chineseName: '配菜',
+                  name: 'Garnish',
+                },
+              },
+              radio: {
+                content: [{
+                  chineseName: '大杯',
+                  name: 'big',
+                  price: 3,
+                }, {
+                  chineseName: '中杯',
+                  name: 'mid',
+                  price: 2,
+                }, {
+                  chineseName: '小杯',
+                  name: 'sm',
+                  price: 0,
+                }],
+                title: {
+                  chineseName: '型号',
+                  name: 'xinghao',
+                },
+              },
+            },
+            price: 3,
+            stock: 6,
+          }],
+          '头菜': [{
+            _id: 'aLaCarte_002',
+            category: {
+              chineseName: '头菜',
+              name: 'The first dash',
+            },
+            categoryNum: 1,
+            description: '配料信息mock数据',
+            extraInfo: '附加信息mock数据',
+            name: {
+              chineseName: '面包和橄榄0',
+              name: 'Bread and Olives0',
+            },
+            image: 'https://m.360buyimg.com/n12/jfs/t2938/141/161562315/370464/79e5296/574e38faNb075dd83.jpg!q70.jpg',
+            operateTime: '2017-10-30T13:24:32.201Z',
+            operator: 'UT-TESTER',
+            options: {
+              // checkbox: {
+              //   content: [{
+              //     chineseName: '炸薯条',
+              //     name: 'French fries',
+              //     price: 3,
+              //   }],
+              //   title: {
+              //     chineseName: '配菜',
+              //     name: 'Garnish',
+              //   },
+              // },
+              radio: {
+                content: [{
+                  chineseName: '大杯',
+                  name: 'big',
+                  price: 3,
+                }, {
+                  chineseName: '中杯',
+                  name: 'mid',
+                  price: 2,
+                }, {
+                  chineseName: '小杯',
+                  name: 'sm',
+                  price: 0,
+                }],
+                title: {
+                  chineseName: '型号',
+                  name: 'xinghao',
+                },
+              },
+            },
+            price: 3,
+            stock: 6,
+          }, {
+            _id: 'aLaCarte_001',
+            category: {
+              chineseName: '头菜',
+              name: 'The first dash',
+            },
+            categoryNum: 1,
+            description: '配料信息mock数据',
+            extraInfo: '附加信息mock数据',
+            name: {
+              chineseName: '面包和橄榄1',
+              name: 'Bread and Olives1',
+            },
+            image: 'https://m.360buyimg.com/n12/jfs/t2938/141/161562315/370464/79e5296/574e38faNb075dd83.jpg!q70.jpg',
+            operateTime: '2017-10-30T13:24:32.201Z',
+            operator: 'UT-TESTER',
+            options: {
+              checkbox: {
+                content: [{
+                  chineseName: '炸薯条',
+                  name: 'French fries',
+                  price: 3,
+                }],
+                title: {
+                  chineseName: '配菜',
+                  name: 'Garnish',
+                },
+              },
+              // radio: {
+              //   content: [{
+              //     chineseName: '大杯',
+              //     name: 'big',
+              //     price: 3,
+              //   }, {
+              //     chineseName: '中杯',
+              //     name: 'mid',
+              //     price: 2,
+              //   }, {
+              //     chineseName: '小杯',
+              //     name: 'sm',
+              //     price: 0,
+              //   }],
+              //   title: {
+              //     chineseName: '型号',
+              //     name: 'xinghao',
+              //   },
+              // },
+            },
+            price: 3,
+            stock: 6,
+          }, {
+            _id: 'aLaCarte_005',
+            category: {
+              chineseName: '头菜',
+              name: 'The first dash',
+            },
+            categoryNum: 1,
+            description: '配料信息mock数据',
+            extraInfo: '附加信息mock数据',
+            name: {
+              chineseName: '面包和橄榄0',
+              name: 'Bread and Olives0',
+            },
+            image: 'https://m.360buyimg.com/n12/jfs/t2938/141/161562315/370464/79e5296/574e38faNb075dd83.jpg!q70.jpg',
+            operateTime: '2017-10-30T13:24:32.201Z',
+            operator: 'UT-TESTER',
+            options: {
+              // checkbox: {
+              //   content: [{
+              //     chineseName: '炸薯条',
+              //     name: 'French fries',
+              //     price: 3,
+              //   }],
+              //   title: {
+              //     chineseName: '配菜',
+              //     name: 'Garnish',
+              //   },
+              // },
+              // radio: {
+              //   content: [{
+              //     chineseName: '大杯',
+              //     name: 'big',
+              //     price: 3,
+              //   }, {
+              //     chineseName: '中杯',
+              //     name: 'mid',
+              //     price: 2,
+              //   }, {
+              //     chineseName: '小杯',
+              //     name: 'sm',
+              //     price: 0,
+              //   }],
+              //   title: {
+              //     chineseName: '型号',
+              //     name: 'xinghao',
+              //   },
+              // },
+            },
+            price: 3,
+            stock: 6,
+          }],
+        }
+      },
+      '套餐二': {
+        _id: 'setMenu_002',
+        desc: '套餐一含2个头菜1个主菜',
+        category: {
+          chineseName: '套餐二',
+          name: 'Combo2',
         },
         description: '配料信息mock数据',
         extraInfo: '附加信息mock数据',
@@ -438,12 +655,12 @@ Page({
           }],
         }
       },
-      '套餐二': {
-        _id: 'setMenu_002',
-        desc: '套餐一含2个头菜1个主菜',
+      '套餐三': {
+        _id: 'setMenu_003',
+        desc: '套餐一含1个头菜1个主菜',
         category: {
-          chineseName: '套餐一',
-          name: 'Combo1',
+          chineseName: '套餐三',
+          name: 'Combo3',
         },
         description: '配料信息mock数据',
         extraInfo: '附加信息mock数据',
@@ -552,8 +769,45 @@ Page({
             },
             price: 3,
             stock: 6,
-          }, {
-            _id: 'aLaCarte_001',
+          }],
+        }
+      },
+      '套餐四': {
+        _id: 'setMenu_004',
+        desc: '套餐一含1个头菜1个主菜，无复选无单选',
+        category: {
+          chineseName: '套餐四',
+          name: 'Combo4',
+        },
+        description: '配料信息mock数据',
+        extraInfo: '附加信息mock数据',
+        operateTime: '2017-10-30T13:24:32.201Z',
+        operator: 'UT-TESTER',
+        price: 10,
+        setMenuDetail: {
+          '主菜': [{
+            _id: 'aLaCarte_003',
+            category: {
+              chineseName: '主菜',
+              name: 'The Main dash',
+            },
+            categoryNum: 2,
+            description: '配料信息mock数据',
+            extraInfo: '附加信息mock数据',
+            name: {
+              chineseName: '大龙虾3',
+              name: 'XXXX3',
+            },
+            image: 'https://m.360buyimg.com/n12/jfs/t2938/141/161562315/370464/79e5296/574e38faNb075dd83.jpg!q70.jpg',
+            operateTime: '2017-10-30T13:24:32.201Z',
+            operator: 'UT-TESTER',
+            options: {
+            },
+            price: 7,
+            stock: 6,
+          }],
+          '头菜': [{
+            _id: 'aLaCarte_002',
             category: {
               chineseName: '头菜',
               name: 'The first dash',
@@ -562,45 +816,14 @@ Page({
             description: '配料信息mock数据',
             extraInfo: '附加信息mock数据',
             name: {
-              chineseName: '面包和橄榄1',
-              name: 'Bread and Olives1',
+              chineseName: '面包和橄榄0',
+              name: 'Bread and Olives0',
             },
             image: 'https://m.360buyimg.com/n12/jfs/t2938/141/161562315/370464/79e5296/574e38faNb075dd83.jpg!q70.jpg',
             operateTime: '2017-10-30T13:24:32.201Z',
             operator: 'UT-TESTER',
-            options: {
-              checkbox: {
-                content: [{
-                  chineseName: '炸薯条',
-                  name: 'French fries',
-                  price: 3,
-                }],
-                title: {
-                  chineseName: '配菜',
-                  name: 'Garnish',
-                },
-              },
-              radio: {
-                content: [{
-                  chineseName: '大杯',
-                  name: 'big',
-                  price: 3,
-                }, {
-                  chineseName: '中杯',
-                  name: 'mid',
-                  price: 2,
-                }, {
-                  chineseName: '小杯',
-                  name: 'sm',
-                  price: 0,
-                }],
-                title: {
-                  chineseName: '型号',
-                  name: 'xinghao',
-                },
-              },
-            },
-            price: 3,
+            options: {},
+            price: 4,
             stock: 6,
           }],
         }
@@ -668,6 +891,9 @@ Page({
     //     that.setData({ cityList:res.data });
     //   },
     // })
+    // TODO: 单点和套餐默认选择第一个
+    // setMenuLeftSelected: '套餐一',
+    // aLaCarteLeftSelected: '头菜',
   },
   clickImage: function(e) {
     var current = e.target.dataset.src;
@@ -850,7 +1076,7 @@ Page({
       }
     }
     for (var i in addSetMenu) {
-      if(addSetMenu[i].toString() === removeSetMenu[this.data.radioSetMenuRemoveIndex].toString()) {
+      if(JSON.stringify(addSetMenu[i]) === JSON.stringify(removeSetMenu[this.data.radioSetMenuRemoveIndex])) {
         totalFee -= addSetMenu[i].price;
         addSetMenu.splice(i, 1);
         break;
@@ -917,28 +1143,80 @@ Page({
    * 弹窗
    */
   showSetMenuModal: function(e) {
-    this.setData({
-      setMenuModal: true,
-      addItem: e.target.dataset.setmenu,
-    })
+    const setmenu = e.target.dataset.setmenu;
+    console.log(setmenu);
+    const detail = setmenu.setMenuDetail;
+    let noOptions = true;
+    for(var i in detail) {
+      if(detail[i].length > 1){
+        noOptions = false;
+      } else {
+        detail[i].map(item => {
+          if(JSON.stringify(item.options) !== "{}") {
+            noOptions = false;
+          } else {
+            item.checked = true;
+          }
+        })
+      }
+    }
+    if(noOptions) {
+      this.setData({
+        // setMenuModal: true,
+        addItem: setmenu,
+      });
+      this.addSetMenu(setmenu);
+    } else {
+      this.setData({
+        setMenuModal: true,
+        addItem: setmenu,
+      })
+    }
   },
   /**
-   * 弹窗
+   * 删除套餐弹窗
    */
   showRemoveSetMenuModal: function(e) {
     const currentSetMenu = e.target.dataset.setmenu;
     const addSetMenu = this.data.addSetMenu;
     const removeSetMenu = [];
+
+    console.log(currentSetMenu);
+
     addSetMenu.map((item, index) => {
       if(item._id === currentSetMenu._id){
         removeSetMenu.push(item);
       }
     });
-    this.setData({
-      addItem: currentSetMenu,
-      removeSetMenu,
-      removeSetMenuModal: true,
+    // 判断是否需要唤起弹框，如每个类型均一道菜，切没有单选复选则直接删除 无须弹框
+    let noOptions = true;
+    removeSetMenu.map(item => {
+      for(var i in item.setMenuDetail) {
+        if(item.setMenuDetail[i].length > 1){
+          noOptions = false;
+        } else {
+          item.setMenuDetail[i].map(it => {
+            if(JSON.stringify(it.options) !== "{}") {
+              noOptions = false;
+            }
+          })
+        }
+      }
     })
+
+    if(noOptions) {
+      this.setData({
+        addItem: currentSetMenu,
+        removeSetMenu,
+      });
+      this.removeSetMenu(currentSetMenu);
+    } else {
+      this.setData({
+        addItem: currentSetMenu,
+        removeSetMenu,
+        removeSetMenuModal: true,
+      })
+    }
   },
   /**
    * 弹窗
@@ -1116,14 +1394,18 @@ Page({
               if(item.name.chineseName === e.detail.value) {
                 addItem.setMenuDetail[q][key].checked = true;
               } else {
-                const content = item.options.radio.content;
-                content.map((i, index) => {
-                  addItem.setMenuDetail[q][key].options.radio.content[index].checked = false;
-                })
-                const content2 = item.options.checkbox.content;
-                content2.map((i, index) => {
-                  addItem.setMenuDetail[q][key].options.checkbox.content[index].checked = false;
-                })
+                if(item.options.radio) {
+                  const content = item.options.radio.content;
+                  content.map((i, index) => {
+                    addItem.setMenuDetail[q][key].options.radio.content[index].checked = false;
+                  })
+                }
+                if(item.options.checkbox) {
+                  const content2 = item.options.checkbox.content;
+                  content2.map((i, index) => {
+                    addItem.setMenuDetail[q][key].options.checkbox.content[index].checked = false;
+                  })
+                }
                 addItem.setMenuDetail[q][key].checked = false;
               }
             });
@@ -1146,24 +1428,30 @@ Page({
           setMenu[p].setMenuDetail[q].map((item, key) => {
             if(q === e.currentTarget.dataset.index) {
               if(setMenu[p].setMenuDetail[q][key].name.chineseName === e.currentTarget.dataset.chinesename) {
-                const content = item.options.radio.content;
-                content.map((i, index) => {
-                  if(i.chineseName === e.detail.value) {
-                    addItem.setMenuDetail[q][key].checked = true;
-                    addItem.setMenuDetail[q][key].options.radio.content[index].checked = true;
-                  } else {
-                    addItem.setMenuDetail[q][key].options.radio.content[index].checked = false;
-                  }
-                })
+                if(item.options.radio) {
+                  const content = item.options.radio.content;
+                  content.map((i, index) => {
+                    if(i.chineseName === e.detail.value) {
+                      addItem.setMenuDetail[q][key].checked = true;
+                      addItem.setMenuDetail[q][key].options.radio.content[index].checked = true;
+                    } else {
+                      addItem.setMenuDetail[q][key].options.radio.content[index].checked = false;
+                    }
+                  })
+                }
               } else {
-                const content = item.options.radio.content;
-                content.map((i, index) => {
-                  addItem.setMenuDetail[q][key].options.radio.content[index].checked = false;
-                })
-                const content2 = item.options.checkbox.content;
-                content2.map((i, index) => {
-                  addItem.setMenuDetail[q][key].options.checkbox.content[index].checked = false;
-                })
+                if(item.options.radio) {
+                  const content = item.options.radio.content;
+                  content.map((i, index) => {
+                    addItem.setMenuDetail[q][key].options.radio.content[index].checked = false;
+                  })
+                }
+                if(item.options.checkbox.content !== undefined) {
+                  const content2 = item.options.checkbox.content;
+                  content2.map((i, index) => {
+                    addItem.setMenuDetail[q][key].options.checkbox.content[index].checked = false;
+                  })
+                }
                 addItem.setMenuDetail[q][key].checked = false;
               }
             }
@@ -1184,24 +1472,30 @@ Page({
           setMenu[p].setMenuDetail[q].map((item, key) => {
             if(q === e.currentTarget.dataset.index) {
               if(setMenu[p].setMenuDetail[q][key].name.chineseName === e.currentTarget.dataset.chinesename) {
-                const content = item.options.checkbox.content;
-                content.map((i, index) => {
-                  if(e.detail.value.indexOf(i.chineseName) !== -1) {
-                    addItem.setMenuDetail[q][key].checked = true;
-                    addItem.setMenuDetail[q][key].options.checkbox.content[index].checked = true;
-                  } else {
-                    addItem.setMenuDetail[q][key].options.checkbox.content[index].checked = false;
-                  }
-                })
+                if(item.options.checkbox) {
+                  const content = item.options.checkbox.content;
+                  content.map((i, index) => {
+                    if(e.detail.value.indexOf(i.chineseName) !== -1) {
+                      addItem.setMenuDetail[q][key].checked = true;
+                      addItem.setMenuDetail[q][key].options.checkbox.content[index].checked = true;
+                    } else {
+                      addItem.setMenuDetail[q][key].options.checkbox.content[index].checked = false;
+                    }
+                  })
+                }
               } else {
-                const content = item.options.radio.content;
-                content.map((i, index) => {
-                  addItem.setMenuDetail[q][key].options.radio.content[index].checked = false;
-                })
-                const content2 = item.options.checkbox.content;
-                content2.map((i, index) => {
-                  addItem.setMenuDetail[q][key].options.checkbox.content[index].checked = false;
-                })
+                if(item.options.radio) {
+                  const content = item.options.radio.content;
+                  content.map((i, index) => {
+                    addItem.setMenuDetail[q][key].options.radio.content[index].checked = false;
+                  })
+                }
+                if(item.options.checkbox) {
+                  const content2 = item.options.checkbox.content;
+                  content2.map((i, index) => {
+                    addItem.setMenuDetail[q][key].options.checkbox.content[index].checked = false;
+                  })
+                }
                 addItem.setMenuDetail[q][key].checked = false;
               }
             }

@@ -313,7 +313,8 @@
                     wx:for-item="setMenuRadio"
                     class="modal-content-option-item"
                   >
-                    <view class="modal-content-option-item-1">{{setMenuRadio.chineseName}}</view>
+                    <view style="width: 70%">{{setMenuRadio.chineseName}}</view>
+                    <view class="setMenuRadio-price">{{setMenuRadio.price ? currencyType : '' }}{{setMenuRadio.price || "" }}</view>
                     <radio value="{{setMenuRadio.chineseName}}" color="#f60" checked="{{setMenuRadio.checked}}" />
                   </view>
                 </radio-group>
@@ -359,7 +360,7 @@
           <view wx:for="{{removeSetMenu}}" wx:key="removeSetMenu" wx:for-item="removeSetMenuItem">
           <view style="display:flex; align-items:center" class="modal-content">
             <view style="width:90%; color:#f60;font-weight:bold; font-size:28rpx;">第 {{index + 1}} 份</view>
-            <radio value="{{index}}" color="#f60" />
+            <radio value="{{index}}" color="#f60" checked="{{index === radioSetMenuRemoveIndex}}"/>
           </view>
           <view
             wx:for="{{removeSetMenuItem.setMenuDetail}}"
@@ -389,7 +390,10 @@
                   wx:for-item="setMenuRadio"
                   class="modal-content-option-item"
                 >
-                  <view class="modal-content-option-item-1">{{setMenuRadio.chineseName}}</view>
+                  <view
+                    class="modal-content-option-item-1"
+                    wx:if="{{setMenuRadio.checked}}"
+                  >{{setMenuRadio.chineseName}}</view>
                 </view>
                 <view class="modal-content-option-title">{{itemName.options.checkbox.title.chineseName}}</view>
                 <view
@@ -398,7 +402,10 @@
                   wx:for-item="setMenuCheckbox"
                   class="modal-content-option-item"
                 >
-                  <view class="modal-content-option-item-1">{{setMenuCheckbox.chineseName}}</view>
+                  <view
+                    wx:if="{{setMenuCheckbox.checked}}"
+                    class="modal-content-option-item-1"
+                  >{{setMenuCheckbox.chineseName}}</view>
                 </view>
               </view>
             </view>

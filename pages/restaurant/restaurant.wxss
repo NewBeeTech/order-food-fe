@@ -485,6 +485,12 @@
 .modal-content-option-item-1 {
   width: 90%;
 }
+.setMenuRadio-price {
+  width: 20%;
+  text-align: center;
+  color: #f60;
+  font-weight: bold;
+}
 .modal-content-radio view:first-child  {
   width: 70%;
 }

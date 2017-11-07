@@ -564,7 +564,7 @@ Page({
   // },
 
   newAlaCarte: function (arr) {
-    console.log(arr);
+    // console.log(arr);
     const newArr = [];
     for (var i = 0; i <= arr.length - 1; i++) {
       // 遍历单选、复选checked为true的值。
@@ -601,29 +601,68 @@ Page({
         newArr.push(arr[i]);
       }
     };
-    console.log(newArr);
+    // console.log(newArr);
     return newArr;
   },
   newSetMenu: function (arr) {
-    // console.log(arr);
-    arr.sort();
+    const newArr = [];
     for (var i = 0; i <= arr.length - 1; i++) {
-      arr[i].list = [];
-      if (arr[i + 1]) {
-        if (arr[i]._id == arr[i + 1]._id) {
-          console.log("包含相同元素，相同值为：", arr[i], arr[i+1]);
-          arr[i].list.push(arr[i].setMenuDetail);
-          arr[i].list.push(arr[i+1].setMenuDetail);
-          arr.splice(i + 1, 1);
+      // 遍历单选、复选checked为true的值。
+      // if(arr[i].options.checkbox) {
+      //   const checkbox = arr[i].options.checkbox.content;
+      //   const filterCheckbox = checkbox.filter(item => item.checked);
+      //   arr[i].options.checkbox.content = filterCheckbox;
+      // } else if(arr[i].options.radio) {
+      //   const radio = arr[i].options.radio.content;
+      //   const filterRadio = radio.filter(item => item.checked);
+      //   arr[i].options.radio.content = filterRadio;
+      // } else {
+      //   arr[i].options = {};
+      // }
+      console.log(arr[i]);
+      const ids = newArr.map(item => item._id);
+      if(newArr.length) {
+        if(ids.indexOf(arr[i]._id) > -1) {
+          newArr[ids.indexOf(arr[i]._id)]['list'].push(arr[i]['setMenuDetail']);
+          if(JSON.stringify(arr[i]['setMenuDetail']) == "{}") {
+            // newArr[ids.indexOf(arr[i]._id)]['hiddenOption'] = true;
+          }
         } else {
-          arr[i].list.push(arr[i].setMenuDetail);
+          if(JSON.stringify(arr[i]['setMenuDetail']) == "{}") {
+            // arr[i]['hiddenOption'] = true;
+          }
+          arr[i]['list'] = [arr[i]['setMenuDetail']];
+          newArr.push(arr[i]);
         }
       } else {
-        arr[i].list.push(arr[i].setMenuDetail);
+        if(JSON.stringify(arr[i]['setMenuDetail']) == "{}") {
+          // arr[i]['hiddenOption'] = true;
+        }
+        arr[i]['list'] = [arr[i]['setMenuDetail']];
+        newArr.push(arr[i]);
       }
-    }
+    };
+    console.log(newArr);
+    return newArr;
     // console.log(arr);
-    return arr;
+    // arr.sort();
+    // for (var i = 0; i <= arr.length - 1; i++) {
+    //   arr[i].list = [];
+    //   if (arr[i + 1]) {
+    //     if (arr[i]._id == arr[i + 1]._id) {
+    //       console.log("包含相同元素，相同值为：", arr[i], arr[i+1]);
+    //       arr[i].list.push(arr[i].setMenuDetail);
+    //       arr[i].list.push(arr[i+1].setMenuDetail);
+    //       arr.splice(i + 1, 1);
+    //     } else {
+    //       arr[i].list.push(arr[i].setMenuDetail);
+    //     }
+    //   } else {
+    //     arr[i].list.push(arr[i].setMenuDetail);
+    //   }
+    // }
+    // console.log(arr);
+    // return arr;
   },
   onLoad: function (options) {
     console.log('onLoad', this.data)

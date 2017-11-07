@@ -150,10 +150,10 @@
                 </view>
               </view>
               <view class="" style="width: 80%; margin-left: 10%">
-                <view class="order-details-option-title">
+                <view wx:if="{{item3.options.radio.title.name}}" class="order-details-option-title">
                   <view>{{item3.options.radio.title.name}}：</view>
                 </view>
-                <view class="order-details-option-sub-title">
+                <view wx:if="{{item3.options.radio.title.chineseName}}" class="order-details-option-sub-title">
                   <view>{{item3.options.radio.title.chineseName}}：</view>
                 </view>
                 <view
@@ -174,10 +174,10 @@
                 </view>
               </view>
               <view class="" style="width: 80%; margin-left: 10%">
-              <view class="order-details-option-title">
+              <view wx:if="{{item3.options.checkbox.title.name}}" class="order-details-option-title">
                 <view>{{item3.options.checkbox.title.name}}：</view>
               </view>
-              <view class="order-details-option-sub-title">
+              <view wx:if="{{item3.options.checkbox.title.chineseName}}" class="order-details-option-sub-title">
                 <view>{{item3.options.checkbox.title.chineseName}}：</view>
               </view>
               <view
