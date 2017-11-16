@@ -255,7 +255,7 @@ Page({
     },
     cuisines: ['美国菜', 'hadkshdshdfkdshfksdfh', '超好吃哟 啦啦啦啦啦啦啦'],
     currencyType: '£',
-    desc: '我们的汉堡超级好吃哟哟哦yuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu，测试英文单词换行问题~',
+    desc: '我们的汉堡超级好吃哟哟哦yuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu，测试英文单词换行问题~\n hahah',
     detailImage: [
       'https://pro.modao.cc/uploads3/images/1265/12658374/raw_1505289890.jpeg',
       'https://pro.modao.cc/uploads3/images/1265/12658374/raw_1505289890.jpeg',

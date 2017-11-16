@@ -10,11 +10,16 @@
     <view class="item-detail">
       <view class="item-detail-name">{{name}}</view>
       <view class="item-detail-start">
-        <text wx:for="{{rating}}" wx:key="rate" class="fa fa-star color-default" />
-        <!-- <text wx:if="{{rating2}}" class="fa fa-star-half-o color-default" /> -->
+        <view>
+          <text wx:for="{{rating}}" wx:key="rate" class="fa fa-star color-default" />
+          <!-- <text wx:if="{{rating2}}" class="fa fa-star-half-o color-default" /> -->
+        </view>
+        <view>
+          <text wx:for="{{priceLevel}}" wx:key="level" class="color-default">{{currencyType}}</text>
+        </view>
       </view>
       <view class="item-detail-level">
-        <text wx:for="{{priceLevel}}" wx:key="level" class="color-default">{{currencyType}}</text>
+        <!-- <text wx:for="{{priceLevel}}" wx:key="level" class="color-default">{{currencyType}}</text> -->
       </view>
       <view class="item-detail-line" />
       <view class="item-detail-tags">

@@ -22,6 +22,9 @@
 
 .item-detail-start {
   font-size: 32rpx;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
 }
 .item-detail-level {
   font-size: 32rpx;
