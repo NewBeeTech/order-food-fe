@@ -562,7 +562,6 @@ Page({
   //     url: '../logs/logs'
   //   })
   // },
-
   newAlaCarte: function (arr) {
     // console.log(arr);
     const newArr = [];
@@ -674,13 +673,18 @@ Page({
     const addSetMenu = app.globalData.addSetMenu || this.data.addSetMenu;
     const newAlaCarte = this.newAlaCarte(addAlaCarte);
     const newSetMenu = this.newSetMenu(addSetMenu);
-
+    const resName = app.globalData.resName || this.data.resName;
+    console.log(resName);
     that.setData({
       addAlaCarte: newAlaCarte,
       addSetMenu: newSetMenu,
       currencyType: app.globalData.currencyType,
       totalFee: app.globalData.totalFee,
       urlId: options.id,
+      resName,
+    }),
+    wx.setNavigationBarTitle({
+      title: resName
     })
   },
   returnToUpdate: function() {

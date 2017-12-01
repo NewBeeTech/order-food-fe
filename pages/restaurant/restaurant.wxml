@@ -41,9 +41,9 @@
     </view>
   </view>
   <view class="restaurant-header">
-    <view class="item-detail">
+    <view class="item-detail" bindtap="showInfo">
       <text style="color: #858585; font-size: 28rpx;">饭店信息</text>
-      <view class="desc">{{desc}}</view>
+      <view class="desc"><text decode="true">{{desc}}</text></view>
     </view>
   </view>
   <view class="restaurant-header">
@@ -76,6 +76,7 @@
           bindtap="showDetails"
           wx:for="{{aLaCarte[aLaCarteLeftSelected]}}"
           wx:key="aLaCarte-right"
+          data-image="{{item.image}}"
           data-name="{{item.name.name}}"
           data-chinesename="{{item.name.chineseName}}"
           data-extrainfo="{{item.extraInfo}}"
@@ -88,21 +89,23 @@
               <view class="aLaCarte-right-price">{{currencyType}}{{item.price}}</view>
               <!-- + - 按钮 -->
               <view class="aLaCarte-right-price">
-                <text
-                  catchtap="showRemoveAlaCarteModal"
-                  wx:if="{{item.num}}"
-                  data-alacarte="{{item}}"
-                  class="fa fa-minus-circle"
-                ></text>
+                <view catchtap="showRemoveAlaCarteModal" class="aLaCarte-right-handler">
+                  <text
+                    wx:if="{{item.num}}"
+                    data-alacarte="{{item}}"
+                    class="fa fa-minus-circle"
+                  ></text>
+                </view>
                 <view
                   wx:if="{{item.num}}"
                   style="width: 80rpx; color: #101010; text-align: center"
                 >{{item.num}}</view>
-                <text
-                  catchtap="showALaCarteModal"
-                  data-alacarte="{{item}}"
-                  class="fa fa-plus-circle"
-                ></text>
+                <view catchtap="showALaCarteModal" class="aLaCarte-right-handler">
+                  <text
+                    data-alacarte="{{item}}"
+                    class="fa fa-plus-circle"
+                  ></text>
+                </view>
               </view>
             </view>
           </view>
@@ -146,6 +149,7 @@
                 wx:for-item="itemName"
                 bindtap="showDetails"
                 data-name="{{itemName.name.name}}"
+                data-image="{{itemName.image}}"
                 data-chinesename="{{itemName.name.chineseName}}"
                 data-extrainfo="{{itemName.extraInfo}}"
                 data-description="{{itemName.description}}"
@@ -158,21 +162,23 @@
         </view>
         <view class="setMenu-right-item-bottom">
           <view class="setMenu-right-bottom-price">
-            <text
-              bindtap="showRemoveSetMenuModal"
-              data-setmenu="{{setMenu[setMenuLeftSelected]}}"
-              class="fa fa-minus-circle"
-              wx:if="{{setMenu[setMenuLeftSelected].num}}"
-            ></text>
+            <view bindtap="showRemoveSetMenuModal" class="aLaCarte-right-handler">
+              <text
+                data-setmenu="{{setMenu[setMenuLeftSelected]}}"
+                class="fa fa-minus-circle"
+                wx:if="{{setMenu[setMenuLeftSelected].num}}"
+              ></text>
+            </view>
             <view
               wx:if="{{setMenu[setMenuLeftSelected].num}}"
               style="width: 80rpx; color: #101010; text-align: center"
             >{{setMenu[setMenuLeftSelected].num}}</view>
-            <text
-              bindtap="showSetMenuModal"
-              data-setmenu="{{setMenu[setMenuLeftSelected]}}"
-              class="fa fa-plus-circle"
-            ></text>
+            <view bindtap="showSetMenuModal" class="aLaCarte-right-handler">
+              <text
+                data-setmenu="{{setMenu[setMenuLeftSelected]}}"
+                class="fa fa-plus-circle"
+              ></text>
+            </view>
           </view>
         </view>
       </view>
@@ -438,8 +444,8 @@
     <view class="modal-dialog" wx:if="{{showModal}}">
       <!-- <view class="modal-title">添加数量</view> -->
       <image
-        style="width: 100%; background-color: #eeeeee;"
-        src="https://m.360buyimg.com/n12/jfs/t2938/141/161562315/370464/79e5296/574e38faNb075dd83.jpg!q70.jpg"
+        style="width: 100%; background-color: #eeeeee; height: 360rpx"
+        src="{{detailInfo.image || 'https://m.360buyimg.com/n12/jfs/t2938/141/161562315/370464/79e5296/574e38faNb075dd83.jpg!q70.jpg' }}"
         mode="scaleToFill"
       />
       <view class="modal-content">
@@ -447,12 +453,12 @@
           <view class="modal-content-item-name">{{detailInfo.chinesename}}</view>
           <view class="modal-content-item-second">{{detailInfo.name}}</view>
         </view>
-        <view class="modal-content-item">
-          <view class="aLaCarte-right-item-name" style="margin-left: 0">配料</view>
+        <view class="modal-content-item" wx:if="{{detailInfo.description}}">
+          <!-- <view class="aLaCarte-right-item-name" style="margin-left: 0">配料</view> -->
           <view class="modal-content-item-second">{{detailInfo.description}}</view>
         </view>
-        <view class="modal-content-item">
-          <view class="aLaCarte-right-item-name" style="margin-left: 0">附加信息</view>
+        <view class="modal-content-item" wx:if="{{detailInfo.extrainfo}}">
+          <!-- <view class="aLaCarte-right-item-name" style="margin-left: 0">附加信息</view> -->
           <view class="modal-content-item-second">{{detailInfo.extrainfo}}</view>
         </view>
       </view>
@@ -467,7 +473,19 @@
       bindconfirm="noticeConfirm"
       no-cancel="{{nocancel}}"
     >
-      {{notes}}
+      <text class="modalDesc" decode="true">
+        {{notes}}
+      </text>
+    </modal>
+    <!-- 饭店信息 -->
+    <modal
+      hidden="{{infoHidden}}"
+      title="饭店信息"
+      confirm-text="好的"
+      bindconfirm="infoConfirm"
+      no-cancel="{{!nocancel}}"
+    >
+      <view class="modalDesc"><text decode="true">{{desc}}</text></view>
     </modal>
     <!-- Toast -->
     <toast

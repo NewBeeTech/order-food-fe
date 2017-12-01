@@ -5,7 +5,7 @@
 
 <view class="container" style="background: #fff">
   <view class="order-header">
-    Byran
+    I would like to order:
   </view>
   <view class="order-line" />
   <!-- 单品遍历 -->
@@ -17,9 +17,9 @@
           <view>{{item.name.name}}</view>
           <view style="font-size: 0.9em; color: #bbbbbb">{{item.name.chineseName}}</view>
         </view>
-        <view class="order-details-num-after-price">
+        <!-- <view class="order-details-num-after-price">
           {{currencyType}}{{item.price}}
-        </view>
+        </view> -->
         <view class="order-details-num-after-number">
           ×{{item.list.length}}
         </view>
@@ -32,14 +32,33 @@
         wx:for-item="list"
         wx:key="list"
       >
-        <view style="color: #f60; margin-top: 10rpx; font-weight: bold">第 {{listIndex + 1}} 份</view>
+        <view style="margin-top: 10rpx; font-weight: bold">{{listIndex + 1}}.</view>
         <view wx:if="{{list.radio.title.name}}" class="order-details-option-title">
-          <view>{{list.radio.title.name}}：</view>
+          <view>{{list.radio.title.name}}：
+          <text
+            wx:for="{{list.radio.content}}"
+            wx:for-item="radio"
+            wx:key="radio"
+            wx:if="{{radio.checked}}"
+          >
+            <text>{{radio.name}}</text>
+          </text>
+          </view>
         </view>
         <view wx:if="{{list.radio.title.chineseName}}" class="order-details-option-sub-title">
-          <view>{{list.radio.title.chineseName}}：</view>
+          <view>
+            {{list.radio.title.chineseName}}：
+            <text
+              wx:for="{{list.radio.content}}"
+              wx:for-item="radio"
+              wx:key="radio"
+              wx:if="{{radio.checked}}"
+            >
+              <text>{{radio.chineseName}}</text>
+            </text>
+          </view>
         </view>
-        <view
+        <!-- <view
           class="order-details-option-checkbox"
           wx:for="{{list.radio.content}}"
           wx:for-item="radio"
@@ -57,7 +76,7 @@
           <view class="order-details-option-price">
             {{currencyType}}{{radio.price}}
           </view>
-        </view>
+        </view> -->
         <view wx:if="{{list.checkbox.title.name}}" class="order-details-option-title">
           <view>{{list.checkbox.title.name}}：</view>
         </view>
@@ -79,9 +98,9 @@
               <view>{{checkbox.chineseName}}</view>
             </view>
           </view>
-          <view class="order-details-option-price">
+          <!-- <view class="order-details-option-price">
             {{currencyType}}{{checkbox.price}}
-          </view>
+          </view> -->
         </view>
       </view>
     </view>
@@ -95,9 +114,9 @@
           <view>{{item.category.name}}</view>
           <view style="font-size: 0.9em; color: #bbbbbb">{{item.category.chineseName}}</view>
         </view>
-        <view class="order-details-num-after-price">
+        <!-- <view class="order-details-num-after-price">
           {{currencyType}}{{item.price}}
-        </view>
+        </view> -->
         <view class="order-details-num-after-number">
           ×{{item.list.length}}
         </view>
@@ -112,15 +131,13 @@
         wx:for-item="listItem"
         wx:for-index="listIndex"
       >
-      <view style="color: #f60; margin-top: 10rpx; font-weight: bold">第 {{listIndex + 1}} 份</view>
-
+      <view style="margin-top: 10rpx; font-weight: bold">{{listIndex + 1}}.</view>
         <view
           wx:for="{{listItem}}"
           wx:for-item="item2"
           wx:for-index="index2"
           wx:key="bb"
         >
-
           <view
             wx:for="{{listItem[index2]}}"
             wx:for-item="item3"
@@ -151,12 +168,28 @@
               </view>
               <view class="" style="width: 80%; margin-left: 10%">
                 <view wx:if="{{item3.options.radio.title.name}}" class="order-details-option-title">
-                  <view>{{item3.options.radio.title.name}}：</view>
+                  <view>
+                    {{item3.options.radio.title.name}}：
+                    <text
+                      wx:for="{{item3.options.radio.content}}"
+                      wx:for-item="radio"
+                      wx:key="radio"
+                      wx:if="{{radio.checked}}"
+                    >{{radio.name}}</text>
+                  </view>
                 </view>
                 <view wx:if="{{item3.options.radio.title.chineseName}}" class="order-details-option-sub-title">
-                  <view>{{item3.options.radio.title.chineseName}}：</view>
+                  <view>
+                    {{item3.options.radio.title.chineseName}}：
+                    <text
+                      wx:for="{{item3.options.radio.content}}"
+                      wx:for-item="radio"
+                      wx:key="radio"
+                      wx:if="{{radio.checked}}"
+                    >{{radio.chineseName}}</text>
+                  </view>
                 </view>
-                <view
+                <!-- <view
                   class="order-details-option-checkbox"
                   wx:for="{{item3.options.radio.content}}"
                   wx:for-item="radio"
@@ -171,7 +204,7 @@
                       <view>{{radio.chineseName}}</view>
                     </view>
                   </view>
-                </view>
+                </view> -->
               </view>
               <view class="" style="width: 80%; margin-left: 10%">
               <view wx:if="{{item3.options.checkbox.title.name}}" class="order-details-option-title">
@@ -204,7 +237,7 @@
     </view>
   </view>
   <view class="totalFee">共计约：{{currencyType}}{{totalFee}}</view>
-  <view class="notice-1">改价格仅供参考，最终价格请以餐厅结账为准</view>
+  <view class="notice-1">价格仅供参考，最终价格请以餐厅结账为准</view>
   <view class="notice-2">
     <view class="notice-2-1">
       <view class="notice-2-1-title">餐厅提示：</view>

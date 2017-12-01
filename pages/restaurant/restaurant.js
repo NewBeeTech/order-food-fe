@@ -48,15 +48,16 @@ Page({
             content: [{
               chineseName: '大杯',
               name: 'big',
-              price: 3,
+              price: 6,
             }, {
               chineseName: '中杯',
               name: 'mid',
-              price: 2,
+              price: 5,
             }, {
               chineseName: '小杯',
               name: 'sm',
-              price: 0,
+              price: 3,
+              checked: true,
             }],
             title: {
               chineseName: '型号',
@@ -73,7 +74,7 @@ Page({
           name: 'The Main dash',
         },
         categoryNum: 2,
-        description: '配料信息mock数据',
+        description: '',
         extraInfo: '附加信息mock数据',
         name: {
           chineseName: '只有单选',
@@ -87,15 +88,16 @@ Page({
             content: [{
               chineseName: '大杯',
               name: 'big',
-              price: 3,
+              price: 6,
             }, {
               chineseName: '中杯',
               name: 'mid',
-              price: 2,
+              price: 5,
             }, {
               chineseName: '小杯',
               name: 'sm',
-              price: 0,
+              price: 3,
+              checked: true,
             }],
             title: {
               chineseName: '型号',
@@ -113,7 +115,7 @@ Page({
         },
         categoryNum: 2,
         description: '配料信息mock数据',
-        extraInfo: '附加信息mock数据',
+        extraInfo: '',
         name: {
           chineseName: '只有复选',
           name: '主菜XXXX1',
@@ -185,15 +187,16 @@ Page({
             content: [{
               chineseName: '大杯',
               name: 'big',
-              price: 3,
+              price: 6,
             }, {
               chineseName: '中杯',
               name: 'mid',
-              price: 2,
+              price: 5,
             }, {
               chineseName: '小杯',
               name: 'sm',
-              price: 0,
+              price: 3,
+              checked: true,
             }],
             title: {
               chineseName: '型号',
@@ -255,7 +258,7 @@ Page({
     },
     cuisines: ['美国菜', 'hadkshdshdfkdshfksdfh', '超好吃哟 啦啦啦啦啦啦啦'],
     currencyType: '£',
-    desc: '我们的汉堡超级好吃哟哟哦yuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu，测试英文单词换行问题~\n hahah',
+    desc: '我们的汉堡超级好吃哟哟哦yuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu，测试英文单词换行问题~\n hahah \nsfdfd \nsfsdf我们的汉堡超级好吃哟哟哦yuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu，',
     detailImage: [
       'https://pro.modao.cc/uploads3/images/1265/12658374/raw_1505289890.jpeg',
       'https://pro.modao.cc/uploads3/images/1265/12658374/raw_1505289890.jpeg',
@@ -267,7 +270,7 @@ Page({
     notes: '本店另加12.5%服务费',
     phoneNumber: '18612761252',
     operator: 'UT-TESTER',
-    position: '40.002607,116.487847',
+    position: '40.002607,117.487847',
     priceLevel: 5,
     rating: 4,
     setMenu: {
@@ -316,15 +319,16 @@ Page({
                 content: [{
                   chineseName: '大杯',
                   name: 'big',
-                  price: 3,
+                  price: 6,
                 }, {
                   chineseName: '中杯',
                   name: 'mid',
-                  price: 2,
+                  price: 5,
                 }, {
                   chineseName: '小杯',
                   name: 'sm',
-                  price: 0,
+                  price: 3,
+                  checked: true,
                 }],
                 title: {
                   chineseName: '型号',
@@ -367,15 +371,16 @@ Page({
                 content: [{
                   chineseName: '大杯',
                   name: 'big',
-                  price: 3,
+                  price: 6,
                 }, {
                   chineseName: '中杯',
                   name: 'mid',
-                  price: 2,
+                  price: 5,
                 }, {
                   chineseName: '小杯',
                   name: 'sm',
-                  price: 0,
+                  price: 3,
+                  checked: true,
                 }],
                 title: {
                   chineseName: '型号',
@@ -533,15 +538,16 @@ Page({
                 content: [{
                   chineseName: '大杯',
                   name: 'big',
-                  price: 3,
+                  price: 6,
                 }, {
                   chineseName: '中杯',
                   name: 'mid',
-                  price: 2,
+                  price: 5,
                 }, {
                   chineseName: '小杯',
                   name: 'sm',
-                  price: 0,
+                  price: 3,
+                  checked: true,
                 }],
                 title: {
                   chineseName: '型号',
@@ -584,15 +590,16 @@ Page({
                 content: [{
                   chineseName: '大杯',
                   name: 'big',
-                  price: 3,
+                  price: 6,
                 }, {
                   chineseName: '中杯',
                   name: 'mid',
-                  price: 2,
+                  price: 5,
                 }, {
                   chineseName: '小杯',
                   name: 'sm',
-                  price: 0,
+                  price: 3,
+                  checked: true,
                 }],
                 title: {
                   chineseName: '型号',
@@ -634,15 +641,16 @@ Page({
                 content: [{
                   chineseName: '大杯',
                   name: 'big',
-                  price: 3,
+                  price: 6,
                 }, {
                   chineseName: '中杯',
                   name: 'mid',
-                  price: 2,
+                  price: 5,
                 }, {
                   chineseName: '小杯',
                   name: 'sm',
-                  price: 0,
+                  price: 3,
+                  checked: true,
                 }],
                 title: {
                   chineseName: '型号',
@@ -700,15 +708,16 @@ Page({
                 content: [{
                   chineseName: '大杯',
                   name: 'big',
-                  price: 3,
+                  price: 6,
                 }, {
                   chineseName: '中杯',
                   name: 'mid',
-                  price: 2,
+                  price: 5,
                 }, {
                   chineseName: '小杯',
                   name: 'sm',
-                  price: 0,
+                  price: 3,
+                  checked: true,
                 }],
                 title: {
                   chineseName: '型号',
@@ -751,15 +760,16 @@ Page({
                 content: [{
                   chineseName: '大杯',
                   name: 'big',
-                  price: 3,
+                  price: 6,
                 }, {
                   chineseName: '中杯',
                   name: 'mid',
-                  price: 2,
+                  price: 5,
                 }, {
                   chineseName: '小杯',
                   name: 'sm',
-                  price: 0,
+                  price: 3,
+                  checked: true,
                 }],
                 title: {
                   chineseName: '型号',
@@ -847,6 +857,7 @@ Page({
     detailInfo: {},
     hidden: true,
     hiddenToast: true,
+    infoHidden: true,
   },
   //事件处理函数
   // bindViewTap: function() {
@@ -901,6 +912,16 @@ Page({
         current: current,
         urls: this.data.movies,
     })
+  },
+  showInfo: function(e) {
+    this.setData({
+      infoHidden: false,
+    });
+  },
+  infoConfirm: function(e) {
+    this.setData({
+      infoHidden: true,
+    });
   },
   makePhone: function(e) {
     wx.makePhoneCall({
@@ -1223,6 +1244,7 @@ Page({
    */
   showDetails: function(e) {
     const detailInfo = e.currentTarget.dataset;
+    console.log(detailInfo);
     this.setData({
       showModal: true,
       detailInfo,
@@ -1530,6 +1552,7 @@ Page({
     app.globalData.addAlaCarte = this.data.addAlaCarte;
     app.globalData.currencyType = this.data.currencyType;
     app.globalData.totalFee = this.data.totalFee;
+    app.globalData.resName = this.data.name;
     this.createOrder();
   },
   createOrder: function() {

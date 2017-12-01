@@ -85,8 +85,23 @@
   color: #101010;
   font-size: 28rpx;
   margin-top: 15rpx;
+  height: 118rpx;
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
-
+.modalDesc {
+  width: 100%;
+  word-wrap: break-word;
+  word-break:break-all;
+  text-align: justify;
+  color: #999;
+  font-size: 28rpx;
+  max-height: 50vh;
+  overflow-y: scroll;
+}
 .chooseType {
   /*width: 690rpx;*/
   /*margin: 0 auto;*/
@@ -199,25 +214,32 @@
   word-break:break-all;
 }
 .aLaCarte-right-item-bottom {
-  margin-top: 20rpx;
+  margin-top: 15rpx;
   width: calc(100% - 20rpx);
   margin-left: 20rpx;
   display: flex;
   color: #f60;
-  font-size: 28rpx;
+  font-size: 30rpx;
   font-weight: bold;
   justify-content: space-between;
 }
 
 .aLaCarte-right-price text {
-  font-size: 40rpx;
+  font-size: 50rpx;
   cursor: pointer;
 }
 .aLaCarte-right-price {
   display: flex;
   align-items: center;
 }
-
+.aLaCarte-right-handler {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60rpx;
+  height: 60rpx;
+  /*border: 1px solid red;*/
+}
 .show-details {
   /*border-radius: 8rpx;*/
 }
@@ -266,7 +288,7 @@
 .setMenu-right-item-bottom {
   width: 100%;
   color: #101010;
-  font-size: 28rpx;
+  font-size: 30rpx;
   margin-bottom: 150rpx;
 }
 .setMenu-right-bottom-price {
@@ -280,7 +302,7 @@
 }
 .setMenu-right-item-bottom text{
   color: #f60;
-  font-size: 40rpx;
+  font-size: 50rpx;
 }
 .setMenu-right-item {
   display: flex;

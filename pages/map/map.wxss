@@ -1,7 +1,7 @@
 #myMap {
   margin-top: 100rpx;
   width: 750rpx;
-  height: 550rpx;
+  height: 750rpx;
   border-top: 1px solid #dadada;
   border-bottom: 1px solid #dadada;
 }

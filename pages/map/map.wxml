@@ -7,7 +7,7 @@
     id="myMap"
     longitude="{{longitude}}"
     latitude="{{latitude}}"
-    scale="14"
+    scale="17"
     markers="{{markers}}"
     show-location
   >

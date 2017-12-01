@@ -2,8 +2,8 @@
   width: 690rpx;
   margin: 0 auto;
   color: #101010;
-  font-size: 40rpx;
-  font-weight: bold;
+  font-size: 35rpx;
+  /*font-weight: bold;*/
   line-height: 80rpx;
   height: 80rpx;
   background: #fff;
@@ -56,9 +56,10 @@
 }
 .order-details-num-after-number {
   width: 10%;
-  font-size: 0.9em;
+  font-size: 1.3em;
   font-weight: 400;
   text-align: right;
+  color: #f60
 }
 
 .order-details-option {
