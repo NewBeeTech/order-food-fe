@@ -270,7 +270,7 @@ Page({
     ],
     mainImage: 'https://pro.modao.cc/uploads3/images/1289/12896118/raw_1505974928.jpeg',
     name: 'ssfsdfsfosfs & psfsdfsfsfsfsdffsfdsfsdfsdff',
-    notes: '本店另加12.5%服务费',
+    notes: '亲～本程序暂不支持支付功能，请将点好的菜单直接出示给服务员。\n本程序仅根据现有外文文本提供一定翻译支持，用户知悉和接受翻译识别中可能存在的误差；并且，本程序不涉及产品质量、商户服务和支付环节，亦不对由此产生的问题承担任何责任或赔付。',
     phoneNumber: '18612761252',
     operator: 'UT-TESTER',
     position: '-0.123298,51.511281',

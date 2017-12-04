@@ -6,6 +6,8 @@ let _compData = {
   '__city__.isShow': false,
   '__city__.list': [],
   '__city__.currentCity': '',
+  '__city__.currentCountry': '',
+  '__city__.currentCityEg': '',
 }
 let city = {
   // data: {total: number, current: number, pageSize: number}
@@ -23,6 +25,7 @@ let city = {
     }
   },
   choose: function(data) {
+    // console.log(data);
     let self = this;
     const city = data.currentTarget.dataset.city;
     const country = data.currentTarget.dataset.country;
@@ -34,23 +37,12 @@ let city = {
     this.setData({
       currentCurrency: currency,
       currentCity: currentCity,
+      currentCityEg: city,
+      currentCountry: country,
       noScollClass: '',
     });
-    // wx.request({
-    //   url: this.data.url,
-    //   data: {},
-    //   header: {
-    //     'content-type': 'application/json' // 默认值
-    //   },
-    //   success: function(res) {
-    //     console.log(res.data)
-    //     that.setData({
-    //       list: this.data.list.concat(res.data.result.list),
-    //       current: Number(res.data.result.current),
-    //     });
-    //   }
-    // });
-
+    // 请求餐厅列表
+    // this.getRestaurantList();
   }
 }
 function City () {

@@ -98,7 +98,9 @@ Page({
       },
       mainImage: 'https://pro.modao.cc/uploads3/images/1289/12896118/raw_1505974928.jpeg',
     }],
-    currentCity: '伦敦',
+    currentCity: '纽约',
+    currentCityEg: 'New York',
+    currentCountry: 'US',
     currentCurrency: '£',
     cityList: [{
       city: [
@@ -224,63 +226,50 @@ Page({
   scroll: function (e) {
     console.log(e)
   },
-  tap: function (e) {
-    for (var i = 0; i < order.length; ++i) {
-      if (order[i] === this.data.toView) {
-        this.setData({
-          toView: order[i + 1]
-        })
-        break
-      }
-    }
-  },
-  tapMove: function (e) {
-    this.setData({
-      scrollTop: this.data.scrollTop + 10
-    })
-  },
   showImage: function() {
     wx.navigateTo({
       url: "../imgList/imgList"
     })
   },
-  onLoad: function() {
-    console.log('onLoad');
+  getCityList(){
     var that = this;
-
-    //调用应用实例的方法获取全局数据
-    app.getUserInfo(function(userInfo){
-      //更新数据
-      that.setData({
-        userInfo:userInfo
-      });
-    });
     // 请求城市列表
-    // wx.request({
-    //   url: apiUrl.city_list,
-    //   header:{
-    //     "Content-Type":"application/json"
-    //   },
-    //   data: {},
-    //   success: function(res){
-    //     console.log(res);
-    //     that.setData({ cityList:res.data });
-    //   },
-    // })
-    // // 请求餐厅列表
-    // wx.request({
-    //   url: apiUrl.restaurant_list,
-    //   header:{
-    //     "Content-Type":"application/json"
-    //   },
-    //   data: {
-    //     // "city.name": ''
-    //   },
-    //   success: function(res){
-    //     that.setData({ restaurantList:res.data.row });
-    //   },
-    // })
-
+    wx.request({
+      url: apiUrl.city_list,
+      header:{
+        "Content-Type":"application/json"
+      },
+      data: {},
+      success: function(res){
+        console.log(res);
+        that.setData({ cityList:res.data.data });
+      },
+    })
+  },
+  getRestaurantList(){
+    var that = this;
+    // 请求餐厅列表
+    wx.request({
+      url: apiUrl.restaurant_list,
+      header:{
+        "Content-Type":"application/json"
+      },
+      data: {
+        "city.name": this.data.currentCityEg,
+        "city.country": this.data.currentCountry,
+        "pageNo": this.data.current,
+        "pageSize": 10,
+      },
+      success: function(res){
+        that.setData({ restaurantList:res.data.data.rows });
+      },
+    })
+  },
+  onLoad: function() {
+    console.log('onLoad', this);
+    var that = this;
+    // this.getCityList();
+    // this.getRestaurantList();
     // 页面加载时显示上拉状态：没有更多数据/需要上拉加载更多
     that.LoadMore().show(that.data);
     // 城市选择

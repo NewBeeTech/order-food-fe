@@ -249,7 +249,7 @@
               <view wx:if="{{itemName.checked && itemName.price}}">{{currencyType}}{{itemName.price}}</view>
               <view wx:else></view>
             </view>
-            <view class="modal-content-radio-title">{{item.options.checkbox.title.chineseName}}：</view>
+            <view wx:if="{{item.options.checkbox.title.chineseName}}" class="modal-content-radio-title">{{item.options.checkbox.title.chineseName}}：</view>
             <view
               class="modal-content-radio"
               wx:for="{{item.options.checkbox.content}}"
