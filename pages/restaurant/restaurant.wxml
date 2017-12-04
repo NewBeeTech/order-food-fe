@@ -237,7 +237,7 @@
             <view style="width:90%; color:#f60;font-weight:bold; font-size:28rpx;">第 {{index + 1}} 份</view>
             <radio value="{{index}}" color="#f60" checked="{{index === radioALaCarteRemoveIndex}}" />
           </view>
-          <view class="modal-content-radio-title">{{item.options.radio.title.chineseName}}：</view>
+          <view wx:if="{{item.options.radio.title.chineseName}}" class="modal-content-radio-title">{{item.options.radio.title.chineseName}}：</view>
             <view
               class="modal-content-radio"
               wx:for="{{item.options.radio.content}}"
