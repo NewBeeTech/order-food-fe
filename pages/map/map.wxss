@@ -1,13 +1,14 @@
 #myMap {
-  margin-top: 100rpx;
+  margin-top: 50rpx;
   width: 750rpx;
-  height: 750rpx;
+  height: calc(100vh - 250rpx);
   border-top: 1px solid #dadada;
   border-bottom: 1px solid #dadada;
 }
 
 .address {
   font-size: 35rpx;
+  height: 150rpx;
   width: 500rpx;
   margin: 0 auto;
   margin-top: 50rpx;

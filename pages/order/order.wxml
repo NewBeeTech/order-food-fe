@@ -241,7 +241,7 @@
   <view class="notice-2">
     <view class="notice-2-1">
       <view class="notice-2-1-title">餐厅提示：</view>
-      <view class="notice-2-1-content">本店另外加12.5%服务费</view>
+      <view class="notice-2-1-content">{{notes}}</view>
     </view>
     <view class="notice-2-1">
       <view class="notice-2-1-title">重要提示：</view>

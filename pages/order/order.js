@@ -4,6 +4,7 @@ var app = getApp()
 Page({
   data: {
     totalFee: 298,
+    notes: '',
     currencyType: '$',
     addAlaCarte: [{
       num: 2,
@@ -674,7 +675,7 @@ Page({
     const newAlaCarte = this.newAlaCarte(addAlaCarte);
     const newSetMenu = this.newSetMenu(addSetMenu);
     const resName = app.globalData.resName || this.data.resName;
-    console.log(resName);
+    const notes = app.globalData.notes || this.data.notes;
     that.setData({
       addAlaCarte: newAlaCarte,
       addSetMenu: newSetMenu,
@@ -682,6 +683,7 @@ Page({
       totalFee: app.globalData.totalFee,
       urlId: options.id,
       resName,
+      notes,
     }),
     wx.setNavigationBarTitle({
       title: resName

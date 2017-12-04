@@ -58,6 +58,7 @@ Page({
               name: 'sm',
               price: 3,
               checked: true,
+              default: true,
             }],
             title: {
               chineseName: '型号',
@@ -98,6 +99,7 @@ Page({
               name: 'sm',
               price: 3,
               checked: true,
+              default: true,
             }],
             title: {
               chineseName: '型号',
@@ -197,6 +199,7 @@ Page({
               name: 'sm',
               price: 3,
               checked: true,
+              default: true,
             }],
             title: {
               chineseName: '型号',
@@ -270,7 +273,7 @@ Page({
     notes: '本店另加12.5%服务费',
     phoneNumber: '18612761252',
     operator: 'UT-TESTER',
-    position: '40.002607,117.487847',
+    position: '-0.123298,51.511281',
     priceLevel: 5,
     rating: 4,
     setMenu: {
@@ -329,6 +332,7 @@ Page({
                   name: 'sm',
                   price: 3,
                   checked: true,
+                  default: true,
                 }],
                 title: {
                   chineseName: '型号',
@@ -381,6 +385,7 @@ Page({
                   name: 'sm',
                   price: 3,
                   checked: true,
+                  default: true,
                 }],
                 title: {
                   chineseName: '型号',
@@ -548,6 +553,7 @@ Page({
                   name: 'sm',
                   price: 3,
                   checked: true,
+                  default: true,
                 }],
                 title: {
                   chineseName: '型号',
@@ -600,6 +606,7 @@ Page({
                   name: 'sm',
                   price: 3,
                   checked: true,
+                  default: true,
                 }],
                 title: {
                   chineseName: '型号',
@@ -651,6 +658,7 @@ Page({
                   name: 'sm',
                   price: 3,
                   checked: true,
+                  default: true,
                 }],
                 title: {
                   chineseName: '型号',
@@ -718,6 +726,7 @@ Page({
                   name: 'sm',
                   price: 3,
                   checked: true,
+                  default: true,
                 }],
                 title: {
                   chineseName: '型号',
@@ -770,6 +779,7 @@ Page({
                   name: 'sm',
                   price: 3,
                   checked: true,
+                  default: true,
                 }],
                 title: {
                   chineseName: '型号',
@@ -972,6 +982,7 @@ Page({
     // const addItem = e.target.dataset.alacarte;
     const aLaCarte = this.data.aLaCarte;
     let totalFee = this.data.totalFee;
+    let defaultPrice = 0;
     for (var p in aLaCarte) {
       aLaCarte[p].map(item => {
         if(item._id === addItem._id) {
@@ -985,8 +996,16 @@ Page({
           }
           if(addItem.options.radio !== undefined) {
             addItem.options.radio.content.map((i, key) => {
+              if(i.default) {
+                defaultPrice = i.price;
+              }
+            });
+          }
+          if(addItem.options.radio !== undefined) {
+            addItem.options.radio.content.map((i, key) => {
               if(i.checked) {
-                totalFee += i.price;
+                const currentPrice =  i.price - defaultPrice
+                totalFee += currentPrice;
               }
             });
           }
@@ -1025,8 +1044,10 @@ Page({
     }
     const removeItem = removeAlaCarte[removeIndex];
     removeAlaCarte.splice(removeIndex, 1);
+    let defaultPrice = 0;
     for (var p in aLaCarte) {
       aLaCarte[p].map(item => {
+
         if(item._id === addItem._id) {
           totalFee -= item.price;
           if(removeItem.options.checkbox !== undefined) {
@@ -1038,8 +1059,16 @@ Page({
           }
           if(removeItem.options.radio !== undefined) {
             removeItem.options.radio.content.map((i, key) => {
+              if(i.default) {
+                defaultPrice = i.price;
+              }
+            });
+          }
+          if(removeItem.options.radio !== undefined) {
+            removeItem.options.radio.content.map((i, key) => {
               if(i.checked) {
-                totalFee -= i.price;
+                const currentPrice =  i.price - defaultPrice
+                totalFee -= currentPrice;
               }
             });
           }
@@ -1553,6 +1582,7 @@ Page({
     app.globalData.currencyType = this.data.currencyType;
     app.globalData.totalFee = this.data.totalFee;
     app.globalData.resName = this.data.name;
+    app.globalData.notes = this.data.notes;
     this.createOrder();
   },
   createOrder: function() {
