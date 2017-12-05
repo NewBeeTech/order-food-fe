@@ -141,6 +141,7 @@
 .notice-2-1-content {
   width: 510rpx;
   font-size: 24rpx;
+  text-align: justify;
 }
 
 .order-footer {
