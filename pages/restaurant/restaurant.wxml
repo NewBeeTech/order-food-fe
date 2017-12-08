@@ -28,11 +28,13 @@
     </view>
     <view class="item-detail-line" />
     <view class="item-address">
-      <view class="item-detail-icon">
-        <text class="fa fa-map-marker color-grey" />
-      </view>
-      <view class="item-detail-address" bindtap="makeMap">
-        {{address}}
+      <view bindtap="makeMap" class="make-map">
+        <view class="item-detail-icon">
+          <text class="fa fa-map-marker color-grey" />
+        </view>
+        <view class="item-detail-address">
+          {{address}}
+        </view>
       </view>
       <view class="col-line" />
       <view class="item-phone" bindtap="makePhone">
@@ -450,8 +452,9 @@
     <view class="modal-dialog" wx:if="{{showModal}}">
       <!-- <view class="modal-title">添加数量</view> -->
       <image
+        wx:if="{{detailInfo.image}}"
         style="width: 100%; background-color: #eeeeee; height: 360rpx"
-        src="{{detailInfo.image || 'https://m.360buyimg.com/n12/jfs/t2938/141/161562315/370464/79e5296/574e38faNb075dd83.jpg!q70.jpg' }}"
+        src="{{detailInfo.image}}"
         mode="scaleToFill"
       />
       <view class="modal-content">

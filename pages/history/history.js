@@ -19,6 +19,7 @@ Page({
     })
   },
   getHistoryList(){
+    wx.showLoading();
     var that = this;
     // 请求历史订单列表
     wx.request({
@@ -29,15 +30,14 @@ Page({
       },
       data: {},
       success: function(res){
-        console.log(res);
         that.setData({
           histroyList:res.data.data
         });
+        wx.hideLoading();
       },
     })
   },
   onLoad: function () {
-    console.log('onLoad')
     var that = this;
     this.getHistoryList();
   }

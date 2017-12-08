@@ -15,7 +15,6 @@
           src="{{item}}"
           class="slide-image"
           mode="aspectFill"
-          bindtap="clickImage"
           data-src="{{item}}"
         />
       </swiper-item>

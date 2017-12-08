@@ -43,6 +43,7 @@ Page({
   },
   getCityList(){
     var that = this;
+    wx.showLoading();
     // 请求城市列表
     wx.request({
       url: apiUrl.city_list,
@@ -52,11 +53,13 @@ Page({
       data: {},
       success: function(res){
         that.setData({ cityList:res.data.data });
+        wx.hideLoading();
       },
     })
   },
   getRestaurantList(){
     var that = this;
+    wx.showLoading();
     // 请求餐厅列表
     wx.request({
       url: apiUrl.restaurant_list,
@@ -70,14 +73,15 @@ Page({
         "pageSize": 10,
       },
       success: function(res){
-        console.log(res.data);
         const list = res.data.data.rows;
         list.map((item, index) => {
           let rating1 = item.rating;
           let rating2 = 0;
-          if(".".indexOf(item.rating) > -1) {
-            rating1 = item.rating.split('.')[0];
-            rating2 = item.rating.split('.')[1];
+          const rating = item.rating;
+          const ratingInt = parseInt(rating);
+          if ( rating > ratingInt) {
+          	rating1 = ratingInt;
+            rating2 = 1;
           }
           item['rating1'] = rating1;
           item['rating2'] = rating2;
@@ -86,11 +90,11 @@ Page({
           restaurantList:res.data.data.rows,
           total:list,
         });
+        wx.hideLoading();
       },
     })
   },
   onLoad: function() {
-    console.log('onLoad', this);
     var that = this;
     this.getCityList();
     this.getRestaurantList();
@@ -106,7 +110,6 @@ Page({
   },
   // 点击跳转餐厅详情
   bindItemTap: function(event) {
-    console.log(event.currentTarget.dataset.item);
     wx.navigateTo({
       url: `../restaurant/restaurant?_id=${event.currentTarget.dataset.item._id}`
     })

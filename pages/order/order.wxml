@@ -4,7 +4,7 @@
 <template is="toast" data="{{ ...__toast__ }}" />
 
 <view class="container" style="background: #fff">
-  <view class="order-header">
+  <view wx:if="{{!urlId}}" class="order-header">
     I would like to order:
   </view>
   <view class="order-line" />
@@ -17,9 +17,6 @@
           <view>{{item.name.name}}</view>
           <view style="font-size: 0.9em; color: #bbbbbb">{{item.name.chineseName}}</view>
         </view>
-        <!-- <view class="order-details-num-after-price">
-          {{currencyType}}{{item.price}}
-        </view> -->
         <view class="order-details-num-after-number">
           ×{{item.list.length}}
         </view>
@@ -58,25 +55,6 @@
             </text>
           </view>
         </view>
-        <!-- <view
-          class="order-details-option-checkbox"
-          wx:for="{{list.radio.content}}"
-          wx:for-item="radio"
-          wx:key="radio"
-          wx:if="{{radio.checked}}"
-        >
-          <view class="order-details-option-name">
-            <view class="order-details-option-title">
-              <view>{{radio.name}}</view>
-            </view>
-            <view class="order-details-option-sub-title">
-              <view>{{radio.chineseName}}</view>
-            </view>
-          </view>
-          <view class="order-details-option-price">
-            {{currencyType}}{{radio.price}}
-          </view>
-        </view> -->
         <view wx:if="{{list.checkbox.title.name}}" class="order-details-option-title">
           <view>{{list.checkbox.title.name}}：</view>
         </view>
@@ -98,9 +76,6 @@
               <view>{{checkbox.chineseName}}</view>
             </view>
           </view>
-          <!-- <view class="order-details-option-price">
-            {{currencyType}}{{checkbox.price}}
-          </view> -->
         </view>
       </view>
     </view>
@@ -114,9 +89,6 @@
           <view>{{item.category.name}}</view>
           <view style="font-size: 0.9em; color: #bbbbbb">{{item.category.chineseName}}</view>
         </view>
-        <!-- <view class="order-details-num-after-price">
-          {{currencyType}}{{item.price}}
-        </view> -->
         <view class="order-details-num-after-number">
           ×{{item.list.length}}
         </view>
@@ -189,22 +161,6 @@
                     >{{radio.chineseName}}</text>
                   </view>
                 </view>
-                <!-- <view
-                  class="order-details-option-checkbox"
-                  wx:for="{{item3.options.radio.content}}"
-                  wx:for-item="radio"
-                  wx:key="radio"
-                  wx:if="{{radio.checked}}"
-                >
-                  <view class="order-details-option-name">
-                    <view class="order-details-option-title">
-                      <view>{{radio.name}}</view>
-                    </view>
-                    <view class="order-details-option-sub-title">
-                      <view>{{radio.chineseName}}</view>
-                    </view>
-                  </view>
-                </view> -->
               </view>
               <view class="" style="width: 80%; margin-left: 10%">
               <view wx:if="{{item3.options.checkbox.title.name}}" class="order-details-option-title">

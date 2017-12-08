@@ -57,13 +57,17 @@
   justify-content: space-between;
   color: #101010;
 }
+.make-map {
+  display: flex;
+  justify-content: space-around;
+}
 .item-detail-icon {
   text-align: center;
   font-size: 40rpx;
-  width: 7%;
+  width: 10%;
 }
 .item-detail-address {
-  width: 75%;
+  width: 80%;
   font-size: 26rpx;
 }
 .col-line {
