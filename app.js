@@ -1,14 +1,18 @@
 //app.js
 import { ToastCustom } from './components/toast-custom/toast-custom';
+import apiUrl from './common/api-url';
 
 App({
   ToastCustom,
 
   onLaunch: function() {
     //调用API从本地缓存中获取数据
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+    // var sessionid = wx.getStorageSync('sessionid');
+    // console.log(sessionid);
+    // logs.unshift(Date.now())
+    // if (!sessionid) {
+      this.getSession();
+    // }
   },
 
   getUserInfo: function(cb) {
@@ -25,6 +29,29 @@ App({
         }
       })
     }
+  },
+
+  getSession: function() {
+    wx.login({
+     success: function(res) {
+       console.log(res);
+       if (res.code) {
+         //发起网络请求
+         wx.request({
+           url: apiUrl.get_session,
+           data: {
+             "code": res.code
+           },
+           success: function(result) {
+             console.log(result);
+             wx.setStorageSync('sessionid', result.data.data.sessionid);
+           }
+         })
+       } else {
+         console.log('获取用户登录态失败！' + res.errMsg)
+       }
+     }
+   });
   },
 
   globalData: {

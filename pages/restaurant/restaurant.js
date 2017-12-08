@@ -868,6 +868,8 @@ Page({
     hidden: true,
     hiddenToast: true,
     infoHidden: true,
+    aLaCarteRight: true,
+    setMenuRight: true,
   },
   //事件处理函数
   // bindViewTap: function() {
@@ -896,22 +898,78 @@ Page({
     // 使用 wx.createMapContext 获取 map 上下文
     this.mapCtx = wx.createMapContext('myMap')
   },
+  getRestaurantInfo(){
+    var that = this;
+    console.log(that);
+    // 请求餐厅列表
+    wx.request({
+      url: apiUrl.restaurant_details,
+      header:{
+        "Content-Type":"application/json"
+      },
+      data: {
+        "_id": that.options._id,
+      },
+      success: function(res){
+        console.log(res.data);
+        let rating1 = res.data.data.rating;
+        let rating2 = 0;
+        if(".".indexOf(res.data.data.rating) > -1) {
+          rating1 = res.data.data.rating.split('.')[0];
+          rating2 = res.data.data.rating.split('.')[1];
+        }
+        const aLaCarte = res.data.data.aLaCarte;
+        const setMenu = res.data.data.setMenus;
+        if(Object.keys(aLaCarte).length) {
+          that.setData({
+            aLaCarteLeftSelected: Object.keys(aLaCarte)[0],
+          })
+        } else {
+          that.setData({
+            aLaCarteRight: false,
+          })
+        }
+        if(Object.keys(setMenu).length) {
+          that.setData({
+            setMenuLeftSelected: Object.keys(setMenu)[0],
+          })
+        } else {
+          that.setData({
+            setMenuRight: false,
+          })
+        }
+        that.setData({
+          _id: res.data.data._id,
+          aLaCarte: res.data.data.aLaCarte,
+          address: res.data.data.address,
+          city: res.data.data.city,
+          country: res.data.data.country,
+          cuisines: res.data.data.cuisines,
+          desc: res.data.data.desc,
+          detailImage: res.data.data.detailImage,
+          isVisible: res.data.data.isVisible,
+          mainImage: res.data.data.mainImage,
+          name: res.data.data.name,
+          notes: res.data.data.notes,
+          operator: res.data.data.operator,
+          phoneNumber: res.data.data.phoneNumber,
+          position: res.data.data.position,
+          priceLevel: res.data.data.priceLevel,
+          rating1: rating1,
+          rating2: rating2,
+          setMenu: res.data.data.setMenus,
+        });
+      },
+      fail: function(res){
+        console.log(res);
+      },
+    })
+  },
   onLoad: function () {
     console.log('onLoad', this)
     var that = this;
     new app.ToastCustom();
-    // 请求饭店详情
-    // wx.request({
-    //   url: apiUrl.restaurant_details,
-    //   header:{
-    //     "Content-Type":"application/json"
-    //   },
-    //   data: {},
-    //   success: function(res){
-    //     console.log(res);
-    //     that.setData({ cityList:res.data });
-    //   },
-    // })
+    this.getRestaurantInfo();
     // TODO: 单点和套餐默认选择第一个
     // setMenuLeftSelected: '套餐一',
     // aLaCarteLeftSelected: '头菜',
@@ -919,8 +977,8 @@ Page({
   clickImage: function(e) {
     var current = e.target.dataset.src;
     wx.previewImage({
-        current: current,
-        urls: this.data.movies,
+      current: current,
+      urls: this.data.movies,
     })
   },
   showInfo: function(e) {
@@ -942,8 +1000,8 @@ Page({
     })
   },
   makeMap: function(e) {
-    const latitude = this.data.position.split(",")[0];
-    const longitude = this.data.position.split(",")[1];
+    const latitude = this.data.position.coordinates[0];
+    const longitude = this.data.position.coordinates[1];
     wx.navigateTo({
       url: `../map/map?latitude=${latitude}&longitude=${longitude}&address=${this.data.address}`
     })
@@ -1146,7 +1204,7 @@ Page({
    * 弹窗
    */
   showALaCarteModal: function(e) {
-    const alacarte = e.target.dataset.alacarte
+    const alacarte = e.target.dataset.alacarte;
     var arr = Object.keys(alacarte.options);
     var len = arr.length;
     if(!len) {
@@ -1582,6 +1640,7 @@ Page({
     app.globalData.currencyType = this.data.currencyType;
     app.globalData.totalFee = this.data.totalFee;
     app.globalData.resName = this.data.name;
+    app.globalData.restaurantId = that.options._id;
     app.globalData.notes = this.data.notes;
     this.createOrder();
   },

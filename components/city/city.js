@@ -42,7 +42,7 @@ let city = {
       noScollClass: '',
     });
     // 请求餐厅列表
-    // this.getRestaurantList();
+    this.getRestaurantList();
   }
 }
 function City () {

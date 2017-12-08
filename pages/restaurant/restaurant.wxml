@@ -11,8 +11,8 @@
       <view class="item-detail-name">{{name}}</view>
       <view class="item-detail-start">
         <view>
-          <text wx:for="{{rating}}" wx:key="rate" class="fa fa-star color-default" />
-          <!-- <text wx:if="{{rating2}}" class="fa fa-star-half-o color-default" /> -->
+          <text wx:for="{{rating1}}" wx:key="rate" class="fa fa-star color-default" />
+          <text wx:if="{{rating2}}" class="fa fa-star-half-o color-default" />
         </view>
         <view>
           <text wx:for="{{priceLevel}}" wx:key="level" class="color-default">{{currencyType}}</text>
@@ -70,7 +70,7 @@
           ></view>
         </view>
       </view>
-      <view class="aLaCarte-right">
+      <view wx:if="{{aLaCarteRight}}" class="aLaCarte-right">
         <view
           class="aLaCarte-right-item"
           bindtap="showDetails"
@@ -111,6 +111,9 @@
           </view>
         </view>
       </view>
+      <view wx:else class="empty-menu">
+        暂无单点菜单
+      </view>
     </view>
     <!-- 套餐 -->
     <view class="aLaCarte" hidden="{{selectedStyle === 'aLaCarte'}}">
@@ -129,7 +132,7 @@
           >{{setMenu[index].num}}</view>
         </view>
       </view>
-      <view class="aLaCarte-right">
+      <view wx:if="{{setMenuRight}}" class="aLaCarte-right">
         <view class="setMenu-right-item">
           <view class="setMenu-right-item-right">
             <view class="setMenu-right-item-top">
@@ -181,6 +184,9 @@
             </view>
           </view>
         </view>
+      </view>
+      <view wx:else class="empty-menu">
+        暂无套餐
       </view>
     </view>
     <!-- 添加单品选择规格modal -->

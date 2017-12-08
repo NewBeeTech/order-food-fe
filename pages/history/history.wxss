@@ -1,6 +1,10 @@
+.history-container {
+  height: 100vh;
+  overflow: scroll;
+  background-color: #f2f2f2;
+}
 .history {
   width: 750rpx;
-  padding: 20rpx;
   background-color: #fff;
   cursor: pointer;
   display: flex;
@@ -12,6 +16,8 @@
 }
 .history-left {
   width: 80%;
+  margin-top: 10rpx;
+  margin-bottom: 15rpx;
 }
 .history-right {
   text-align: right;

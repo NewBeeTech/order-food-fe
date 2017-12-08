@@ -15,7 +15,7 @@
       <view class="item-detail">
         <view class="item-detail-name">{{item.name}}</view>
         <view class="item-detail-start">
-          <text wx:for="{{item.rating}}" wx:key="rate" class="fa fa-star color-default" />
+          <text wx:for="{{item.rating1}}" wx:key="rate" class="fa fa-star color-default" />
           <text wx:if="{{item.rating2}}" class="fa fa-star-half-o color-default" />
         </view>
         <view class="item-detail-level">
