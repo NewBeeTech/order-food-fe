@@ -15,7 +15,7 @@ Page({
   },
   bindToRes: function(e) {
     wx.navigateTo({
-      url: `../restaurant/restaurant?id=${e.currentTarget.dataset.resid}`
+      url: `../restaurant/restaurant?_id=${e.currentTarget.dataset.resid}`
     })
   },
   getHistoryList(){

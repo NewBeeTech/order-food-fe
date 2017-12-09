@@ -638,7 +638,7 @@ Page({
     }
     return {
       title: `${this.data.city.chineseName} - ${this.data.name}`,
-      path: `/pages/restaurant/restaurant?id=${this.options._id}`,
+      path: `/pages/restaurant/restaurant?_id=${this.options._id}`,
       imageUrl: `${this.data.mainImage}`,
       success: function(res) {
         // 转发成功

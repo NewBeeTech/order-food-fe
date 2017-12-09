@@ -177,9 +177,6 @@ Page({
     }
   },
   returnToUpdate: function() {
-    // wx.navigateTo({
-    //   url: '../restaurant/restaurant'
-    // })
     wx.navigateBack({
       delta: 1
     })
