@@ -1,20 +1,18 @@
 //app.js
 import { ToastCustom } from './components/toast-custom/toast-custom';
+import { Layer } from './components/layer/layer';
 import apiUrl from './common/api-url';
 
 App({
   ToastCustom,
+  Layer,
 
   onLaunch: function() {
-    //调用API从本地缓存中获取数据
-    // var sessionid = wx.getStorageSync('sessionid');
-    // console.log(sessionid);
-    // logs.unshift(Date.now())
-    // if (!sessionid) {
-      this.getSession();
-    // }
+    this.getSession();
+    wx.onNetworkStatusChange(res => {
+      this.globalData.isConnected = res.isConnected
+    })
   },
-
   getUserInfo: function(cb) {
     var that = this
     if (this.globalData.userInfo) {
@@ -55,6 +53,7 @@ App({
   },
 
   globalData: {
-    userInfo: null
+    userInfo: null,
+    isConnected: false,
   }
 })

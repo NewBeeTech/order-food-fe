@@ -2,8 +2,9 @@
 import apiUrl from '../../common/api-url';
 
 //获取应用实例
-var app = getApp()
+var app = getApp();
 Page({
+
   data: {
     menuId: '',
     aLaCarteLeftSelected: '',
@@ -637,7 +638,7 @@ Page({
     }
     return {
       title: `${this.data.city.chineseName} - ${this.data.name}`,
-      path: `/pages/restaurant/restaurant?id=${this.data.menuId}`,
+      path: `/pages/restaurant/restaurant?id=${this.options._id}`,
       imageUrl: `${this.data.mainImage}`,
       success: function(res) {
         // 转发成功
@@ -653,7 +654,7 @@ Page({
   },
   getRestaurantInfo(){
     var that = this;
-    wx.showLoading();
+    that.showLayer();
     // 请求餐厅列表
     wx.request({
       url: apiUrl.restaurant_details,
@@ -713,20 +714,19 @@ Page({
           rating2: rating2,
           setMenu: res.data.data.setMenus,
         });
-        wx.hideLoading();
+        that.hiddenLayer();
       },
       fail: function(res){
-        console.log(res);
+        that.hiddenLayer();
+        that.showToast("请求失败")
       },
     })
   },
   onLoad: function () {
     var that = this;
     new app.ToastCustom();
+    new app.Layer();
     this.getRestaurantInfo();
-    // TODO: 单点和套餐默认选择第一个
-    // setMenuLeftSelected: '套餐一',
-    // aLaCarteLeftSelected: '头菜',
   },
   clickImage: function(e) {
     var current = e.target.dataset.src;
@@ -908,7 +908,7 @@ Page({
     let totalFee = this.data.totalFee;
     for (var p in setMenu) {
       if(setMenu[p]._id === addItem._id) {
-        totalFee += setMenu[p].price;
+        totalFee +=  Number(setMenu[p].price);
         const number = setMenu[p].num || 0;
         setMenu[p].num = number + 1;
         addItem.num = number + 1;
@@ -1006,7 +1006,6 @@ Page({
    */
   showSetMenuModal: function(e) {
     const setmenu = e.target.dataset.setmenu;
-    console.log(setmenu);
     const detail = setmenu.setMenuDetail;
     let noOptions = true;
     for(var i in detail) {
@@ -1085,7 +1084,6 @@ Page({
    */
   showDetails: function(e) {
     const detailInfo = e.currentTarget.dataset;
-    console.log(detailInfo);
     this.setData({
       showModal: true,
       detailInfo,

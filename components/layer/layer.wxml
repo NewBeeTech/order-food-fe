@@ -1,9 +1,5 @@
-<template name="toast">
-  <view class="toast_content_box" wx:if="{{ isShow }}">
-    <view class="toast_content">
-      <view class="toast_content_text">
-        {{content}}
-      </view>
-    </view>
+<template name="layer">
+  <view class="layer_box" wx:if="{{ isShow }}">
+    <image src="{{ loadImg }}" style="width: 160rpx;height:160rpx;margin-top:35vh" />
   </view>
 </template>

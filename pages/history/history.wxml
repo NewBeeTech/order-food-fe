@@ -1,4 +1,8 @@
 <!--history.wxml-->
+<import src="../../components/layer/layer.wxml" />
+
+<template is="layer" data="{{ ...__layer__ }}" />
+
 <view class="history-container">
   <view
     class="history"

@@ -1,39 +1,39 @@
 /**
- * 切换城市
+ * 蒙层
  */
 
 let _compData = {
-  '__toast__.isShow': false,
-  '__toast__.content': '',
+  '__layer__.isShow': false,
+  '__layer__.loadImg': '../../assets/images/loading2.gif',
 }
-let toastCustom = {
-  showToast: function(data) {
+let layer = {
+  showLayer: function() {
     let self = this;
     self.setData({
-      '__toast__.isShow': true,
-      '__toast__.content': data,
+      '__layer__.isShow': true,
     });
-    setTimeout(function(){
-      self.setData({
-        '__toast__.isShow': false,
-      });
-    }, 2000);
+  },
+  hiddenLayer: function() {
+    let self = this;
+    self.setData({
+      '__layer__.isShow': false,
+    });
   }
 }
-function ToastCustom () {
+function Layer () {
   // 拿到当前页面对象
   let pages = getCurrentPages();
   let curPage = pages[pages.length - 1];
   this.__page = curPage;
-  Object.assign(curPage, toastCustom);
+  Object.assign(curPage, layer);
   // 附加到page上，方便访问
-  curPage.toastCustom = this;
+  curPage.layer = this;
   // 把组件的数据“注入”到页面的data对象中
   curPage.setData(_compData);
-  console.log(curPage.data);
+  console.log('layer', this);
   return this;
 }
 
 module.exports = {
-  ToastCustom
+  Layer
 }

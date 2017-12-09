@@ -1,7 +1,9 @@
 <!--index.wxml-->
 <import src="../../components/toast-custom/toast-custom.wxml" />
+<import src="../../components/layer/layer.wxml" />
 
 <template is="toast" data="{{ ...__toast__ }}" />
+<template is="layer" data="{{ ...__layer__ }}" />
 
 <view class="container" style="background: #fff">
   <view wx:if="{{!urlId}}" class="order-header">
@@ -201,7 +203,7 @@
     </view>
     <view class="notice-2-1">
       <view class="notice-2-1-title">重要提示：</view>
-      <text class="notice-2-1-content" decode="true">亲～本程序暂不支持支付功能，请将点好的菜单直接出示给服务员。\n本程序仅根据现有外文文本提供一定翻译支持，用户知悉和接受翻译识别中可能存在的误差；并且，本程序不涉及产品质量、商户服务和支付环节，亦不对由此产生的问题承担任何责任或赔付。</text>
+      <text class="notice-2-1-content" decode="true">亲～本程序暂不支持支付功能，请将点好的菜单直接出示给服务员。</text>
     </view>
   </view>
 </view>

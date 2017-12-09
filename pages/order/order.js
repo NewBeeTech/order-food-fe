@@ -76,6 +76,7 @@ Page({
   },
   createOrder(){
     var that = this;
+    // that.showLayer();
     const orderDetail = JSON.stringify({
       totalFee: this.data.totalFee,
       notes: this.data.notes,
@@ -100,12 +101,18 @@ Page({
         console.log(res.data);
         wx.navigateTo({
           url: `../order/order?order_id=${res.data.data._id}`
-        })
+        });
+        that.hiddenLayer();
       },
+      fail: function() {
+        that.hiddenLayer();
+        that.showToast("请求失败")
+      }
     })
   },
   getOrderInfo(order_id){
     var that = this;
+    that.showLayer();
     // 获取订单详情
     wx.request({
       url: apiUrl.get_order,
@@ -130,13 +137,19 @@ Page({
         });
         wx.setNavigationBarTitle({
           title: res.data.data.orderDetail.resName
-        })
+        });
+        that.hiddenLayer();
       },
+      fail: function() {
+        that.hiddenLayer();
+        that.showToast("请求失败")
+      }
     });
   },
   onLoad: function (options) {
     var that = this;
     new app.ToastCustom();
+    new app.Layer();
     //调用应用实例的方法获取全局数据
     if(options.order_id) {
       this.getOrderInfo(options.order_id);
@@ -172,6 +185,7 @@ Page({
     })
   },
   confirm: function() {
+    this.showLayer();
     this.createOrder();
   }
 })

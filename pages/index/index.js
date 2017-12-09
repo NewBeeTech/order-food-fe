@@ -43,7 +43,7 @@ Page({
   },
   getCityList(){
     var that = this;
-    wx.showLoading();
+    that.showLayer();
     // 请求城市列表
     wx.request({
       url: apiUrl.city_list,
@@ -53,13 +53,17 @@ Page({
       data: {},
       success: function(res){
         that.setData({ cityList:res.data.data });
-        wx.hideLoading();
+        that.hiddenLayer();
+      },
+      fail: function(res){
+        that.hiddenLayer();
+        that.showToast("请求失败")
       },
     })
   },
   getRestaurantList(){
     var that = this;
-    wx.showLoading();
+    that.showLayer();
     // 请求餐厅列表
     wx.request({
       url: apiUrl.restaurant_list,
@@ -90,12 +94,17 @@ Page({
           restaurantList:res.data.data.rows,
           total:list,
         });
-        wx.hideLoading();
+        that.hiddenLayer();
+      },
+      fail: function(res){
+        that.hiddenLayer();
+        that.showToast("请求失败")
       },
     })
   },
   onLoad: function() {
     var that = this;
+    new app.Layer();
     this.getCityList();
     this.getRestaurantList();
     // 页面加载时显示上拉状态：没有更多数据/需要上拉加载更多

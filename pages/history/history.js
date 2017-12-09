@@ -19,8 +19,8 @@ Page({
     })
   },
   getHistoryList(){
-    wx.showLoading();
     var that = this;
+    that.showLayer();
     // 请求历史订单列表
     wx.request({
       url: apiUrl.history_list,
@@ -33,11 +33,16 @@ Page({
         that.setData({
           histroyList:res.data.data
         });
-        wx.hideLoading();
+        that.hiddenLayer();
+      },
+      fail: function(res){
+        that.hiddenLayer();
+        that.showToast("请求失败")
       },
     })
   },
   onLoad: function () {
+    new app.Layer();
     var that = this;
     this.getHistoryList();
   }

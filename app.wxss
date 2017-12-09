@@ -1,3 +1,4 @@
+@import "./components/layer/layer.wxss";
 @import "./components/load-more/load-more.wxss";
 @import "./components/city/city.wxss";
 @import "./components/toast-custom/toast-custom.wxss";
