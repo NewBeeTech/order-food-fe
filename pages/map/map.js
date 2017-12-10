@@ -5,15 +5,15 @@ import apiUrl from '../../common/api-url';
 var app = getApp()
 Page({
   data: {
-    latitude: -0.123298,
-    longitude: 51.511281,
+    latitude: 0,
+    longitude: 0,
     address: '',
     scale: 17,
     markers: [{
       iconPath: "../../assets/images/map.png",
       id: 0,
-      latitude: -0.123298,
-      longitude: 51.511281,
+      latitude: 0,
+      longitude: 0,
       width: 35,
       height: 35,
     }],

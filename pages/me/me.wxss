@@ -43,13 +43,12 @@
 }
 
 .route-to-order {
-  width: 100rpx;
   width: 750rpx;
   z-index: 100;
   position: absolute;
   top: 420rpx;
   background-color: #fff;
-  padding: 20rpx;
+  padding: 20rpx 0;
   font-size: 35rpx;
   display: flex;
   justify-content: space-between;

@@ -754,8 +754,8 @@ Page({
     })
   },
   makeMap: function(e) {
-    const latitude = this.data.position.coordinates[1];
-    const longitude = this.data.position.coordinates[0];
+    const latitude = this.data.position.coordinates[0];
+    const longitude = this.data.position.coordinates[1];
     wx.navigateTo({
       url: `../map/map?latitude=${latitude}&longitude=${longitude}&address=${this.data.address}`
     })
