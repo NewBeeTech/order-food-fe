@@ -624,6 +624,7 @@ Page({
     infoHidden: true,
     aLaCarteRight: true,
     setMenuRight: true,
+    isScroll: 'hidden',
   },
   //事件处理函数
   // bindViewTap: function() {
@@ -713,6 +714,7 @@ Page({
           rating1: rating1,
           rating2: rating2,
           setMenu: res.data.data.setMenus,
+          isScroll: 'scroll',
         });
         that.hiddenLayer();
       },
@@ -1283,6 +1285,7 @@ Page({
   radioSetMenuOptionChange: function(e) {
     const addItem = this.data.addItem;
     const setMenu = this.data.setMenu;
+    console.log(addItem,setMenu);
     for (var p in setMenu) {
       if(setMenu[p]._id === addItem._id) {
         for(var q in setMenu[p].setMenuDetail) {
@@ -1307,7 +1310,7 @@ Page({
                     addItem.setMenuDetail[q][key].options.radio.content[index].checked = false;
                   })
                 }
-                if(item.options.checkbox.content !== undefined) {
+                if(item.options.checkbox) {
                   const content2 = item.options.checkbox.content;
                   content2.map((i, index) => {
                     addItem.setMenuDetail[q][key].options.checkbox.content[index].checked = false;

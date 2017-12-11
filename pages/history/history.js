@@ -6,6 +6,7 @@ var app = getApp()
 Page({
   data: {
     histroyList: [],
+    isScroll: 'scroll',
   },
   //事件处理函数
   bindViewTap: function(e) {
@@ -20,6 +21,7 @@ Page({
   },
   getHistoryList(){
     var that = this;
+    that.setData({isScroll: 'hidden'});
     that.showLayer();
     // 请求历史订单列表
     wx.request({
@@ -31,7 +33,8 @@ Page({
       data: {},
       success: function(res){
         that.setData({
-          histroyList:res.data.data
+          histroyList:res.data.data,
+          isScroll: 'scroll',
         });
         that.hiddenLayer();
       },

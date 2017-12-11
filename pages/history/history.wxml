@@ -3,7 +3,7 @@
 
 <template is="layer" data="{{ ...__layer__ }}" />
 
-<view class="history-container">
+<view class="history-container" style="overflow: {{isScroll}}">
   <view
     class="history"
     bindtap="bindViewTap"

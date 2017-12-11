@@ -5,7 +5,7 @@
 <template is="toast" data="{{ ...__toast__ }}" />
 <template is="layer" data="{{ ...__layer__ }}" />
 
-<view class="container" style="background: #fff">
+<view class="container" style="background: #fff;overflow: {{isScroll}}">
   <view wx:if="{{!urlId}}" class="order-header">
     I would like to order:
   </view>

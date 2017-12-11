@@ -10,6 +10,7 @@ let _compData = {
 let layer = {
   showLayer: function(content) {
     let self = this;
+    console.log(this);
     self.setData({
       '__layer__.isShow': true,
       '__layer__.content': content,

@@ -8,8 +8,8 @@
 
 <template is="layer" data="{{ ...__layer__ }}" />
 
-<view class="container">
-  <view class="city-choose" >
+<view class="container" style="overflow: {{isScroll}}">
+  <view class="city-choose">
     <template is="city" data="{{ ...__city__ }}"/>
   </view>
   <view class="find-list {{noScollClass}}" >

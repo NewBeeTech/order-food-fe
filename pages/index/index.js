@@ -25,6 +25,7 @@ Page({
     currentCurrency: '£',
     cityList: [],
     noScollClass: '',
+    isScroll: 'hidden',
     url: '' // url网络请求地址 如：`http://v.juhe.cn/weixin/query?key=f16af393a63364b729fd81ed9fdd4b7d&pno=${Number(this.data.current) + 1}&ps=${Number(this.data.pageSize)}`
   },
   upper: function (e) {
@@ -93,6 +94,7 @@ Page({
         that.setData({
           restaurantList:res.data.data.rows,
           total:list,
+          isScroll: 'scroll',
         });
         that.hiddenLayer();
       },

@@ -85,7 +85,7 @@
   width: 100%;
   word-wrap: break-word;
   word-break:break-all;
-  text-align: justify;
+  /*text-align: justify;*/
   color: #101010;
   font-size: 28rpx;
   margin-top: 15rpx;

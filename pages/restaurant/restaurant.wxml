@@ -6,7 +6,7 @@
 <template is="toast" data="{{ ...__toast__ }}" />
 <template is="layer" data="{{ ...__layer__ }}" />
 
-<view class="container">
+<view class="container" style="overflow: {{isScroll}}">
   <template wx:if="{{detailImage.length}}" is="img-show" data="{{detailImage}}" />
   <view class="restaurant-header">
     <view class="item-detail">
@@ -321,9 +321,10 @@
                   checked="{{itemName.checked}}"
                 />
               </view>
-              <view class="modal-content-option">
-                <view class="modal-content-option-title" style="margin-top: 10rpx;">{{itemName.options.radio.title.chineseName}}</view>
+              <view class="modal-content-option" wx:if="{{itemName.options.radio || itemName.options.checkbox}}">
+                <view class="modal-content-option-title" wx:if="{{itemName.options.radio}}" style="margin-top: 10rpx;">{{itemName.options.radio.title.chineseName}}</view>
                 <radio-group
+                  wx:if="{{itemName.options.radio}}"
                   class="radio-group"
                   data-index="{{index}}"
                   data-chinesename="{{itemName.name.chineseName}}"
@@ -339,8 +340,9 @@
                     <radio value="{{setMenuRadio.chineseName}}" color="#f60" checked="{{setMenuRadio.checked}}" />
                   </view>
                 </radio-group>
-                <view class="modal-content-option-title">{{itemName.options.checkbox.title.chineseName}}</view>
+                <view wx:if="{{itemName.options.checkbox}}" class="modal-content-option-title">{{itemName.options.checkbox.title.chineseName}}</view>
                 <checkbox-group
+                  wx:if="{{itemName.options.checkbox}}"
                   class="radio-group"
                   data-index="{{index}}"
                   data-chinesename="{{itemName.name.chineseName}}"
@@ -464,9 +466,19 @@
           <view class="modal-content-item-name">{{detailInfo.chinesename}}</view>
           <view class="modal-content-item-second">{{detailInfo.name}}</view>
         </view>
-        <view class="modal-content-item" wx:if="{{detailInfo.description}}">
+        <view class="modal-content-item" wx:if="{{detailInfo.description.chineseName || detailInfo.description.name }}">
           <!-- <view class="aLaCarte-right-item-name" style="margin-left: 0">配料</view> -->
-          <view class="modal-content-item-second">{{detailInfo.description}}</view>
+          <view
+            wx:if="{{detailInfo.description.chineseName}}"
+            class="modal-content-item-second"
+            style="color:#202020"
+          >
+            {{detailInfo.description.chineseName}}
+          </view>
+          <view
+            wx:if="{{detailInfo.description.name}}"
+            class="modal-content-item-second"
+          >{{detailInfo.description.name}}</view>
         </view>
         <view class="modal-content-item" wx:if="{{detailInfo.extrainfo}}">
           <!-- <view class="aLaCarte-right-item-name" style="margin-left: 0">附加信息</view> -->

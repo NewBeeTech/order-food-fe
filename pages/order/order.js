@@ -10,6 +10,7 @@ Page({
     currencyType: '',
     addAlaCarte: [],
     addSetMenu: [],
+    isScroll: 'overflow',
   },
   newAlaCarte: function (arr) {
     const newArr = [];
@@ -57,17 +58,11 @@ Page({
       if(newArr.length) {
         if(ids.indexOf(arr[i]._id) > -1) {
           newArr[ids.indexOf(arr[i]._id)]['list'].push(arr[i]['setMenuDetail']);
-          if(JSON.stringify(arr[i]['setMenuDetail']) == "{}") {
-          }
         } else {
-          if(JSON.stringify(arr[i]['setMenuDetail']) == "{}") {
-          }
           arr[i]['list'] = [arr[i]['setMenuDetail']];
           newArr.push(arr[i]);
         }
       } else {
-        if(JSON.stringify(arr[i]['setMenuDetail']) == "{}") {
-        }
         arr[i]['list'] = [arr[i]['setMenuDetail']];
         newArr.push(arr[i]);
       }
@@ -76,6 +71,9 @@ Page({
   },
   createOrder(){
     var that = this;
+    that.setData({
+      isScroll: 'hidden',
+    });
     // that.showLayer();
     const orderDetail = JSON.stringify({
       totalFee: this.data.totalFee,
@@ -99,7 +97,8 @@ Page({
       method: 'POST',
       success: function(res){
         console.log(res.data);
-        wx.navigateTo({
+        that.setData({isScroll: 'scroll'});
+        wx.redirectTo({
           url: `../order/order?order_id=${res.data.data._id}`
         });
         that.hiddenLayer();
@@ -112,6 +111,9 @@ Page({
   },
   getOrderInfo(order_id){
     var that = this;
+    that.setData({
+      isScroll: 'hidden',
+    })
     that.showLayer();
     // 获取订单详情
     wx.request({
@@ -134,6 +136,7 @@ Page({
           notes: res.data.data.orderDetail.notes,
           restaurantId: res.data.data.orderDetail.restaurantId,
           urlId: order_id,
+          isScroll: 'scroll',
         });
         wx.setNavigationBarTitle({
           title: res.data.data.orderDetail.resName
