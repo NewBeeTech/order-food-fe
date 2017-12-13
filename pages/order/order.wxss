@@ -69,6 +69,16 @@
   border-radius: 12rpx;
   border: 1px solid #bbb;
 }
+.order-details-option-layer {
+  display: flex;
+  margin-top: 10rpx;
+  /*border: 1px solid red;*/
+}
+.order-details-option-layer-right {
+  width: 600rpx;
+  /*border: 1px solid yellow;*/
+}
+
 .order-details-option-title {
   display: flex;
 }

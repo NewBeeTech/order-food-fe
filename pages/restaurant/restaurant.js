@@ -729,6 +729,7 @@ Page({
     new app.ToastCustom();
     new app.Layer();
     this.getRestaurantInfo();
+    this.setData({ currencyType: app.globalData.currencyType });
   },
   clickImage: function(e) {
     var current = e.target.dataset.src;

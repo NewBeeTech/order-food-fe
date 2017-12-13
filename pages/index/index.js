@@ -96,6 +96,7 @@ Page({
           total:list,
           isScroll: 'scroll',
         });
+        app.globalData.currencyType = that.data.currentCurrency;
         that.hiddenLayer();
       },
       fail: function(res){
@@ -111,23 +112,6 @@ Page({
     var that = this;
     // 城市选择
     that.City();
-    // 页面加载时显示上拉状态：没有更多数据/需要上拉加载更多
-    // wx.getNetworkType({
-    //   success: function(res) {
-    //     console.log(res.networkType);
-    //     if(res.networkType !== 'none') {
-    //       that.LoadMore().show(that.data);
-    //       that.getCityList();
-    //       that.getRestaurantList();
-    //     } else {
-    //       wx.showToast({
-    //         title: '网络异常',
-    //         icon: 'fail',
-    //         duration: 2000
-    //       })
-    //     }
-    //   }
-    // })
     that.LoadMore().show(that.data);
     that.getCityList();
     that.getRestaurantList();

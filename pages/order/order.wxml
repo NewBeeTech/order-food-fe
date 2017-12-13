@@ -30,52 +30,55 @@
         wx:for-index="listIndex"
         wx:for-item="list"
         wx:key="list"
+        class="order-details-option-layer"
       >
-        <view style="margin-top: 10rpx; font-weight: bold">{{listIndex + 1}}.</view>
-        <view wx:if="{{list.radio.title.name}}" class="order-details-option-title">
-          <view>{{list.radio.title.name}}：
-          <text
-            wx:for="{{list.radio.content}}"
-            wx:for-item="radio"
-            wx:key="radio"
-            wx:if="{{radio.checked}}"
-          >
-            <text>{{radio.name}}</text>
-          </text>
-          </view>
-        </view>
-        <view wx:if="{{list.radio.title.chineseName}}" class="order-details-option-sub-title">
+        <view style="font-weight: bold">{{listIndex + 1}}.</view>
           <view>
-            {{list.radio.title.chineseName}}：
+          <view wx:if="{{list.radio.title.name}}" class="order-details-option-title">
+            <view>{{list.radio.title.name}}：
             <text
               wx:for="{{list.radio.content}}"
               wx:for-item="radio"
               wx:key="radio"
               wx:if="{{radio.checked}}"
             >
-              <text>{{radio.chineseName}}</text>
+              <text>{{radio.name}}</text>
             </text>
-          </view>
-        </view>
-        <view wx:if="{{list.checkbox.title.name}}" class="order-details-option-title">
-          <view>{{list.checkbox.title.name}}：</view>
-        </view>
-        <view wx:if="{{list.checkbox.title.chineseName}}" class="order-details-option-sub-title">
-          <view>{{list.checkbox.title.chineseName}}：</view>
-        </view>
-        <view
-          class="order-details-option-checkbox"
-          wx:for="{{list.checkbox.content}}"
-          wx:for-item="checkbox"
-          wx:key="checkbox"
-          wx:if="{{checkbox.checked}}"
-        >
-          <view class="order-details-option-name">
-            <view class="order-details-option-title">
-              <view>{{checkbox.name}}</view>
             </view>
-            <view class="order-details-option-sub-title">
-              <view>{{checkbox.chineseName}}</view>
+          </view>
+          <view wx:if="{{list.radio.title.chineseName}}" class="order-details-option-sub-title">
+            <view>
+              {{list.radio.title.chineseName}}：
+              <text
+                wx:for="{{list.radio.content}}"
+                wx:for-item="radio"
+                wx:key="radio"
+                wx:if="{{radio.checked}}"
+              >
+                <text>{{radio.chineseName}}</text>
+              </text>
+            </view>
+          </view>
+          <view wx:if="{{list.checkbox.title.name}}" class="order-details-option-title">
+            <view>{{list.checkbox.title.name}}：</view>
+          </view>
+          <view wx:if="{{list.checkbox.title.chineseName}}" class="order-details-option-sub-title">
+            <view>{{list.checkbox.title.chineseName}}：</view>
+          </view>
+          <view
+            class="order-details-option-checkbox"
+            wx:for="{{list.checkbox.content}}"
+            wx:for-item="checkbox"
+            wx:key="checkbox"
+            wx:if="{{checkbox.checked}}"
+          >
+            <view class="order-details-option-name">
+              <view class="order-details-option-title">
+                <view>{{checkbox.name}}</view>
+              </view>
+              <view class="order-details-option-sub-title">
+                <view>{{checkbox.chineseName}}</view>
+              </view>
             </view>
           </view>
         </view>
@@ -88,8 +91,8 @@
       <view class="order-details-num">{{addAlaCarte.length + index + 1}}.</view>
       <view class="order-details-num-after">
         <view class="order-details-num-after-name">
-          <view>{{item.category.name}}</view>
-          <view style="font-size: 0.9em; color: #bbbbbb">{{item.category.chineseName}}</view>
+          <view>{{item.name.name}}</view>
+          <view style="font-size: 0.9em; color: #bbbbbb">{{item.name.chineseName}}</view>
         </view>
         <view class="order-details-num-after-number">
           ×{{item.list.length}}
@@ -104,67 +107,69 @@
         wx:key="list"
         wx:for-item="listItem"
         wx:for-index="listIndex"
+        class="order-details-option-layer"
       >
-      <view style="margin-top: 10rpx; font-weight: bold">{{listIndex + 1}}.</view>
+      <view style="font-weight: bold">{{listIndex + 1}}.</view>
+      <view class="order-details-option-layer-right">
+      <view
+        wx:for="{{listItem}}"
+        wx:for-item="item2"
+        wx:for-index="index2"
+        wx:key="bb"
+      >
         <view
-          wx:for="{{listItem}}"
-          wx:for-item="item2"
-          wx:for-index="index2"
+          wx:for="{{listItem[index2]}}"
+          wx:for-item="item3"
+          wx:for-index="index3"
           wx:key="bb"
+          wx:if="{{item3.checked}}"
         >
-          <view
-            wx:for="{{listItem[index2]}}"
-            wx:for-item="item3"
-            wx:for-index="index3"
-            wx:key="bb"
-            wx:if="{{item3.checked}}"
-          >
-            <view>
-              <view
-                class="order-details-option-title"
-              >
-                <view>{{item3.category.name}}：</view>
-              </view>
-              <view class="order-details-option-sub-title">
-                <view>{{item3.category.chineseName}}：</view>
-              </view>
-              <view
-                class="order-details-option-checkbox"
-              >
-                <view class="order-details-option-name">
-                  <view class="order-details-option-title">
-                    <view>{{item3.name.name}}</view>
-                  </view>
-                  <view class="order-details-option-sub-title">
-                    <view>{{item3.name.chineseName}}</view>
-                  </view>
+          <view>
+            <view
+              class="order-details-option-title"
+            >
+              <view>{{item3.category.name}}：</view>
+            </view>
+            <view class="order-details-option-sub-title">
+              <view>{{item3.category.chineseName}}：</view>
+            </view>
+            <view
+              class="order-details-option-checkbox"
+            >
+              <view class="order-details-option-name">
+                <view class="order-details-option-title">
+                  <view>{{item3.name.name}}</view>
+                </view>
+                <view class="order-details-option-sub-title">
+                  <view>{{item3.name.chineseName}}</view>
                 </view>
               </view>
-              <view class="" style="width: 80%; margin-left: 10%">
-                <view wx:if="{{item3.options.radio.title.name}}" class="order-details-option-title">
-                  <view>
-                    {{item3.options.radio.title.name}}：
-                    <text
-                      wx:for="{{item3.options.radio.content}}"
-                      wx:for-item="radio"
-                      wx:key="radio"
-                      wx:if="{{radio.checked}}"
-                    >{{radio.name}}</text>
-                  </view>
-                </view>
-                <view wx:if="{{item3.options.radio.title.chineseName}}" class="order-details-option-sub-title">
-                  <view>
-                    {{item3.options.radio.title.chineseName}}：
-                    <text
-                      wx:for="{{item3.options.radio.content}}"
-                      wx:for-item="radio"
-                      wx:key="radio"
-                      wx:if="{{radio.checked}}"
-                    >{{radio.chineseName}}</text>
-                  </view>
+            </view>
+            <view class="" style="width: 80%; margin-left: 10%">
+              <view wx:if="{{item3.options.radio.title.name}}" class="order-details-option-title">
+                <view>
+                  {{item3.options.radio.title.name}}：
+                  <text
+                    wx:for="{{item3.options.radio.content}}"
+                    wx:for-item="radio"
+                    wx:key="radio"
+                    wx:if="{{radio.checked}}"
+                  >{{radio.name}}</text>
                 </view>
               </view>
-              <view class="" style="width: 80%; margin-left: 10%">
+              <view wx:if="{{item3.options.radio.title.chineseName}}" class="order-details-option-sub-title">
+                <view>
+                  {{item3.options.radio.title.chineseName}}：
+                  <text
+                    wx:for="{{item3.options.radio.content}}"
+                    wx:for-item="radio"
+                    wx:key="radio"
+                    wx:if="{{radio.checked}}"
+                  >{{radio.chineseName}}</text>
+                </view>
+              </view>
+            </view>
+            <view class="" style="width: 80%; margin-left: 10%">
               <view wx:if="{{item3.options.checkbox.title.name}}" class="order-details-option-title">
                 <view>{{item3.options.checkbox.title.name}}：</view>
               </view>
@@ -188,9 +193,10 @@
                 </view>
               </view>
             </view>
-            </view>
           </view>
         </view>
+      </view>
+      </view>
       </view>
     </view>
   </view>
