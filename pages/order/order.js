@@ -10,7 +10,7 @@ Page({
     currencyType: '',
     addAlaCarte: [],
     addSetMenu: [],
-    isScroll: 'overflow',
+    isScroll: 'scroll',
   },
   newAlaCarte: function (arr) {
     const newArr = [];
@@ -161,7 +161,7 @@ Page({
             totalFee: res.data.data.orderDetail.totalFee,
             resName: res.data.data.orderDetail.resName,
             notes: res.data.data.orderDetail.notes,
-            restaurantId: res.data.data.orderDetail.restaurantId,
+            restaurantId: res.data.data.restaurantId,
             urlId: order_id,
             isScroll: 'scroll',
           });
@@ -234,6 +234,12 @@ Page({
   returnToUpdate: function() {
     wx.navigateBack({
       delta: 1
+    })
+  },
+  routeToRes: function() {
+    var that = this;
+    wx.navigateTo({
+      url: `/pages/restaurant/restaurant?_id=${that.data.restaurantId}`
     })
   },
   confirm: function() {

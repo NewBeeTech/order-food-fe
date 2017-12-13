@@ -5,9 +5,16 @@
 <template is="toast" data="{{ ...__toast__ }}" />
 <template is="layer" data="{{ ...__layer__ }}" />
 
-<view class="container" style="background: #fff;overflow: {{isScroll}}">
+<view
+  class="container {{urlId ? '' : 'order-container'}}"
+  style="background: #fff;overflow: {{isScroll}}"
+>
   <view wx:if="{{!urlId}}" class="order-header">
     I would like to order:
+  </view>
+  <view wx:if="{{urlId}}" bindtap="routeToRes" class="order-header-res-name">
+    <text>{{resName}}</text>
+    <text class="fa fa-angle-right" style="margin-left: 20rpx;font-size:40rpx"/>
   </view>
   <view class="order-line" />
   <!-- 单品遍历 -->

@@ -1,3 +1,6 @@
+.order-container {
+  height: calc(100vh - 100rpx);
+}
 .order-header {
   width: 690rpx;
   margin: 0 auto;
@@ -8,7 +11,14 @@
   height: 80rpx;
   background: #fff;
 }
-
+.order-header-res-name {
+  margin: 0 auto;
+  width: 690rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80rpx;
+}
 .order-line {
   width: 750rpx;
   height: 1rpx;

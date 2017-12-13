@@ -252,9 +252,8 @@
   width: 100%;
 }
 .setMenu-right-item-top {
-  font-size: 26rpx;
   display: flex;
-  font-size: 28rpx;
+  font-size: 32rpx;
   margin-bottom: 10rpx;
 }
 
