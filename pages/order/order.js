@@ -101,8 +101,8 @@ Page({
           that.showToast("成功生成订单");
           that.setData({isScroll: 'scroll'});
           setTimeout(function () {
-            wx.switchTab({
-              url: '../index/index'
+            wx.navigateTo({
+              url: `/pages/restaurant/restaurant?_id=${that.data.restaurantId}`
             });
           }, 1000);
         } else if(res.data.code === -2) {
