@@ -10,7 +10,7 @@
   ],
   "window":{
     "backgroundTextStyle":"dark",
-    "navigationBarBackgroundColor": "#F60",
+    "navigationBarBackgroundColor": "#ff6600",
     "navigationBarTitleText": "菜译通",
     "navigationBarTextStyle":"white",
     "enablePullDownRefresh": true
@@ -18,7 +18,7 @@
   "tabBar": {
     "borderStyle": "white",
     "color": "#858585",
-    "selectedColor": "#f60",
+    "selectedColor": "#ff6600",
     "list": [
       {
         "pagePath": "pages/index/index",

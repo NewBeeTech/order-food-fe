@@ -43,6 +43,7 @@ Page({
     })
   },
   onPullDownRefresh: function(){
+    this.getCityList();
     this.getRestaurantList();
   },
   getCityList(){
@@ -56,6 +57,7 @@ Page({
       },
       data: {},
       success: function(res){
+        wx.stopPullDownRefresh();
         if(res.data.code === 0){
           that.setData({ cityList:res.data.data });
           that.hiddenLayer();
