@@ -19,6 +19,9 @@ Page({
       url: `../restaurant/restaurant?_id=${e.currentTarget.dataset.resid}`
     })
   },
+  onPullDownRefresh: function(){
+    this.getHistoryList();
+  },
   getHistoryList(){
     var that = this;
     that.setData({isScroll: 'hidden'});
@@ -32,6 +35,7 @@ Page({
       },
       data: {},
       success: function(res){
+        wx.stopPullDownRefresh();
         if(res.data.code === 0) {
           that.setData({
             histroyList:res.data.data,

@@ -136,6 +136,9 @@ Page({
       }
     })
   },
+  onPullDownRefresh: function(){
+    this.getOrderInfo(this.options.order_id);
+  },
   getOrderInfo(order_id){
     var that = this;
     that.setData({
@@ -153,6 +156,7 @@ Page({
         _id: order_id,
       },
       success: function(res) {
+        wx.stopPullDownRefresh();
         if(res.data.code === 0) {
           that.setData({
             addAlaCarte: res.data.data.orderDetail.addAlaCarte,

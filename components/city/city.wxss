@@ -1,5 +1,5 @@
 .city {
-  position: relative;
+  /* position: relative; */
   z-index: 1000;
 }
 
@@ -11,9 +11,9 @@
   height: 12vw;
   line-height: 12vw;
   border-bottom: 1px solid #dcdcdc;
-  position: fixed;
+  /* position: fixed;
   top: 0;
-  left: 0;
+  left: 0; */
   z-index: 2000;
 }
 

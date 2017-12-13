@@ -653,6 +653,9 @@ Page({
     // 使用 wx.createMapContext 获取 map 上下文
     this.mapCtx = wx.createMapContext('myMap')
   },
+  onPullDownRefresh: function(){
+    this.getRestaurantInfo();
+  },
   getRestaurantInfo(){
     var that = this;
     that.showLayer();
@@ -666,8 +669,8 @@ Page({
         "_id": that.options._id,
       },
       success: function(res){
+        wx.stopPullDownRefresh();
         if(res.data.code === 0) {
-
           let rating1 = res.data.data.rating;
           let rating2 = 0;
           const rating = res.data.data.rating;

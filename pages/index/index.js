@@ -42,6 +42,9 @@ Page({
       url: "../imgList/imgList"
     })
   },
+  onPullDownRefresh: function(){
+    this.getRestaurantList();
+  },
   getCityList(){
     var that = this;
     that.showLayer();
@@ -83,6 +86,7 @@ Page({
         "pageSize": 10,
       },
       success: function(res){
+        wx.stopPullDownRefresh();
         if(res.data.code === 0){
           const list = res.data.data.rows;
           list.map((item, index) => {

@@ -1,9 +1,14 @@
+/**app.wxss**/
+
 @import "./components/layer/layer.wxss";
 @import "./components/load-more/load-more.wxss";
 @import "./components/city/city.wxss";
 @import "./components/toast-custom/toast-custom.wxss";
 
-/**app.wxss**/
+page {
+  height: 100%;
+  background: #e6e6e6;
+}
 .container {
   height: 100vh;
   display: flex;
