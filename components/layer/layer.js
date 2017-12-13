@@ -10,7 +10,6 @@ let _compData = {
 let layer = {
   showLayer: function(content) {
     let self = this;
-    console.log(this);
     self.setData({
       '__layer__.isShow': true,
       '__layer__.content': content,
@@ -33,7 +32,6 @@ function Layer () {
   curPage.layer = this;
   // 把组件的数据“注入”到页面的data对象中
   curPage.setData(_compData);
-  console.log('layer', this);
   return this;
 }
 

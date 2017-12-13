@@ -30,7 +30,6 @@ function ToastCustom () {
   curPage.toastCustom = this;
   // 把组件的数据“注入”到页面的data对象中
   curPage.setData(_compData);
-  console.log(curPage.data);
   return this;
 }
 

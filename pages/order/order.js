@@ -101,7 +101,7 @@ Page({
           that.showToast("成功生成订单");
           that.setData({isScroll: 'scroll'});
           setTimeout(function () {
-            wx.navigateTo({
+            wx.redirectTo({
               url: `/pages/restaurant/restaurant?_id=${that.data.restaurantId}`
             });
           }, 1000);

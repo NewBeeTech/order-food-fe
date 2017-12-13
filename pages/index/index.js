@@ -117,8 +117,6 @@ Page({
   },
   onLoad: function() {
     new app.Layer();
-
-    console.log(app.globalData.isConnected);
     var that = this;
     // 城市选择
     that.City();

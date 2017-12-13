@@ -1407,7 +1407,7 @@ Page({
     this.createOrder();
   },
   createOrder: function() {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../order/order'
     })
   },
