@@ -32,11 +32,36 @@ Page({
       },
       data: {},
       success: function(res){
-        that.setData({
-          histroyList:res.data.data,
-          isScroll: 'scroll',
-        });
-        that.hiddenLayer();
+        if(res.data.code === 0) {
+          that.setData({
+            histroyList:res.data.data,
+            isScroll: 'scroll',
+          });
+          that.hiddenLayer();
+        } else if (res.data.code === -2) {
+          wx.login({
+           success: function(res1) {
+             if (res1.code) {
+               //发起网络请求
+               wx.request({
+                 url: apiUrl.get_session,
+                 data: {
+                   "code": res1.code
+                 },
+                 success: function(result) {
+                   wx.setStorageSync('sessionid', result.data.data.sessionid);
+                 }
+               })
+             } else {
+               that.hiddenLayer();
+               that.showToast(`获取用户登录态失败！${res1.errMsg}`);
+             }
+           }
+         });
+       } else {
+         that.hiddenLayer();
+         that.showToast(`请求错误：${res.data.message}`);
+       }
       },
       fail: function(res){
         that.hiddenLayer();

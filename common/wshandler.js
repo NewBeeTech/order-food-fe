@@ -1,5 +1,5 @@
 /**
-* 小程序接口地址
+* TODO:网络请求封装
 */
 
 function getApi(url) {
@@ -11,7 +11,7 @@ function getApi(url) {
     },
     data: {},
     success: function(res){
-      that.setData({ cityList:res.data.data });
+      // that.setData({ cityList:res.data.data });
     },
   })
 }

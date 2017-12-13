@@ -53,8 +53,13 @@ Page({
       },
       data: {},
       success: function(res){
-        that.setData({ cityList:res.data.data });
-        that.hiddenLayer();
+        if(res.data.code === 0){
+          that.setData({ cityList:res.data.data });
+          that.hiddenLayer();
+        } else {
+          that.hiddenLayer();
+          that.showToast("请求失败")
+        }
       },
       fail: function(res){
         that.hiddenLayer();
@@ -78,26 +83,31 @@ Page({
         "pageSize": 10,
       },
       success: function(res){
-        const list = res.data.data.rows;
-        list.map((item, index) => {
-          let rating1 = item.rating;
-          let rating2 = 0;
-          const rating = item.rating;
-          const ratingInt = parseInt(rating);
-          if ( rating > ratingInt) {
-          	rating1 = ratingInt;
-            rating2 = 1;
-          }
-          item['rating1'] = rating1;
-          item['rating2'] = rating2;
-        })
-        that.setData({
-          restaurantList:res.data.data.rows,
-          total:list,
-          isScroll: 'scroll',
-        });
-        app.globalData.currencyType = that.data.currentCurrency;
-        that.hiddenLayer();
+        if(res.data.code === 0){
+          const list = res.data.data.rows;
+          list.map((item, index) => {
+            let rating1 = item.rating;
+            let rating2 = 0;
+            const rating = item.rating;
+            const ratingInt = parseInt(rating);
+            if ( rating > ratingInt) {
+              rating1 = ratingInt;
+              rating2 = 1;
+            }
+            item['rating1'] = rating1;
+            item['rating2'] = rating2;
+          })
+          that.setData({
+            restaurantList:res.data.data.rows,
+            total:list,
+            isScroll: 'scroll',
+          });
+          app.globalData.currencyType = that.data.currentCurrency;
+          that.hiddenLayer();
+        } else {
+          that.hiddenLayer();
+          that.showToast("请求失败")
+        }
       },
       fail: function(res){
         that.hiddenLayer();

@@ -96,12 +96,39 @@ Page({
       },
       method: 'POST',
       success: function(res){
-        console.log(res.data);
-        that.setData({isScroll: 'scroll'});
-        wx.redirectTo({
-          url: `../order/order?order_id=${res.data.data._id}`
-        });
-        that.hiddenLayer();
+        if(res.data.code === 0) {
+          that.hiddenLayer();
+          that.showToast("成功生成订单");
+          that.setData({isScroll: 'scroll'});
+          setTimeout(function () {
+            wx.switchTab({
+              url: '../index/index'
+            });
+          }, 1000);
+        } else if(res.data.code === -2) {
+          wx.login({
+           success: function(res1) {
+             if (res1.code) {
+               //发起网络请求
+               wx.request({
+                 url: apiUrl.get_session,
+                 data: {
+                   "code": res1.code
+                 },
+                 success: function(result) {
+                   wx.setStorageSync('sessionid', result.data.data.sessionid);
+                 }
+               })
+             } else {
+               that.hiddenLayer();
+               that.showToast(`获取用户登录态失败！${res1.errMsg}`);
+             }
+           }
+         });
+        } else {
+          that.hiddenLayer();
+          that.showToast(`请求失败：${res.data.message}`);
+        }
       },
       fail: function() {
         that.hiddenLayer();
@@ -126,22 +153,47 @@ Page({
         _id: order_id,
       },
       success: function(res) {
-        console.log(res.data);
-        that.setData({
-          addAlaCarte: res.data.data.orderDetail.addAlaCarte,
-          addSetMenu: res.data.data.orderDetail.addSetMenu,
-          currencyType: res.data.data.orderDetail.currencyType,
-          totalFee: res.data.data.orderDetail.totalFee,
-          resName: res.data.data.orderDetail.resName,
-          notes: res.data.data.orderDetail.notes,
-          restaurantId: res.data.data.orderDetail.restaurantId,
-          urlId: order_id,
-          isScroll: 'scroll',
-        });
-        wx.setNavigationBarTitle({
-          title: res.data.data.orderDetail.resName
-        });
-        that.hiddenLayer();
+        if(res.data.code === 0) {
+          that.setData({
+            addAlaCarte: res.data.data.orderDetail.addAlaCarte,
+            addSetMenu: res.data.data.orderDetail.addSetMenu,
+            currencyType: res.data.data.orderDetail.currencyType,
+            totalFee: res.data.data.orderDetail.totalFee,
+            resName: res.data.data.orderDetail.resName,
+            notes: res.data.data.orderDetail.notes,
+            restaurantId: res.data.data.orderDetail.restaurantId,
+            urlId: order_id,
+            isScroll: 'scroll',
+          });
+          wx.setNavigationBarTitle({
+            title: res.data.data.orderDetail.resName
+          });
+          that.hiddenLayer();
+        } else if(res.data.code === -2) {
+          wx.login({
+           success: function(res1) {
+             if (res1.code) {
+               //发起网络请求
+               wx.request({
+                 url: apiUrl.get_session,
+                 data: {
+                   "code": res1.code
+                 },
+                 success: function(result) {
+                   that.hiddenLayer();
+                   wx.setStorageSync('sessionid', result.data.data.sessionid);
+                 }
+               })
+             } else {
+               that.hiddenLayer();
+               that.showToast(`获取用户登录态失败！${res1.errMsg}`);
+             }
+           }
+         });
+       } else {
+         that.hiddenLayer();
+         that.showToast(`请求失败：${res.data.message}`);
+       }
       },
       fail: function() {
         that.hiddenLayer();

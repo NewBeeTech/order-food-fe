@@ -666,57 +666,63 @@ Page({
         "_id": that.options._id,
       },
       success: function(res){
-        let rating1 = res.data.data.rating;
-        let rating2 = 0;
-        const rating = res.data.data.rating;
-        const ratingInt = parseInt(rating);
-        if ( rating > ratingInt) {
-          rating1 = ratingInt;
-          rating2 = 1;
-        }
-        const aLaCarte = res.data.data.aLaCarte;
-        const setMenu = res.data.data.setMenus;
-        if(Object.keys(aLaCarte).length) {
+        if(res.data.code === 0) {
+
+          let rating1 = res.data.data.rating;
+          let rating2 = 0;
+          const rating = res.data.data.rating;
+          const ratingInt = parseInt(rating);
+          if ( rating > ratingInt) {
+            rating1 = ratingInt;
+            rating2 = 1;
+          }
+          const aLaCarte = res.data.data.aLaCarte;
+          const setMenu = res.data.data.setMenus;
+          if(Object.keys(aLaCarte).length) {
+            that.setData({
+              aLaCarteLeftSelected: Object.keys(aLaCarte)[0],
+            })
+          } else {
+            that.setData({
+              aLaCarteRight: false,
+            })
+          }
+          if(Object.keys(setMenu).length) {
+            that.setData({
+              setMenuLeftSelected: Object.keys(setMenu)[0],
+            })
+          } else {
+            that.setData({
+              setMenuRight: false,
+            })
+          }
           that.setData({
-            aLaCarteLeftSelected: Object.keys(aLaCarte)[0],
-          })
+            _id: res.data.data._id,
+            aLaCarte: res.data.data.aLaCarte,
+            address: res.data.data.address,
+            city: res.data.data.city,
+            country: res.data.data.country,
+            cuisines: res.data.data.cuisines,
+            desc: res.data.data.desc,
+            detailImage: res.data.data.detailImage,
+            isVisible: res.data.data.isVisible,
+            mainImage: res.data.data.mainImage,
+            name: res.data.data.name,
+            notes: res.data.data.notes,
+            operator: res.data.data.operator,
+            phoneNumber: res.data.data.phoneNumber,
+            position: res.data.data.position,
+            priceLevel: res.data.data.priceLevel,
+            rating1: rating1,
+            rating2: rating2,
+            setMenu: res.data.data.setMenus,
+            isScroll: 'scroll',
+          });
+          that.hiddenLayer();
         } else {
-          that.setData({
-            aLaCarteRight: false,
-          })
+          that.hiddenLayer();
+          that.showToast("请求失败")
         }
-        if(Object.keys(setMenu).length) {
-          that.setData({
-            setMenuLeftSelected: Object.keys(setMenu)[0],
-          })
-        } else {
-          that.setData({
-            setMenuRight: false,
-          })
-        }
-        that.setData({
-          _id: res.data.data._id,
-          aLaCarte: res.data.data.aLaCarte,
-          address: res.data.data.address,
-          city: res.data.data.city,
-          country: res.data.data.country,
-          cuisines: res.data.data.cuisines,
-          desc: res.data.data.desc,
-          detailImage: res.data.data.detailImage,
-          isVisible: res.data.data.isVisible,
-          mainImage: res.data.data.mainImage,
-          name: res.data.data.name,
-          notes: res.data.data.notes,
-          operator: res.data.data.operator,
-          phoneNumber: res.data.data.phoneNumber,
-          position: res.data.data.position,
-          priceLevel: res.data.data.priceLevel,
-          rating1: rating1,
-          rating2: rating2,
-          setMenu: res.data.data.setMenus,
-          isScroll: 'scroll',
-        });
-        that.hiddenLayer();
       },
       fail: function(res){
         that.hiddenLayer();
