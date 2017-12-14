@@ -68,10 +68,13 @@
           class="aLaCarte-left-item {{aLaCarteLeftSelected === index ? 'aLaCarte-left-select' : ''}}"
         >
           {{index}}
-          <view
+          <!-- <view
+            wx:for="{{aLaCarte[index]}}"
+            wx:for-item="aLaCarteItem"
+            wx:key="aLaCarteItem"
             class="aLaCarte-left-item-number"
-            wx:if=""
-          ></view>
+            wx:if="{{aLaCarteItem.num}}"
+          >{{aLaCarteItem.num}}</view> -->
         </view>
       </view>
       <view wx:if="{{aLaCarteRight}}" class="aLaCarte-right">

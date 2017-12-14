@@ -309,13 +309,12 @@ Page({
           const number = item.num || 0;
           item.num = number + 1;
           addItem.num = number + 1;
-          // const aLaCarteNumber = aLaCarte[p].aLaCarteNumber || 0;
-          // aLaCarte[p].aLaCarteNumber = aLaCarteNumber + 1;
         }
       });
     }
     const addAlaCarte = this.data.addAlaCarte;
     addAlaCarte.push(addItem);
+    console.log(addAlaCarte);
     this.setData({
       aLaCarte,
       addAlaCarte,
