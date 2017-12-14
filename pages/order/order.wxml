@@ -7,7 +7,7 @@
 
 <view
   class="container {{urlId ? '' : 'order-container'}}"
-  style="background: #fff;overflow: {{isScroll}}"
+  style="background: #fff;overflow: {{isScroll}};height:{{urlId ? 'auto' : ''}}"
 >
   <view wx:if="{{!urlId}}" class="order-header">
     I would like to order:
@@ -39,7 +39,7 @@
         wx:key="list"
         class="order-details-option-layer"
       >
-        <view style="font-weight: bold">{{listIndex + 1}}.</view>
+        <view style="font-weight: bold; margin-right: 10rpx;">{{listIndex + 1}}.\t</view>
           <view>
           <view wx:if="{{list.radio.title.name}}" class="order-details-option-title">
             <view>{{list.radio.title.name}}：
@@ -116,7 +116,7 @@
         wx:for-index="listIndex"
         class="order-details-option-layer"
       >
-      <view style="font-weight: bold">{{listIndex + 1}}.</view>
+      <view style="font-weight: bold;margin-right: 10rpx;">{{listIndex + 1}}.</view>
       <view class="order-details-option-layer-right">
       <view
         wx:for="{{listItem}}"
@@ -216,15 +216,15 @@
     </view>
     <view class="notice-2-1">
       <view class="notice-2-1-title">重要提示：</view>
-      <text class="notice-2-1-content" decode="true">亲～本程序暂不支持支付功能，请将点好的菜单直接出示给服务员。</text>
+      <text class="notice-2-1-content" decode="true">亲～本程序暂不支持支付功能，请在按完成并退出按钮前将点好的菜单直接出示给服务员。</text>
     </view>
   </view>
 </view>
 <view class="order-footer" wx:if="{{!urlId}}">
   <view class="return" bindtap="returnToUpdate">
-    返回餐厅
+    返回并修改
   </view>
   <view class="confirm" bindtap="confirm">
-    完 成
+    完成并退出
   </view>
 </view>

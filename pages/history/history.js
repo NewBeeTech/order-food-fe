@@ -64,11 +64,19 @@ Page({
          });
        } else {
          that.hiddenLayer();
+         that.setData({
+           histroyList:[],
+           isScroll: 'scroll',
+         });
          that.showToast(`请求错误：${res.data.message}`);
        }
       },
       fail: function(res){
         that.hiddenLayer();
+        that.setData({
+          histroyList:[],
+          isScroll: 'scroll',
+        });
         that.showToast("请求失败")
       },
     })

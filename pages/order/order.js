@@ -98,13 +98,13 @@ Page({
       success: function(res){
         if(res.data.code === 0) {
           that.hiddenLayer();
-          that.showToast("成功生成订单");
+          that.showToast("感谢您使用菜译通，您的就餐历史已经存储到历史订单中，谢谢！");
           that.setData({isScroll: 'scroll'});
           setTimeout(function () {
             wx.redirectTo({
               url: `/pages/restaurant/restaurant?_id=${that.data.restaurantId}`
             });
-          }, 1000);
+          }, 2000);
         } else if(res.data.code === -2) {
           wx.login({
            success: function(res1) {
@@ -189,12 +189,34 @@ Page({
                  }
                })
              } else {
+               that.setData({
+                 addAlaCarte: [],
+                 addSetMenu: [],
+                 currencyType: '',
+                 totalFee: '',
+                 resName: '',
+                 notes: '',
+                 restaurantId: '',
+                 urlId: 1,
+                 isScroll: 'scroll',
+               });
                that.hiddenLayer();
                that.showToast(`获取用户登录态失败！${res1.errMsg}`);
              }
            }
          });
        } else {
+         that.setData({
+           addAlaCarte: [],
+           addSetMenu: [],
+           currencyType: '',
+           totalFee: '',
+           resName: '',
+           notes: '',
+           restaurantId: '',
+           urlId: 1,
+           isScroll: 'scroll',
+         });
          that.hiddenLayer();
          that.showToast(`请求失败：${res.data.message}`);
        }

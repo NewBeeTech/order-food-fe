@@ -30,579 +30,7 @@ Page({
     position: '',
     priceLevel: '',
     rating: '',
-    setMenu: {
-      '套餐一': {
-        _id: 'setMenu_001',
-        desc: '套餐一含3个头菜1个主菜',
-        category: {
-          chineseName: '套餐一',
-          name: 'Combo1',
-        },
-        description: '配料信息mock数据',
-        extraInfo: '附加信息mock数据',
-        operateTime: '2017-10-30T13:24:32.201Z',
-        operator: 'UT-TESTER',
-        price: 86,
-        setMenuDetail: {
-          '主菜': [{
-            _id: 'aLaCarte_003',
-            category: {
-              chineseName: '主菜',
-              name: 'The Main dash',
-            },
-            categoryNum: 2,
-            description: '配料信息mock数据',
-            extraInfo: '附加信息mock数据',
-            name: {
-              chineseName: '大龙虾3',
-              name: 'XXXX3',
-            },
-            image: 'https://m.360buyimg.com/n12/jfs/t2938/141/161562315/370464/79e5296/574e38faNb075dd83.jpg!q70.jpg',
-            operateTime: '2017-10-30T13:24:32.201Z',
-            operator: 'UT-TESTER',
-            options: {
-              checkbox: {
-                content: [{
-                  chineseName: '炸薯条',
-                  name: 'French fries',
-                  price: 3,
-                }],
-                title: {
-                  chineseName: '配菜',
-                  name: 'Garnish',
-                },
-              },
-              radio: {
-                content: [{
-                  chineseName: '大杯',
-                  name: 'big',
-                  price: 6,
-                }, {
-                  chineseName: '中杯',
-                  name: 'mid',
-                  price: 5,
-                }, {
-                  chineseName: '小杯',
-                  name: 'sm',
-                  price: 3,
-                  checked: true,
-                  default: true,
-                }],
-                title: {
-                  chineseName: '型号',
-                  name: 'xinghao',
-                },
-              },
-            },
-            price: 3,
-            stock: 6,
-          }],
-          '头菜': [{
-            _id: 'aLaCarte_002',
-            category: {
-              chineseName: '头菜',
-              name: 'The first dash',
-            },
-            categoryNum: 1,
-            description: '配料信息mock数据',
-            extraInfo: '附加信息mock数据',
-            name: {
-              chineseName: '面包和橄榄0',
-              name: 'Bread and Olives0',
-            },
-            image: 'https://m.360buyimg.com/n12/jfs/t2938/141/161562315/370464/79e5296/574e38faNb075dd83.jpg!q70.jpg',
-            operateTime: '2017-10-30T13:24:32.201Z',
-            operator: 'UT-TESTER',
-            options: {
-              // checkbox: {
-              //   content: [{
-              //     chineseName: '炸薯条',
-              //     name: 'French fries',
-              //     price: 3,
-              //   }],
-              //   title: {
-              //     chineseName: '配菜',
-              //     name: 'Garnish',
-              //   },
-              // },
-              radio: {
-                content: [{
-                  chineseName: '大杯',
-                  name: 'big',
-                  price: 6,
-                }, {
-                  chineseName: '中杯',
-                  name: 'mid',
-                  price: 5,
-                }, {
-                  chineseName: '小杯',
-                  name: 'sm',
-                  price: 3,
-                  checked: true,
-                  default: true,
-                }],
-                title: {
-                  chineseName: '型号',
-                  name: 'xinghao',
-                },
-              },
-            },
-            price: 3,
-            stock: 6,
-          }, {
-            _id: 'aLaCarte_001',
-            category: {
-              chineseName: '头菜',
-              name: 'The first dash',
-            },
-            categoryNum: 1,
-            description: '配料信息mock数据',
-            extraInfo: '附加信息mock数据',
-            name: {
-              chineseName: '面包和橄榄1',
-              name: 'Bread and Olives1',
-            },
-            image: 'https://m.360buyimg.com/n12/jfs/t2938/141/161562315/370464/79e5296/574e38faNb075dd83.jpg!q70.jpg',
-            operateTime: '2017-10-30T13:24:32.201Z',
-            operator: 'UT-TESTER',
-            options: {
-              checkbox: {
-                content: [{
-                  chineseName: '炸薯条',
-                  name: 'French fries',
-                  price: 3,
-                }],
-                title: {
-                  chineseName: '配菜',
-                  name: 'Garnish',
-                },
-              },
-              // radio: {
-              //   content: [{
-              //     chineseName: '大杯',
-              //     name: 'big',
-              //     price: 3,
-              //   }, {
-              //     chineseName: '中杯',
-              //     name: 'mid',
-              //     price: 2,
-              //   }, {
-              //     chineseName: '小杯',
-              //     name: 'sm',
-              //     price: 0,
-              //   }],
-              //   title: {
-              //     chineseName: '型号',
-              //     name: 'xinghao',
-              //   },
-              // },
-            },
-            price: 3,
-            stock: 6,
-          }, {
-            _id: 'aLaCarte_005',
-            category: {
-              chineseName: '头菜',
-              name: 'The first dash',
-            },
-            categoryNum: 1,
-            description: '配料信息mock数据',
-            extraInfo: '附加信息mock数据',
-            name: {
-              chineseName: '面包和橄榄0',
-              name: 'Bread and Olives0',
-            },
-            image: 'https://m.360buyimg.com/n12/jfs/t2938/141/161562315/370464/79e5296/574e38faNb075dd83.jpg!q70.jpg',
-            operateTime: '2017-10-30T13:24:32.201Z',
-            operator: 'UT-TESTER',
-            options: {
-              // checkbox: {
-              //   content: [{
-              //     chineseName: '炸薯条',
-              //     name: 'French fries',
-              //     price: 3,
-              //   }],
-              //   title: {
-              //     chineseName: '配菜',
-              //     name: 'Garnish',
-              //   },
-              // },
-              // radio: {
-              //   content: [{
-              //     chineseName: '大杯',
-              //     name: 'big',
-              //     price: 3,
-              //   }, {
-              //     chineseName: '中杯',
-              //     name: 'mid',
-              //     price: 2,
-              //   }, {
-              //     chineseName: '小杯',
-              //     name: 'sm',
-              //     price: 0,
-              //   }],
-              //   title: {
-              //     chineseName: '型号',
-              //     name: 'xinghao',
-              //   },
-              // },
-            },
-            price: 3,
-            stock: 6,
-          }],
-        }
-      },
-      '套餐二': {
-        _id: 'setMenu_002',
-        desc: '套餐一含2个头菜1个主菜',
-        category: {
-          chineseName: '套餐二',
-          name: 'Combo2',
-        },
-        description: '配料信息mock数据',
-        extraInfo: '附加信息mock数据',
-        operateTime: '2017-10-30T13:24:32.201Z',
-        operator: 'UT-TESTER',
-        price: 86,
-        setMenuDetail: {
-          '主菜': [{
-            _id: 'aLaCarte_003',
-            category: {
-              chineseName: '主菜',
-              name: 'The Main dash',
-            },
-            categoryNum: 2,
-            description: '配料信息mock数据',
-            extraInfo: '附加信息mock数据',
-            name: {
-              chineseName: '大龙虾3',
-              name: 'XXXX3',
-            },
-            image: 'https://m.360buyimg.com/n12/jfs/t2938/141/161562315/370464/79e5296/574e38faNb075dd83.jpg!q70.jpg',
-            operateTime: '2017-10-30T13:24:32.201Z',
-            operator: 'UT-TESTER',
-            options: {
-              checkbox: {
-                content: [{
-                  chineseName: '炸薯条',
-                  name: 'French fries',
-                  price: 3,
-                }],
-                title: {
-                  chineseName: '配菜',
-                  name: 'Garnish',
-                },
-              },
-              radio: {
-                content: [{
-                  chineseName: '大杯',
-                  name: 'big',
-                  price: 6,
-                }, {
-                  chineseName: '中杯',
-                  name: 'mid',
-                  price: 5,
-                }, {
-                  chineseName: '小杯',
-                  name: 'sm',
-                  price: 3,
-                  checked: true,
-                  default: true,
-                }],
-                title: {
-                  chineseName: '型号',
-                  name: 'xinghao',
-                },
-              },
-            },
-            price: 3,
-            stock: 6,
-          }],
-          '头菜': [{
-            _id: 'aLaCarte_002',
-            category: {
-              chineseName: '头菜',
-              name: 'The first dash',
-            },
-            categoryNum: 1,
-            description: '配料信息mock数据',
-            extraInfo: '附加信息mock数据',
-            name: {
-              chineseName: '面包和橄榄0',
-              name: 'Bread and Olives0',
-            },
-            image: 'https://m.360buyimg.com/n12/jfs/t2938/141/161562315/370464/79e5296/574e38faNb075dd83.jpg!q70.jpg',
-            operateTime: '2017-10-30T13:24:32.201Z',
-            operator: 'UT-TESTER',
-            options: {
-              checkbox: {
-                content: [{
-                  chineseName: '炸薯条',
-                  name: 'French fries',
-                  price: 3,
-                }],
-                title: {
-                  chineseName: '配菜',
-                  name: 'Garnish',
-                },
-              },
-              radio: {
-                content: [{
-                  chineseName: '大杯',
-                  name: 'big',
-                  price: 6,
-                }, {
-                  chineseName: '中杯',
-                  name: 'mid',
-                  price: 5,
-                }, {
-                  chineseName: '小杯',
-                  name: 'sm',
-                  price: 3,
-                  checked: true,
-                  default: true,
-                }],
-                title: {
-                  chineseName: '型号',
-                  name: 'xinghao',
-                },
-              },
-            },
-            price: 3,
-            stock: 6,
-          }, {
-            _id: 'aLaCarte_001',
-            category: {
-              chineseName: '头菜',
-              name: 'The first dash',
-            },
-            categoryNum: 1,
-            description: '配料信息mock数据',
-            extraInfo: '附加信息mock数据',
-            name: {
-              chineseName: '面包和橄榄1',
-              name: 'Bread and Olives1',
-            },
-            image: 'https://m.360buyimg.com/n12/jfs/t2938/141/161562315/370464/79e5296/574e38faNb075dd83.jpg!q70.jpg',
-            operateTime: '2017-10-30T13:24:32.201Z',
-            operator: 'UT-TESTER',
-            options: {
-              checkbox: {
-                content: [{
-                  chineseName: '炸薯条',
-                  name: 'French fries',
-                  price: 3,
-                }],
-                title: {
-                  chineseName: '配菜',
-                  name: 'Garnish',
-                },
-              },
-              radio: {
-                content: [{
-                  chineseName: '大杯',
-                  name: 'big',
-                  price: 6,
-                }, {
-                  chineseName: '中杯',
-                  name: 'mid',
-                  price: 5,
-                }, {
-                  chineseName: '小杯',
-                  name: 'sm',
-                  price: 3,
-                  checked: true,
-                  default: true,
-                }],
-                title: {
-                  chineseName: '型号',
-                  name: 'xinghao',
-                },
-              },
-            },
-            price: 3,
-            stock: 6,
-          }],
-        }
-      },
-      '套餐三': {
-        _id: 'setMenu_003',
-        desc: '套餐一含1个头菜1个主菜',
-        category: {
-          chineseName: '套餐三',
-          name: 'Combo3',
-        },
-        description: '配料信息mock数据',
-        extraInfo: '附加信息mock数据',
-        operateTime: '2017-10-30T13:24:32.201Z',
-        operator: 'UT-TESTER',
-        price: 86,
-        setMenuDetail: {
-          '主菜': [{
-            _id: 'aLaCarte_003',
-            category: {
-              chineseName: '主菜',
-              name: 'The Main dash',
-            },
-            categoryNum: 2,
-            description: '配料信息mock数据',
-            extraInfo: '附加信息mock数据',
-            name: {
-              chineseName: '大龙虾3',
-              name: 'XXXX3',
-            },
-            image: 'https://m.360buyimg.com/n12/jfs/t2938/141/161562315/370464/79e5296/574e38faNb075dd83.jpg!q70.jpg',
-            operateTime: '2017-10-30T13:24:32.201Z',
-            operator: 'UT-TESTER',
-            options: {
-              checkbox: {
-                content: [{
-                  chineseName: '炸薯条',
-                  name: 'French fries',
-                  price: 3,
-                }],
-                title: {
-                  chineseName: '配菜',
-                  name: 'Garnish',
-                },
-              },
-              radio: {
-                content: [{
-                  chineseName: '大杯',
-                  name: 'big',
-                  price: 6,
-                }, {
-                  chineseName: '中杯',
-                  name: 'mid',
-                  price: 5,
-                }, {
-                  chineseName: '小杯',
-                  name: 'sm',
-                  price: 3,
-                  checked: true,
-                  default: true,
-                }],
-                title: {
-                  chineseName: '型号',
-                  name: 'xinghao',
-                },
-              },
-            },
-            price: 3,
-            stock: 6,
-          }],
-          '头菜': [{
-            _id: 'aLaCarte_002',
-            category: {
-              chineseName: '头菜',
-              name: 'The first dash',
-            },
-            categoryNum: 1,
-            description: '配料信息mock数据',
-            extraInfo: '附加信息mock数据',
-            name: {
-              chineseName: '面包和橄榄0',
-              name: 'Bread and Olives0',
-            },
-            image: 'https://m.360buyimg.com/n12/jfs/t2938/141/161562315/370464/79e5296/574e38faNb075dd83.jpg!q70.jpg',
-            operateTime: '2017-10-30T13:24:32.201Z',
-            operator: 'UT-TESTER',
-            options: {
-              checkbox: {
-                content: [{
-                  chineseName: '炸薯条',
-                  name: 'French fries',
-                  price: 3,
-                }],
-                title: {
-                  chineseName: '配菜',
-                  name: 'Garnish',
-                },
-              },
-              radio: {
-                content: [{
-                  chineseName: '大杯',
-                  name: 'big',
-                  price: 6,
-                }, {
-                  chineseName: '中杯',
-                  name: 'mid',
-                  price: 5,
-                }, {
-                  chineseName: '小杯',
-                  name: 'sm',
-                  price: 3,
-                  checked: true,
-                  default: true,
-                }],
-                title: {
-                  chineseName: '型号',
-                  name: 'xinghao',
-                },
-              },
-            },
-            price: 3,
-            stock: 6,
-          }],
-        }
-      },
-      '套餐四': {
-        _id: 'setMenu_004',
-        desc: '套餐一含1个头菜1个主菜，无复选无单选',
-        category: {
-          chineseName: '套餐四',
-          name: 'Combo4',
-        },
-        description: '配料信息mock数据',
-        extraInfo: '附加信息mock数据',
-        operateTime: '2017-10-30T13:24:32.201Z',
-        operator: 'UT-TESTER',
-        price: 10,
-        setMenuDetail: {
-          '主菜': [{
-            _id: 'aLaCarte_003',
-            category: {
-              chineseName: '主菜',
-              name: 'The Main dash',
-            },
-            categoryNum: 2,
-            description: '配料信息mock数据',
-            extraInfo: '附加信息mock数据',
-            name: {
-              chineseName: '大龙虾3',
-              name: 'XXXX3',
-            },
-            image: 'https://m.360buyimg.com/n12/jfs/t2938/141/161562315/370464/79e5296/574e38faNb075dd83.jpg!q70.jpg',
-            operateTime: '2017-10-30T13:24:32.201Z',
-            operator: 'UT-TESTER',
-            options: {
-            },
-            price: 7,
-            stock: 6,
-          }],
-          '头菜': [{
-            _id: 'aLaCarte_002',
-            category: {
-              chineseName: '头菜',
-              name: 'The first dash',
-            },
-            categoryNum: 1,
-            description: '配料信息mock数据',
-            extraInfo: '附加信息mock数据',
-            name: {
-              chineseName: '面包和橄榄0',
-              name: 'Bread and Olives0',
-            },
-            image: 'https://m.360buyimg.com/n12/jfs/t2938/141/161562315/370464/79e5296/574e38faNb075dd83.jpg!q70.jpg',
-            operateTime: '2017-10-30T13:24:32.201Z',
-            operator: 'UT-TESTER',
-            options: {},
-            price: 4,
-            stock: 6,
-          }],
-        }
-      },
-    },
+    setMenu: {},
     setMenuLeftSelected: '',
     selectedStyle: 'aLaCarte',
     showModal: false,
@@ -723,11 +151,55 @@ Page({
           });
           that.hiddenLayer();
         } else {
+          that.setData({
+            _id: '',
+            aLaCarte: {},
+            address: '',
+            city: {},
+            country: {},
+            cuisines: [],
+            desc: '',
+            detailImage: [],
+            isVisible: '',
+            mainImage: '',
+            name: '',
+            notes: '',
+            operator: '',
+            phoneNumber: '',
+            position: [],
+            priceLevel: '',
+            rating1: '',
+            rating2: '',
+            setMenu: {},
+            isScroll: 'scroll',
+          });
           that.hiddenLayer();
           that.showToast("请求失败")
         }
       },
       fail: function(res){
+        that.setData({
+          _id: '',
+          aLaCarte: {},
+          address: '',
+          city: {},
+          country: {},
+          cuisines: [],
+          desc: '',
+          detailImage: [],
+          isVisible: '',
+          mainImage: '',
+          name: '',
+          notes: '',
+          operator: '',
+          phoneNumber: '',
+          position: [],
+          priceLevel: '',
+          rating1: '',
+          rating2: '',
+          setMenu: {},
+          isScroll: 'scroll',
+        });
         that.hiddenLayer();
         that.showToast("请求失败")
       },

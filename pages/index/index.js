@@ -67,6 +67,7 @@ Page({
         }
       },
       fail: function(res){
+        that.setData({ cityList:[]});
         that.hiddenLayer();
         that.showToast("请求失败")
       },
@@ -105,17 +106,19 @@ Page({
           })
           that.setData({
             restaurantList:res.data.data.rows,
-            total:list,
+            total: res.data.data.total,
             isScroll: 'scroll',
           });
           app.globalData.currencyType = that.data.currentCurrency;
           that.hiddenLayer();
         } else {
+          that.setData({ restaurantList:[], total: 0,isScroll: 'scroll', });
           that.hiddenLayer();
           that.showToast("请求失败")
         }
       },
       fail: function(res){
+        that.setData({ restaurantList:[], total: 0,isScroll: 'scroll', });
         that.hiddenLayer();
         that.showToast("请求失败")
       },

@@ -4,14 +4,9 @@ var app = getApp()
 Page({
   data: {
     motto: 'Hello World',
-    userInfo: {}
+    userInfo: {},
+    showZan: false,
   },
-  //事件处理函数
-  // bindViewTap: function() {
-  //   wx.navigateTo({
-  //     url: '../logs/logs'
-  //   })
-  // },
   onLoad: function () {
     console.log('onLoad')
     var that = this
@@ -27,5 +22,13 @@ Page({
     wx.navigateTo({
       url: '../history/history'
     })
+  },
+  showZan: function() {
+    var that = this
+    that.setData({ showZan: true });
+  },
+  noticeConfirm: function() {
+    var that = this
+    that.setData({ showZan: false });
   }
 })
