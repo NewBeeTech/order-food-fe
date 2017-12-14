@@ -4,11 +4,8 @@
 </view> -->
 <import src="../../components/load-more/load-more.wxml"/>
 <import src="../../components/city/city.wxml"/>
-<import src="../../components/layer/layer.wxml" />
 
-<template is="layer" data="{{ ...__layer__ }}" />
-
-<view class="container" style="overflow: {{isScroll}}">
+<view class="container">
   <view class="city-choose">
     <template is="city" data="{{ ...__city__ }}"/>
   </view>

@@ -10,7 +10,6 @@ Page({
     currencyType: '',
     addAlaCarte: [],
     addSetMenu: [],
-    isScroll: 'scroll',
   },
   newAlaCarte: function (arr) {
     const newArr = [];
@@ -71,10 +70,6 @@ Page({
   },
   createOrder(){
     var that = this;
-    that.setData({
-      isScroll: 'hidden',
-    });
-    // that.showLayer();
     const orderDetail = JSON.stringify({
       totalFee: this.data.totalFee,
       notes: this.data.notes,
@@ -97,12 +92,12 @@ Page({
       method: 'POST',
       success: function(res){
         if(res.data.code === 0) {
-          that.hiddenLayer();
+          wx.hideLoading();
           that.showToast("感谢您使用菜译通，您的就餐历史已经存储到历史订单中，谢谢！");
-          that.setData({isScroll: 'scroll'});
           setTimeout(function () {
-            wx.redirectTo({
-              url: `/pages/restaurant/restaurant?_id=${that.data.restaurantId}`
+            wx.switchTab({
+              // url: `/pages/restaurant/restaurant?_id=${that.data.restaurantId}`
+              url: '/pages/index/index'
             });
           }, 2000);
         } else if(res.data.code === -2) {
@@ -120,19 +115,28 @@ Page({
                  }
                })
              } else {
-               that.hiddenLayer();
-               that.showToast(`获取用户登录态失败！${res1.errMsg}`);
+               wx.hideLoading();
+               wx.showToast({
+                 title: '加载失败',
+                 image: '../../assets/images/fail.png',
+               })
              }
            }
          });
         } else {
-          that.hiddenLayer();
-          that.showToast(`请求失败：${res.data.message}`);
+          wx.hideLoading();
+          wx.showToast({
+            title: '加载失败',
+            image: '../../assets/images/fail.png',
+          })
         }
       },
       fail: function() {
-        that.hiddenLayer();
-        that.showToast("请求失败")
+        wx.hideLoading();
+        wx.showToast({
+          title: '加载失败',
+          image: '../../assets/images/fail.png',
+        })
       }
     })
   },
@@ -142,9 +146,18 @@ Page({
   getOrderInfo(order_id){
     var that = this;
     that.setData({
-      isScroll: 'hidden',
-    })
-    that.showLayer();
+      addAlaCarte: [],
+      addSetMenu: [],
+      currencyType: '',
+      totalFee: '',
+      resName: '',
+      notes: '',
+      restaurantId: '',
+      urlId: 1,
+    });
+    wx.showLoading({
+      mask: true,
+    });
     // 获取订单详情
     wx.request({
       url: apiUrl.get_order,
@@ -167,12 +180,11 @@ Page({
             notes: res.data.data.orderDetail.notes,
             restaurantId: res.data.data.restaurantId,
             urlId: order_id,
-            isScroll: 'scroll',
           });
           wx.setNavigationBarTitle({
             title: res.data.data.orderDetail.resName
           });
-          that.hiddenLayer();
+          wx.hideLoading();
         } else if(res.data.code === -2) {
           wx.login({
            success: function(res1) {
@@ -189,48 +201,34 @@ Page({
                  }
                })
              } else {
-               that.setData({
-                 addAlaCarte: [],
-                 addSetMenu: [],
-                 currencyType: '',
-                 totalFee: '',
-                 resName: '',
-                 notes: '',
-                 restaurantId: '',
-                 urlId: 1,
-                 isScroll: 'scroll',
-               });
-               that.hiddenLayer();
-               that.showToast(`获取用户登录态失败！${res1.errMsg}`);
+               wx.hideLoading();
+               wx.showToast({
+                 title: '加载失败',
+                 image: '../../assets/images/fail.png',
+               })
              }
            }
          });
        } else {
-         that.setData({
-           addAlaCarte: [],
-           addSetMenu: [],
-           currencyType: '',
-           totalFee: '',
-           resName: '',
-           notes: '',
-           restaurantId: '',
-           urlId: 1,
-           isScroll: 'scroll',
-         });
-         that.hiddenLayer();
-         that.showToast(`请求失败：${res.data.message}`);
+         wx.hideLoading();
+         wx.showToast({
+           title: '加载失败',
+           image: '../../assets/images/fail.png',
+         })
        }
       },
       fail: function() {
-        that.hiddenLayer();
-        that.showToast("请求失败")
+        wx.hideLoading();
+        wx.showToast({
+          title: '加载失败',
+          image: '../../assets/images/fail.png',
+        })
       }
     });
   },
   onLoad: function (options) {
     var that = this;
     new app.ToastCustom();
-    new app.Layer();
     //调用应用实例的方法获取全局数据
     if(options.order_id) {
       this.getOrderInfo(options.order_id);
@@ -269,7 +267,9 @@ Page({
     })
   },
   confirm: function() {
-    this.showLayer();
+    wx.showLoading({
+      mask: true,
+    });
     this.createOrder();
   }
 })

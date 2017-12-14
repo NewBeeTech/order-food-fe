@@ -1,13 +1,12 @@
 /**app.wxss**/
 
-@import "./components/layer/layer.wxss";
 @import "./components/load-more/load-more.wxss";
 @import "./components/city/city.wxss";
 @import "./components/toast-custom/toast-custom.wxss";
 
 page {
   height: 100%;
-  background: #e6e6e6;
+  background: #fff;
   -webkit-overflow-scrolling: touch;
 }
 .container {

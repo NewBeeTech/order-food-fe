@@ -1,9 +1,0 @@
-.layer_box {
-  width: 750rpx;
-  height: 100vh;
-  z-index: 1000000;
-  background: #aaa;
-  text-align: center;
-  opacity: 0.7;
-  position: relative;
-}

@@ -25,7 +25,6 @@ Page({
     currentCurrency: '£',
     cityList: [],
     noScollClass: '',
-    isScroll: 'hidden',
     url: '' // url网络请求地址 如：`http://v.juhe.cn/weixin/query?key=f16af393a63364b729fd81ed9fdd4b7d&pno=${Number(this.data.current) + 1}&ps=${Number(this.data.pageSize)}`
   },
   upper: function (e) {
@@ -48,7 +47,10 @@ Page({
   },
   getCityList(){
     var that = this;
-    that.showLayer();
+    wx.showLoading({
+      mask: true,
+    })
+    that.setData({ cityList:[]});
     // 请求城市列表
     wx.request({
       url: apiUrl.city_list,
@@ -60,22 +62,30 @@ Page({
         wx.stopPullDownRefresh();
         if(res.data.code === 0){
           that.setData({ cityList:res.data.data });
-          that.hiddenLayer();
+          wx.hideLoading();
         } else {
-          that.hiddenLayer();
-          that.showToast("请求失败")
+          wx.hideLoading();
+          wx.showToast({
+            title: '加载失败',
+            image: '../../assets/images/fail.png',
+          })
         }
       },
       fail: function(res){
-        that.setData({ cityList:[]});
-        that.hiddenLayer();
-        that.showToast("请求失败")
+        wx.hideLoading();
+        wx.showToast({
+          title: '加载失败',
+          image: '../../assets/images/fail.png',
+        })
       },
     })
   },
   getRestaurantList(){
     var that = this;
-    that.showLayer();
+    wx.showLoading({
+      mask: true,
+    })
+    that.setData({ restaurantList:[], total: 0 });
     // 请求餐厅列表
     wx.request({
       url: apiUrl.restaurant_list,
@@ -107,25 +117,27 @@ Page({
           that.setData({
             restaurantList:res.data.data.rows,
             total: res.data.data.total,
-            isScroll: 'scroll',
           });
           app.globalData.currencyType = that.data.currentCurrency;
-          that.hiddenLayer();
+          wx.hideLoading();
         } else {
-          that.setData({ restaurantList:[], total: 0,isScroll: 'scroll', });
-          that.hiddenLayer();
-          that.showToast("请求失败")
+          wx.hideLoading();
+          wx.showToast({
+            title: '加载失败',
+            image: '../../assets/images/fail.png',
+          })
         }
       },
       fail: function(res){
-        that.setData({ restaurantList:[], total: 0,isScroll: 'scroll', });
-        that.hiddenLayer();
-        that.showToast("请求失败")
+        wx.hideLoading();
+        wx.showToast({
+          title: '加载失败',
+          image: '../../assets/images/fail.png',
+        })
       },
     })
   },
   onLoad: function() {
-    new app.Layer();
     var that = this;
     // 城市选择
     that.City();

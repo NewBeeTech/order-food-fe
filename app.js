@@ -1,11 +1,9 @@
 //app.js
 import { ToastCustom } from './components/toast-custom/toast-custom';
-import { Layer } from './components/layer/layer';
 import apiUrl from './common/api-url';
 
 App({
   ToastCustom,
-  Layer,
 
   onLaunch: function() {
     var that = this;

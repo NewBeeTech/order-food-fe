@@ -86,7 +86,30 @@ Page({
   },
   getRestaurantInfo(){
     var that = this;
-    that.showLayer();
+    that.setData({
+      _id: '',
+      aLaCarte: {},
+      address: '',
+      city: {},
+      country: {},
+      cuisines: [],
+      desc: '',
+      detailImage: [],
+      isVisible: '',
+      mainImage: '',
+      name: '',
+      notes: '',
+      operator: '',
+      phoneNumber: '',
+      position: [],
+      priceLevel: '',
+      rating1: '',
+      rating2: '',
+      setMenu: {},
+    });
+    wx.showLoading({
+      mask: true,
+    });
     // 请求餐厅列表
     wx.request({
       url: apiUrl.restaurant_details,
@@ -147,68 +170,25 @@ Page({
             rating1: rating1,
             rating2: rating2,
             setMenu: res.data.data.setMenus,
-            isScroll: 'scroll',
           });
-          that.hiddenLayer();
+          wx.hideLoading();
         } else {
-          that.setData({
-            _id: '',
-            aLaCarte: {},
-            address: '',
-            city: {},
-            country: {},
-            cuisines: [],
-            desc: '',
-            detailImage: [],
-            isVisible: '',
-            mainImage: '',
-            name: '',
-            notes: '',
-            operator: '',
-            phoneNumber: '',
-            position: [],
-            priceLevel: '',
-            rating1: '',
-            rating2: '',
-            setMenu: {},
-            isScroll: 'scroll',
-          });
           that.hiddenLayer();
           that.showToast("请求失败")
         }
       },
       fail: function(res){
-        that.setData({
-          _id: '',
-          aLaCarte: {},
-          address: '',
-          city: {},
-          country: {},
-          cuisines: [],
-          desc: '',
-          detailImage: [],
-          isVisible: '',
-          mainImage: '',
-          name: '',
-          notes: '',
-          operator: '',
-          phoneNumber: '',
-          position: [],
-          priceLevel: '',
-          rating1: '',
-          rating2: '',
-          setMenu: {},
-          isScroll: 'scroll',
-        });
-        that.hiddenLayer();
-        that.showToast("请求失败")
+        wx.hideLoading();
+        wx.showToast({
+          title: '加载失败',
+          image: '../../assets/images/fail.png',
+        })
       },
     })
   },
   onLoad: function () {
     var that = this;
     new app.ToastCustom();
-    new app.Layer();
     this.getRestaurantInfo();
     this.setData({ currencyType: app.globalData.currencyType });
   },
@@ -881,9 +861,12 @@ Page({
     this.createOrder();
   },
   createOrder: function() {
-    wx.redirectTo({
+    wx.navigateTo({
       url: '../order/order'
     })
+    // wx.redirectTo({
+    //   url: '../order/order'
+    // })
   },
   toastHidden:function() {
     this.setData({

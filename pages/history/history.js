@@ -6,7 +6,6 @@ var app = getApp()
 Page({
   data: {
     histroyList: [],
-    isScroll: 'scroll',
   },
   //事件处理函数
   bindViewTap: function(e) {
@@ -22,11 +21,15 @@ Page({
   onPullDownRefresh: function(){
     this.getHistoryList();
   },
+  // 请求历史订单列表
   getHistoryList(){
     var that = this;
-    that.setData({isScroll: 'hidden'});
-    that.showLayer();
-    // 请求历史订单列表
+    that.setData({
+      histroyList:[],
+    });
+    wx.showLoading({
+      mask: true,
+    });
     wx.request({
       url: apiUrl.history_list,
       header:{
@@ -39,9 +42,8 @@ Page({
         if(res.data.code === 0) {
           that.setData({
             histroyList:res.data.data,
-            isScroll: 'scroll',
           });
-          that.hiddenLayer();
+          wx.hideLoading();
         } else if (res.data.code === -2) {
           wx.login({
            success: function(res1) {
@@ -57,33 +59,33 @@ Page({
                  }
                })
              } else {
-               that.hiddenLayer();
-               that.showToast(`获取用户登录态失败！${res1.errMsg}`);
+               wx.hideLoading();
+               wx.showToast({
+                 title: '加载失败',
+                 image: '../../assets/images/fail.png',
+               })
              }
            }
          });
        } else {
-         that.hiddenLayer();
-         that.setData({
-           histroyList:[],
-           isScroll: 'scroll',
-         });
-         that.showToast(`请求错误：${res.data.message}`);
+         wx.hideLoading();
+         wx.showToast({
+           title: '加载失败',
+           image: '../../assets/images/fail.png',
+         })
        }
       },
       fail: function(res){
-        that.hiddenLayer();
-        that.setData({
-          histroyList:[],
-          isScroll: 'scroll',
-        });
-        that.showToast("请求失败")
+        wx.hideLoading();
+        wx.showToast({
+          title: '加载失败',
+          image: '../../assets/images/fail.png',
+        })
       },
     })
   },
   onLoad: function () {
-    new app.Layer();
     var that = this;
-    this.getHistoryList();
+    that.getHistoryList();
   }
 })

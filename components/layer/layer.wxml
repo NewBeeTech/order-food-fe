@@ -1,6 +1,0 @@
-<template name="layer">
-  <view class="layer_box" wx:if="{{ isShow }}">
-    <text wx:if="{{content}}">{{content}}</text>
-    <image wx:else src="{{ loadImg }}" style="width: 160rpx;height:160rpx;margin-top:35vh" />
-  </view>
-</template>

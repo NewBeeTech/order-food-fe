@@ -1,13 +1,11 @@
 <!--index.wxml-->
 <import src="../../components/toast-custom/toast-custom.wxml" />
-<import src="../../components/layer/layer.wxml" />
 
 <template is="toast" data="{{ ...__toast__ }}" />
-<template is="layer" data="{{ ...__layer__ }}" />
 
 <view
   class="container {{urlId ? '' : 'order-container'}}"
-  style="background: #fff;overflow: {{isScroll}};height:{{urlId ? 'auto' : ''}}"
+  style="background: #fff;height:{{urlId ? 'auto' : ''}}"
 >
   <view wx:if="{{!urlId}}" class="order-header">
     I would like to order:
