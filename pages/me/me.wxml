@@ -10,18 +10,11 @@
     <text class="history-order">历史订单</text>
     <text class="history-order-arrow fa fa-angle-right color-grey" />
   </view>
-  <view class="route-to-order route-to-zan" bindtap="showZan">
+  <view
+    class="route-to-order route-to-zan"
+
+    bindtap="reward"
+  >
     <text class="history-order">赞赏菜译通</text>
   </view>
-  <modal
-    hidden="{{!showZan}}"
-    title="扫码可以赞赏我们的服务哦~"
-    confirm-text="好的"
-    bindconfirm="noticeConfirm"
-    no-cancel="{{true}}"
-  >
-    <view class="zan-modal">
-      <image src="../../assets/images/zan.jpeg" style="width: 500rpx;height: 500rpx" />
-    </view>
-  </modal>
 </view>

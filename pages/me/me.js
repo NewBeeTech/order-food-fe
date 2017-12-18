@@ -5,7 +5,6 @@ Page({
   data: {
     motto: 'Hello World',
     userInfo: {},
-    showZan: false,
   },
   onLoad: function () {
     console.log('onLoad')
@@ -18,17 +17,20 @@ Page({
       })
     })
   },
+  onPullDownRefresh: function(){
+    wx.stopPullDownRefresh();
+  },
   routeToOrder: function() {
     wx.navigateTo({
       url: '../history/history'
     })
   },
-  showZan: function() {
-    var that = this
-    that.setData({ showZan: true });
-  },
-  noticeConfirm: function() {
-    var that = this
-    that.setData({ showZan: false });
+  reward: function(e) {
+    wx.previewImage({
+      urls: ['http://caieatong.oss-eu-central-1.aliyuncs.com/static/zan.jpeg'],
+      fail: res => {
+        console.log(res)
+      },
+    })
   }
 })
