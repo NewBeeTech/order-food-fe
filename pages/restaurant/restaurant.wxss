@@ -17,7 +17,7 @@
   color: #000;
   font-weight: 500;
   word-wrap: break-word;
-  word-break:break-all;
+  word-break:normal;
 }
 
 .item-detail-start {
@@ -84,7 +84,7 @@
 .desc {
   width: 100%;
   word-wrap: break-word;
-  word-break:break-all;
+  word-break:normal;
   /*text-align: justify;*/
   color: #101010;
   font-size: 28rpx;
@@ -99,7 +99,7 @@
 .modalDesc {
   width: 100%;
   word-wrap: break-word;
-  word-break:break-all;
+  word-break:normal;
   text-align: justify;
   color: #999;
   font-size: 28rpx;
@@ -145,9 +145,13 @@
   width: 100%;
   border-bottom: 1px solid #cdcdcd;
   height: 110rpx;
+  line-height: 30rpx;
+  display: flex;
+  align-items: center;
   text-align: center;
+  justify-content: center;
   /*padding-left: 50rpx;*/
-  line-height: 110rpx;
+  /* line-height: 110rpx; */
   color: #858585;
   cursor: pointer;
   position: relative;
@@ -215,7 +219,7 @@
   color: #bbb;
   font-weight: bold;
   word-wrap: break-word;
-  word-break:break-all;
+  word-break:normal;
 }
 .aLaCarte-right-item-bottom {
   margin-top: 15rpx;
@@ -435,7 +439,7 @@
   color: #858585;
   font-weight: bold;
   word-wrap: break-word;
-  word-break:break-all;
+  word-break:normal;
 }
 
 .modal-footer {

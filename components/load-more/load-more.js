@@ -19,25 +19,66 @@ let loadMore = {
     let self = this;
     if(!data.__loadmore__.hasMore) return;
     self.setData({ '__loadmore__.isLoading': true });
-    // console.log(data.current, data.pageSize);
-    // wx.request({
-    //   url: this.data.url,
-    //   data: {},
-    //   header: {
-    //     'content-type': 'application/json' // 默认值
-    //   },
-    //   success: function(res) {
-    //     console.log(res.data)
-        this.setData({
-          // list: this.data.list.concat(res.data.result.list),
-          // current: Number(res.data.result.current),
-          restaurantList: this.data.restaurantList.concat(this.data.restaurantList),
-          current: Number(this.data.current + 1),
-        });
-        // console.log(this.data);
+    var that = this;
+    wx.showLoading({
+      mask: true,
+    })
+    // that.setData({ restaurantList:[], total: 0 });
+    // 请求餐厅列表
+    wx.request({
+      url: that.data.url,
+      header:{
+        "Content-Type":"application/json"
+      },
+      data: {
+        "city.name": that.data.currentCityEg,
+        "country.name": that.data.currentCountry,
+        "pageNo": that.data.current + 1,
+        "pageSize": 10,
+      },
+      success: function(res){
+        if(res.data.code === 0){
+          const list = res.data.data.rows;
+          list.map((item, index) => {
+            let rating1 = item.rating;
+            let rating2 = 0;
+            const rating = item.rating;
+            const ratingInt = parseInt(rating);
+            if ( rating > ratingInt) {
+              rating1 = ratingInt;
+              rating2 = 1;
+            }
+            item['rating1'] = rating1;
+            item['rating2'] = rating2;
+          })
+          that.setData({
+            restaurantList: that.data.restaurantList.concat(list),
+            current: Number(that.data.current + 1),
+            total: res.data.data.total,
+          });
+          // app.globalData.currencyType = that.data.currentCurrency;
+          let hasMore = false;
+          if(res.data.data.total > (that.data.current + 1) * that.data.pageSize) hasMore = true;
+          self.setData({ '__loadmore__.hasMore': hasMore });
+          wx.hideLoading();
+        } else {
+          wx.hideLoading();
+          wx.showToast({
+            title: '加载失败',
+            image: '../../assets/images/fail.png',
+          })
+        }
         self.setData({ '__loadmore__.isLoading': false });
-    //   }
-    // })
+      },
+      fail: function(res){
+        wx.hideLoading();
+        wx.showToast({
+          title: '加载失败',
+          image: '../../assets/images/fail.png',
+        })
+        self.setData({ '__loadmore__.isLoading': false });
+      },
+    })
   }
 }
 function LoadMore () {

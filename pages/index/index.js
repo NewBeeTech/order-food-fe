@@ -13,19 +13,19 @@ Page({
 
   data: {
     toView: 'red',
-    scrollTop: 100,
-    total: 10, // 总数
+    // scrollTop: 100,
+    total: 0, // 总数
     current: 1, // 当前页
     pageSize: 10, // 每页数据条数
     list: [],
     restaurantList: [],
     currentCity: '伦敦',
     currentCityEg: 'London',
-    currentCountry: 'England',
+    currentCountry: 'UK',
     currentCurrency: '£',
     cityList: [],
     noScollClass: '',
-    url: '' // url网络请求地址 如：`http://v.juhe.cn/weixin/query?key=f16af393a63364b729fd81ed9fdd4b7d&pno=${Number(this.data.current) + 1}&ps=${Number(this.data.pageSize)}`
+    url: apiUrl.restaurant_list, // url网络请求地址 如：`http://v.juhe.cn/weixin/query?key=f16af393a63364b729fd81ed9fdd4b7d&pno=${Number(this.data.current) + 1}&ps=${Number(this.data.pageSize)}`
   },
   upper: function (e) {
     console.log(e)
@@ -94,8 +94,8 @@ Page({
       },
       data: {
         "city.name": this.data.currentCityEg,
-        "city.country": this.data.currentCountry,
-        "pageNo": this.data.current,
+        "country.name": this.data.currentCountry,
+        "pageNo": 1,
         "pageSize": 10,
       },
       success: function(res){
@@ -117,6 +117,7 @@ Page({
           that.setData({
             restaurantList:res.data.data.rows,
             total: res.data.data.total,
+            current: 1,
           });
           app.globalData.currencyType = that.data.currentCurrency;
           wx.hideLoading();
@@ -127,6 +128,7 @@ Page({
             image: '../../assets/images/fail.png',
           })
         }
+        that.LoadMore().show(that.data);
       },
       fail: function(res){
         wx.hideLoading();
@@ -141,7 +143,6 @@ Page({
     var that = this;
     // 城市选择
     that.City();
-    that.LoadMore().show(that.data);
     that.getCityList();
     that.getRestaurantList();
   },

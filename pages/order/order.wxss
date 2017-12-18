@@ -1,5 +1,7 @@
 .order-container {
   height: calc(100vh - 100rpx);
+  border: 1px solid red;
+  overflow: scroll;
 }
 .order-header {
   width: 690rpx;

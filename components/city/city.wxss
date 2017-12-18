@@ -1,5 +1,5 @@
 .city {
-  position: relative;
+  position: absolute;
   z-index: 1000;
 }
 
@@ -11,7 +11,7 @@
   height: 12vw;
   line-height: 12vw;
   border-bottom: 1px solid #dcdcdc;
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
   z-index: 2000;
@@ -27,8 +27,8 @@
   height: 100vh;
   width: 100vw;
   background-color: #f7f7f7;
-  position: relative;
-  /* top: 12vw; */
+  position: absolute;
+  top: 12vw;
   left: 0;
   bottom: 0;
   z-index: 1100;
@@ -62,7 +62,7 @@
   line-height: 6vw;
   display: inline-block;
   word-wrap: break-word;
-  word-break:break-all;
+  word-break:normal;
   padding-top: 3vw;
   padding-bottom: 3vw;
   color: #000;

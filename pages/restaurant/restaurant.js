@@ -106,6 +106,7 @@ Page({
       rating1: '',
       rating2: '',
       setMenu: {},
+      aLaCarteNum: {},
     });
     wx.showLoading({
       mask: true,
@@ -255,10 +256,9 @@ Page({
    * 添加单点
    */
   addAlaCarte: function(addItem) {
-    // const addItem = e.target.dataset.alacarte;
     const aLaCarte = this.data.aLaCarte;
-    let totalFee = this.data.totalFee;
-    let defaultPrice = 0;
+    let aLaCarteNum = this.data.aLaCarteNum;
+    let totalFee = Number(this.data.totalFee);
     for (var p in aLaCarte) {
       aLaCarte[p].map(item => {
         if(item._id === addItem._id) {
@@ -272,44 +272,40 @@ Page({
           }
           if(addItem.options.radio !== undefined) {
             addItem.options.radio.content.map((i, key) => {
-              if(i.default) {
-                defaultPrice = i.price;
-              }
-            });
-          }
-          if(addItem.options.radio !== undefined) {
-            addItem.options.radio.content.map((i, key) => {
               if(i.checked) {
-                const currentPrice =  i.price - defaultPrice
-                totalFee += currentPrice;
+                if(i.price !== 0)
+                {
+                  totalFee = totalFee + i.price - item.price
+                }
               }
             });
           }
-          // console.log(totalFee);
           const number = item.num || 0;
           item.num = number + 1;
           addItem.num = number + 1;
+          aLaCarteNum[p] = isNaN(aLaCarteNum[p]) ? 1 : aLaCarteNum[p] + 1;
         }
       });
     }
     const addAlaCarte = this.data.addAlaCarte;
     addAlaCarte.push(addItem);
-    console.log(addAlaCarte);
     this.setData({
       aLaCarte,
       addAlaCarte,
       addItem: {},
-      totalFee,
+      totalFee: totalFee.toFixed(2),
+      aLaCarteNum,
     });
   },
   /**
    * 删除单点
    */
   removeAlaCarte: function(addItem) {
+    let aLaCarteNum = this.data.aLaCarteNum;
     const aLaCarte = this.data.aLaCarte;
     const removeAlaCarte = this.data.removeAlaCarte;
     const addAlaCarte = this.data.addAlaCarte;
-    let totalFee = this.data.totalFee;
+    let totalFee = Number(this.data.totalFee);
     let removeIndex = this.data.radioALaCarteRemoveIndex
     for (var i in addAlaCarte) {
       if(JSON.stringify(addAlaCarte[i]) === JSON.stringify((removeAlaCarte[removeIndex]))) {
@@ -319,10 +315,9 @@ Page({
     }
     const removeItem = removeAlaCarte[removeIndex];
     removeAlaCarte.splice(removeIndex, 1);
-    let defaultPrice = 0;
+    // let defaultPrice = 0;
     for (var p in aLaCarte) {
       aLaCarte[p].map(item => {
-
         if(item._id === addItem._id) {
           totalFee -= item.price;
           if(removeItem.options.checkbox !== undefined) {
@@ -334,23 +329,16 @@ Page({
           }
           if(removeItem.options.radio !== undefined) {
             removeItem.options.radio.content.map((i, key) => {
-              if(i.default) {
-                defaultPrice = i.price;
-              }
-            });
-          }
-          if(removeItem.options.radio !== undefined) {
-            removeItem.options.radio.content.map((i, key) => {
-              if(i.checked) {
-                const currentPrice =  i.price - defaultPrice
-                totalFee -= currentPrice;
+              if (i.checked) {
+                if (i.price !== 0) {
+                  totalFee = totalFee - i.price + item.price
+                }
               }
             });
           }
           const number = item.num || 0;
           item.num = number - 1;
-          // const aLaCarteNumber = aLaCarte[p].aLaCarteNumber || 0;
-          // aLaCarte[p].aLaCarteNumber = aLaCarteNumber - 1;
+          aLaCarteNum[p] = aLaCarteNum[p] - 1;
         }
       });
     }
@@ -360,7 +348,8 @@ Page({
       addAlaCarte,
       addItem: {},
       radioALaCarteRemoveIndex: 0,
-      totalFee,
+      totalFee: totalFee.toFixed(2),
+      aLaCarteNum,
     });
   },
   /**
@@ -368,7 +357,7 @@ Page({
    */
   addSetMenu: function(addItem) {
     const setMenu = this.data.setMenu;
-    let totalFee = this.data.totalFee;
+    let totalFee = Number(this.data.totalFee);
     for (var p in setMenu) {
       if(setMenu[p]._id === addItem._id) {
         totalFee +=  Number(setMenu[p].price);
@@ -383,7 +372,7 @@ Page({
       setMenu,
       addSetMenu,
       addItem: {},
-      totalFee,
+      totalFee: totalFee.toFixed(2),
     });
   },
   /**
@@ -393,7 +382,7 @@ Page({
     const setMenu = this.data.setMenu;
     const removeSetMenu = this.data.removeSetMenu;
     const addSetMenu = this.data.addSetMenu;
-    let totalFee = this.data.totalFee;
+    let totalFee = Number(this.data.totalFee);
     for (var p in setMenu) {
       if(setMenu[p]._id === addItem._id) {
         const number = setMenu[p].num || 0;
@@ -414,7 +403,7 @@ Page({
       removeSetMenu,
       addSetMenu,
       addItem: {},
-      totalFee,
+      totalFee: totalFee.toFixed(2),
     });
   },
   /**

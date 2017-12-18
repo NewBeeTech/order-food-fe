@@ -44,7 +44,7 @@
   /*justify-content: space-between;*/
 }
 
-.city {
+.history-city {
   display: flex;
   align-items: center;
   width: 100%;

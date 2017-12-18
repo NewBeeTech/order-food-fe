@@ -12,7 +12,7 @@
         <text class="fa fa-bank color-default" style="margin-right: 10rpx; font-size: 30rpx;"/>
         {{item.restaurantName}}
       </view>
-      <view class="history-first city">
+      <view class="history-city">
         {{item.country.chineseName}}-{{item.city.chineseName}}
       </view>
       <view class="history-first">

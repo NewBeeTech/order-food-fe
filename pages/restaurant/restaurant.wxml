@@ -66,13 +66,10 @@
           class="aLaCarte-left-item {{aLaCarteLeftSelected === index ? 'aLaCarte-left-select' : ''}}"
         >
           {{index}}
-          <!-- <view
-            wx:for="{{aLaCarte[index]}}"
-            wx:for-item="aLaCarteItem"
-            wx:key="aLaCarteItem"
+          <view
+            wx:if="{{aLaCarteNum[index]}}"
             class="aLaCarte-left-item-number"
-            wx:if="{{aLaCarteItem.num}}"
-          >{{aLaCarteItem.num}}</view> -->
+          >{{aLaCarteNum[index]}}</view>
         </view>
       </view>
       <view wx:if="{{aLaCarteRight}}" class="aLaCarte-right">
@@ -94,9 +91,12 @@
               <view class="aLaCarte-right-price">{{currencyType}}{{item.price}}</view>
               <!-- + - 按钮 -->
               <view class="aLaCarte-right-price">
-                <view catchtap="showRemoveAlaCarteModal" class="aLaCarte-right-handler">
+                <view
+                  catchtap="showRemoveAlaCarteModal"
+                  class="aLaCarte-right-handler"
+                  wx:if="{{item.num}}"
+                >
                   <text
-                    wx:if="{{item.num}}"
                     data-alacarte="{{item}}"
                     class="fa fa-minus-circle"
                   ></text>
@@ -170,11 +170,14 @@
         </view>
         <view class="setMenu-right-item-bottom">
           <view class="setMenu-right-bottom-price">
-            <view bindtap="showRemoveSetMenuModal" class="aLaCarte-right-handler">
+            <view
+              bindtap="showRemoveSetMenuModal"
+              class="aLaCarte-right-handler"
+              wx:if="{{setMenu[setMenuLeftSelected].num}}"
+            >
               <text
                 data-setmenu="{{setMenu[setMenuLeftSelected]}}"
                 class="fa fa-minus-circle"
-                wx:if="{{setMenu[setMenuLeftSelected].num}}"
               ></text>
             </view>
             <view
@@ -406,9 +409,10 @@
                   {{itemName.name.chineseName}}
                 </view>
               </view>
-              <view class="modal-content-option">
-                <view class="modal-content-option-title" style="margin-top: 10rpx;">{{itemName.options.radio.title.chineseName}}</view>
+              <view class="modal-content-option" wx:if="{{itemName.options.radio || itemName.options.checkbox}}">
+                <view wx:if="{{itemName.options.radio}}" class="modal-content-option-title" style="margin-top: 10rpx;">{{itemName.options.radio.title.chineseName}}</view>
                 <view
+                  wx:if="{{itemName.options.radio}}"
                   wx:key="setMenuRadio"
                   wx:for="{{itemName.options.radio.content}}"
                   wx:for-item="setMenuRadio"
@@ -419,8 +423,12 @@
                     wx:if="{{setMenuRadio.checked}}"
                   >{{setMenuRadio.chineseName}}</view>
                 </view>
-                <view class="modal-content-option-title">{{itemName.options.checkbox.title.chineseName}}</view>
                 <view
+                  wx:if="{{itemName.options.checkbox}}"
+                  class="modal-content-option-title"
+                >{{itemName.options.checkbox.title.chineseName}}</view>
+                <view
+                  wx:if="{{itemName.options.checkbox}}"
                   wx:key="setMenuCheckbox"
                   wx:for="{{itemName.options.checkbox.content}}"
                   wx:for-item="setMenuCheckbox"

@@ -1,9 +1,9 @@
 /**index.wxss**/
 .city-choose {
   width: 100vw;
-  /* position: relative;
+  position: absolute;
   top: 0;
-  left: 0; */
+  left: 0;
 }
 
 .noscroll {
@@ -53,7 +53,7 @@
   color: #000;
   font-weight: 500;
   word-wrap: break-word;
-  word-break:break-all;
+  word-break:normal;
 }
 
 .item-detail-start {

@@ -13,5 +13,5 @@
   margin: 0 auto;
   margin-top: 50rpx;
   word-wrap: break-word;
-  word-break:break-all;
+  word-break:normal;
 }
