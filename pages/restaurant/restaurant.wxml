@@ -404,7 +404,7 @@
               wx:for-index="indexName"
               wx:key="setMenuDetailItem"
             >
-              <view class="modal-content-radio">
+              <view class="modal-content-radio" wx:if="{{itemName.checked}}">
                 <view style="width:100%; text-align:left">
                   {{itemName.name.chineseName}}
                 </view>

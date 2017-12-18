@@ -11,7 +11,7 @@
     <text class="history-order-arrow fa fa-angle-right color-grey" />
   </view>
   <view class="route-to-order route-to-zan" bindtap="showZan">
-    <text class="history-order">赞赏码</text>
+    <text class="history-order">赞赏菜译通</text>
   </view>
   <modal
     hidden="{{!showZan}}"
@@ -21,7 +21,7 @@
     no-cancel="{{true}}"
   >
     <view class="zan-modal">
-      <image src="../../assets/images/background-me.png" style="width: 400rpx;height: 400rpx" />
+      <image src="../../assets/images/zan.jpeg" style="width: 500rpx;height: 500rpx" />
     </view>
   </modal>
 </view>

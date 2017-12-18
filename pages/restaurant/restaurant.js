@@ -367,6 +367,7 @@ Page({
       }
     }
     const addSetMenu = this.data.addSetMenu;
+    console.log(addItem);
     addSetMenu.push(addItem);
     this.setData({
       setMenu,
