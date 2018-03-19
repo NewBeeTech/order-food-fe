@@ -15,11 +15,11 @@
           <text wx:if="{{rating2}}" class="fa fa-star-half-o color-default" />
         </view>
         <view>
-          <text wx:for="{{priceLevel}}" wx:key="level" class="color-default">{{currencyType}}</text>
+          <text wx:for="{{priceLevel}}" wx:key="level" class="color-default">{{country.currencyType}}</text>
         </view>
       </view>
       <view class="item-detail-level">
-        <!-- <text wx:for="{{priceLevel}}" wx:key="level" class="color-default">{{currencyType}}</text> -->
+        <!-- <text wx:for="{{priceLevel}}" wx:key="level" class="color-default">{{country.currencyType}}</text> -->
       </view>
       <view class="item-detail-line" />
       <view class="item-detail-tags">
@@ -88,7 +88,7 @@
             <view class="aLaCarte-right-item-name">{{item.name.chineseName}}</view>
             <view class="aLaCarte-right-item-Eg">{{item.name.name}}</view>
             <view class="aLaCarte-right-item-bottom">
-              <view class="aLaCarte-right-price">{{currencyType}}{{item.price}}</view>
+              <view class="aLaCarte-right-price">{{country.currencyType}}{{item.price}}</view>
               <!-- + - 按钮 -->
               <view class="aLaCarte-right-price">
                 <view
@@ -145,7 +145,7 @@
                 {{setMenu[setMenuLeftSelected].desc}}
               </view>
               <view class="setMenu-right-item-top-price">
-                {{currencyType}}{{setMenu[setMenuLeftSelected].price}}
+                {{country.currencyType}}{{setMenu[setMenuLeftSelected].price}}
               </view>
             </view>
             <view wx:for="{{setMenu[setMenuLeftSelected].setMenuDetail}}" wx:key="setMenuDetail">
@@ -210,7 +210,7 @@
         <radio-group class="radio-group" bindchange="radioALaCarteChange">
           <view class="modal-content-radio" wx:for="{{addItem.options.radio.content}}" wx:key="radio">
             <view>{{item.chineseName}}</view>
-            <view wx:if="{{item.price}}">{{currencyType}}{{item.price}}</view>
+            <view wx:if="{{item.price}}">{{country.currencyType}}{{item.price}}</view>
             <view wx:else></view>
             <radio value="{{item.chineseName}}" color="#f60" checked="{{item.checked}}"/>
           </view>
@@ -222,7 +222,7 @@
         <checkbox-group bindchange="checkboxALaCarteChange">
           <view class="modal-content-radio" wx:for="{{addItem.options.checkbox.content}}" wx:key="checkbox">
             <view>{{item.chineseName}}</view>
-            <view wx:if="{{item.price}}">{{currencyType}}{{item.price}}</view>
+            <view wx:if="{{item.price}}">{{country.currencyType}}{{item.price}}</view>
             <view wx:else></view>
             <checkbox value="{{item.chineseName}}" color="#f60" checked="{{item.checked}}"/>
           </view>
@@ -260,7 +260,7 @@
               wx:if="{{itemName.checked}}"
             >
               <view wx:if="{{itemName.checked}}">{{itemName.chineseName}}</view>
-              <view wx:if="{{itemName.checked && itemName.price}}">{{currencyType}}{{itemName.price}}</view>
+              <view wx:if="{{itemName.checked && itemName.price}}">{{country.currencyType}}{{itemName.price}}</view>
               <view wx:else></view>
             </view>
             <view wx:if="{{item.options.checkbox.title.chineseName}}" class="modal-content-radio-title">{{item.options.checkbox.title.chineseName}}：</view>
@@ -271,7 +271,7 @@
               wx:for-item="itemName"
             >
               <view wx:if="{{itemName.checked}}">{{itemName.chineseName}}</view>
-              <view wx:if="{{itemName.checked && itemName.price}}">{{currencyType}}{{itemName.price}}</view>
+              <view wx:if="{{itemName.checked && itemName.price}}">{{country.currencyType}}{{itemName.price}}</view>
               <view wx:else></view>
             </view>
             <view class="modal-line" style="margin-top: 10rpx;"/>
@@ -340,7 +340,7 @@
                     class="modal-content-option-item"
                   >
                     <view style="width: 70%">{{setMenuRadio.chineseName}}</view>
-                    <view class="setMenuRadio-price">{{setMenuRadio.price ? currencyType : '' }}{{setMenuRadio.price || "" }}</view>
+                    <view class="setMenuRadio-price">{{setMenuRadio.price ? country.currencyType : '' }}{{setMenuRadio.price || "" }}</view>
                     <radio value="{{setMenuRadio.chineseName}}" color="#f60" checked="{{setMenuRadio.checked}}" />
                   </view>
                 </radio-group>
@@ -527,7 +527,7 @@
     >{{toastInfo}}</toast>
     <!-- 底部生成菜单按钮 -->
     <view class="restaurant-footer">
-      <text>总金额约 {{currencyType}}{{totalFee}}</text>
+      <text>总金额约 {{country.currencyType}}{{totalFee}}</text>
       <view class="create-order" bindtap="alertNotice">生成菜单</view>
     </view>
   </view>

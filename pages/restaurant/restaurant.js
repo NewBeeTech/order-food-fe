@@ -17,6 +17,7 @@ Page({
     country: {
       chineseName: '英国',
       name: 'UK',
+      currencyType: 'UK',
     },
     cuisines: [],
     currencyType: '£',
@@ -191,7 +192,7 @@ Page({
     var that = this;
     new app.ToastCustom();
     this.getRestaurantInfo();
-    this.setData({ currencyType: app.globalData.currencyType });
+    // this.setData({ currencyType: app.globalData.currencyType });
   },
   clickImage: function(e) {
     var current = e.target.dataset.src;
@@ -843,7 +844,7 @@ Page({
     });
     app.globalData.addSetMenu = this.data.addSetMenu;
     app.globalData.addAlaCarte = this.data.addAlaCarte;
-    app.globalData.currencyType = this.data.currencyType;
+    app.globalData.currencyType = this.data.country.currencyType;
     app.globalData.totalFee = this.data.totalFee;
     app.globalData.resName = this.data.name;
     app.globalData.restaurantId = that.options._id;
